@@ -124,130 +124,207 @@ model Prove
       Line(points = {{100, 42}, {104, 42}, {104, -20}}, color = {0, 0, 255}));
   end TestCircuit;
 
-  model Comparison_Circuit_building
-  Modelica.Electrical.Analog.Basic.Ground ground annotation(
-      Placement(transformation(origin = {-118, -66}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Ground ground1 annotation(
-      Placement(transformation(origin = {104, -64}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
-      Placement(transformation(origin = {0, -64}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Capacitor Room_1 annotation(
-      Placement(transformation(origin = {-118, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Basic.Capacitor Room_2 annotation(
-      Placement(transformation(origin = {104, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Basic.Capacitor Room_3 annotation(
-      Placement(transformation(origin = {0, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Sources.SignalCurrent Actuator1 annotation(
-      Placement(transformation(origin = {-118, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Sources.SignalCurrent Actuator2 annotation(
-      Placement(transformation(origin = {104, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Sources.SignalCurrent Actuator3 annotation(
-      Placement(transformation(origin = {0, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Basic.Resistor wall_13 annotation(
-      Placement(transformation(origin = {-54, 4}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Resistor wall_23 annotation(
-      Placement(transformation(origin = {62, 4}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Sources.SignalVoltage Te annotation(
-      Placement(transformation(origin = {-118, 28}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Basic.Resistor wall_1e annotation(
-      Placement(transformation(origin = {-118, 56}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Basic.Ground ground21 annotation(
-      Placement(transformation(origin = {-118, 82}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
-  Modelica.Electrical.Analog.Sources.SignalVoltage Te1 annotation(
-      Placement(transformation(origin = {0, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Basic.Resistor wall_2e annotation(
-      Placement(transformation(origin = {0, 52}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Basic.Ground ground211 annotation(
-      Placement(transformation(origin = {0, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
-  Modelica.Electrical.Analog.Sources.SignalVoltage Te2 annotation(
-      Placement(transformation(origin = {104, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Basic.Resistor wall_3e annotation(
-      Placement(transformation(origin = {104, 52}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Basic.Ground ground212 annotation(
-      Placement(transformation(origin = {104, 116}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
-  Modelica.Electrical.Analog.Sources.SignalCurrent Actuator31 annotation(
-      Placement(transformation(origin = {104, 84}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch annotation(
-      Placement(transformation(origin = {-64, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch1 annotation(
-      Placement(transformation(origin = {52, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch2 annotation(
-      Placement(transformation(origin = {126, 64}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Resistor door_13 annotation(
-      Placement(transformation(origin = {-58, 68}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Resistor door_23 annotation(
-      Placement(transformation(origin = {58, 66}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Resistor door_3e annotation(
-      Placement(transformation(origin = {146, 46}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  equation
-  
-    
-      wall_13.R = (1/gammawi/(Wr1*H) + 0.5*tw/lambdaw/(Wr1*H))*2;
+model Comparison_Circuit_building
+
+parameter Temperature               Tstart  = 293.15 "initial T, all elements";
+parameter Density                   roa     = 1.1 "density of air";
+parameter SpecificHeatCapacity      ca      = 1020 "specific heat of air";
+parameter Density                   row     = 2000 "density of walls";
+parameter SpecificHeatCapacity      cw      = 800 "specific heat of walls";
+parameter ThermalConductivity       lambdaw = 1.5 "thermal conductivity of walls";
+parameter CoefficientOfHeatTransfer gammawi = 12 "internal ccht, all walls";
+parameter CoefficientOfHeatTransfer gammawe = 15 "external ccht, all walls";
+parameter ThermalConductance        Gdo     = 300 "conductance of open doors";
+parameter Length                    Lr12    = 4 "length of rooms 1 and 2";
+parameter Length                    Lr3     = 4 "length of room 3";
+parameter Length                    Wr1     = 6 "width of room 1";
+parameter Length                    Wr2     = 4 "width of room 2";
+parameter Length                    Wr3     = 10 "width of room 3";
+parameter Length                    H       = 3 "height, all rooms";
+parameter Length                    tw      = 0.1 "thickness of all walls";
+
+Modelica.Electrical.Analog.Basic.Ground ground annotation(
+    Placement(transformation(origin = {-130, -66}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Ground ground1 annotation(
+    Placement(transformation(origin = {92, -64}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
+    Placement(transformation(origin = {-12, -64}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Capacitor Room_1 annotation(
+    Placement(transformation(origin = {-130, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Basic.Capacitor Room_2 annotation(
+    Placement(transformation(origin = {92, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Basic.Capacitor Room_3 annotation(
+    Placement(transformation(origin = {-12, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Sources.SignalCurrent Actuator1 annotation(
+    Placement(transformation(origin = {-130, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Sources.SignalCurrent Actuator2 annotation(
+    Placement(transformation(origin = {92, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Sources.SignalCurrent Actuator3 annotation(
+    Placement(transformation(origin = {-12, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Basic.Resistor wall_13 annotation(
+    Placement(transformation(origin = {-66, 4}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Resistor wall_23 annotation(
+    Placement(transformation(origin = {50, 4}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Sources.SignalVoltage Te annotation(
+    Placement(transformation(origin = {-130, 28}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Basic.Resistor wall_1e annotation(
+    Placement(transformation(origin = {-130, 56}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Basic.Ground ground21 annotation(
+    Placement(transformation(origin = {-130, 82}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+Modelica.Electrical.Analog.Sources.SignalVoltage Te1 annotation(
+    Placement(transformation(origin = {-12, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Basic.Resistor wall_2e annotation(
+    Placement(transformation(origin = {-12, 52}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Basic.Ground ground211 annotation(
+    Placement(transformation(origin = {-12, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+Modelica.Electrical.Analog.Sources.SignalVoltage Te2 annotation(
+    Placement(transformation(origin = {92, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Basic.Resistor wall_3e annotation(
+    Placement(transformation(origin = {92, 52}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Basic.Ground ground212 annotation(
+    Placement(transformation(origin = {92, 116}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+Modelica.Electrical.Analog.Sources.SignalCurrent Actuator31 annotation(
+    Placement(transformation(origin = {92, 84}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch annotation(
+    Placement(transformation(origin = {-76, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch1 annotation(
+    Placement(transformation(origin = {40, 26}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch2 annotation(
+    Placement(transformation(origin = {114, 64}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Resistor door_13 annotation(
+    Placement(transformation(origin = {-70, 68}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Resistor door_23 annotation(
+    Placement(transformation(origin = {46, 66}, extent = {{-10, -10}, {10, 10}})));
+Modelica.Electrical.Analog.Basic.Resistor door_3e annotation(
+    Placement(transformation(origin = {134, 46}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  AES_project_2023_2024.ProcessComponents.HCactuator hcRoom1 annotation(
+      Placement(transformation(origin = {-220, -136}, extent = {{-10, -10}, {10, 10}})));
+  AES_project_2023_2024.ProcessComponents.HCactuator hcRoom2 annotation(
+      Placement(transformation(origin = {-220, -168}, extent = {{-10, -10}, {10, 10}})));
+  AES_project_2023_2024.ProcessComponents.HCactuator hRoom3 annotation(
+      Placement(transformation(origin = {-220, -196}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Sine uh(amplitude = 1.2, f = 1/1800) annotation(
+      Placement(transformation(origin = {-340, -162}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.Sine uc(amplitude = 1.5, f = 1/3600, phase = 1.570796326794897) annotation(
+      Placement(transformation(origin = {-344, -204}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Add add(k2 = -1)  annotation(
+      Placement(transformation(origin = {-184, -136}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Add add2(k2 = -1) annotation(
+      Placement(transformation(origin = {-178, -168}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Math.Add add3(k2 = -1) annotation(
+      Placement(transformation(origin = {-176, -194}, extent = {{-10, -10}, {10, 10}})));
+  AES_project_2023_2024.ProcessComponents.TePrad tePrad annotation(
+      Placement(transformation(origin = {-304, 22}, extent = {{-10, -10}, {10, 10}})));
+  AES_project_2023_2024.ProcessComponents.DoorOpenings doorOpenings annotation(
+      Placement(transformation(origin = {-12, 200}, extent = {{-20, -20}, {20, 20}}, rotation = -90)));
+
+equation
+    wall_13.R = (1/gammawi/(Wr1*H) + 0.5*tw/lambdaw/(Wr1*H))*2;
     wall_23.R = (1/gammawi/(Wr2*H) + 0.5*tw/lambdaw/(Wr2*H))*2;
     wall_1e.R = (1/gammawi/(Wr1*H) + 0.5*tw/lambdaw/(Wr1*H)) + 1/(1/gammawe/(Wr1*H) + 0.5*tw/lambdaw/(Wr1*H));
     wall_2e.R = (1/gammawi/(Wr1*H) + 0.5*tw/lambdaw/(Wr2*H)) + 1/(1/gammawe/(Wr2*H) + 0.5*tw/lambdaw/(Wr1*H));
     wall_3e.R = (1/gammawi/(Wr3*H) + 0.5*tw/lambdaw/(Wr3*H)) + 1/(1/gammawe/(Wr1*H) + 0.5*tw/lambdaw/(Wr1*H));
-    door_12.R=1/300;
-    door_23.R=1/300;
-    door_3e.R=1/300;
+    door_12.R = 1/300;
+    door_23.R = 1/300;
+    door_3e.R = 1/300;
     connect(ground.p, Actuator1.p) annotation(
-      Line(points = {{-118, -56}, {-118, -42}}, color = {0, 0, 255}));
+      Line(points = {{-130, -56}, {-130, -42}}, color = {0, 0, 255}));
     connect(Actuator1.n, Room_1.n) annotation(
-      Line(points = {{-118, -22}, {-118, -16}}, color = {0, 0, 255}));
+      Line(points = {{-130, -22}, {-130, -16}}, color = {0, 0, 255}));
     connect(ground1.p, Actuator2.p) annotation(
-      Line(points = {{104, -54}, {104, -40}}, color = {0, 0, 255}));
+      Line(points = {{92, -54}, {92, -40}}, color = {0, 0, 255}));
     connect(Actuator2.n, Room_2.n) annotation(
-      Line(points = {{104, -20}, {104, -16}}, color = {0, 0, 255}));
+      Line(points = {{92, -20}, {92, -16}}, color = {0, 0, 255}));
     connect(ground2.p, Actuator3.p) annotation(
-      Line(points = {{0, -54}, {0, -42}}, color = {0, 0, 255}));
+      Line(points = {{-12, -54}, {-12, -42}}, color = {0, 0, 255}));
     connect(Actuator3.n, Room_3.n) annotation(
-      Line(points = {{0, -22}, {0, -16}}, color = {0, 0, 255}));
+      Line(points = {{-12, -22}, {-12, -16}}, color = {0, 0, 255}));
     connect(wall_13.n, Room_3.p) annotation(
-      Line(points = {{-44, 4}, {0, 4}}, color = {0, 0, 255}));
+      Line(points = {{-56, 4}, {-12, 4}}, color = {0, 0, 255}));
     connect(Room_3.p, wall_23.p) annotation(
-      Line(points = {{0, 4}, {52, 4}}, color = {0, 0, 255}));
+      Line(points = {{-12, 4}, {40, 4}}, color = {0, 0, 255}));
     connect(wall_23.n, Room_2.p) annotation(
-      Line(points = {{72, 4}, {104, 4}}, color = {0, 0, 255}));
+      Line(points = {{60, 4}, {92, 4}}, color = {0, 0, 255}));
     connect(Room_1.p, Te.p) annotation(
-      Line(points = {{-118, 4}, {-118, 18}}, color = {0, 0, 255}));
+      Line(points = {{-130, 4}, {-130, 18}}, color = {0, 0, 255}));
     connect(wall_1e.n, Te.n) annotation(
-      Line(points = {{-118, 46}, {-118, 38}}, color = {0, 0, 255}));
+      Line(points = {{-130, 46}, {-130, 38}}, color = {0, 0, 255}));
     connect(ground21.p, wall_1e.p) annotation(
-      Line(points = {{-118, 72}, {-118, 66}}, color = {0, 0, 255}));
+      Line(points = {{-130, 72}, {-130, 66}}, color = {0, 0, 255}));
     connect(wall_13.p, Room_1.p) annotation(
-      Line(points = {{-64, 4}, {-118, 4}}, color = {0, 0, 255}));
+      Line(points = {{-76, 4}, {-130, 4}}, color = {0, 0, 255}));
     connect(wall_2e.n, Te1.n) annotation(
-      Line(points = {{0, 42}, {0, 36}}, color = {0, 0, 255}));
+      Line(points = {{-12, 42}, {-12, 36}}, color = {0, 0, 255}));
     connect(ground211.p, wall_2e.p) annotation(
-      Line(points = {{0, 68}, {0, 62}}, color = {0, 0, 255}));
+      Line(points = {{-12, 68}, {-12, 62}}, color = {0, 0, 255}));
     connect(Te1.p, Room_3.p) annotation(
-      Line(points = {{0, 16}, {0, 4}}, color = {0, 0, 255}));
+      Line(points = {{-12, 16}, {-12, 4}}, color = {0, 0, 255}));
     connect(wall_3e.n, Te2.n) annotation(
-      Line(points = {{104, 42}, {104, 36}}, color = {0, 0, 255}));
+      Line(points = {{92, 42}, {92, 36}}, color = {0, 0, 255}));
     connect(Te2.p, Room_2.p) annotation(
-      Line(points = {{104, 16}, {104, 4}}, color = {0, 0, 255}));
+      Line(points = {{92, 16}, {92, 4}}, color = {0, 0, 255}));
     connect(ground212.p, Actuator31.p) annotation(
-      Line(points = {{104, 106}, {104, 94}}, color = {0, 0, 255}));
+      Line(points = {{92, 106}, {92, 94}}, color = {0, 0, 255}));
     connect(Actuator31.n, wall_3e.p) annotation(
-      Line(points = {{104, 74}, {104, 62}}, color = {0, 0, 255}));
+      Line(points = {{92, 74}, {92, 62}}, color = {0, 0, 255}));
     connect(switch.p, wall_13.p) annotation(
-      Line(points = {{-64, 20}, {-64, 4}}, color = {0, 0, 255}));
+      Line(points = {{-76, 20}, {-76, 4}}, color = {0, 0, 255}));
     connect(switch1.p, wall_23.p) annotation(
-      Line(points = {{52, 16}, {52, 4}}, color = {0, 0, 255}));
+      Line(points = {{40, 16}, {40, 4}}, color = {0, 0, 255}));
     connect(switch2.p, Actuator31.n) annotation(
-      Line(points = {{116, 64}, {104, 64}, {104, 74}}, color = {0, 0, 255}));
+      Line(points = {{104, 64}, {92, 64}, {92, 74}}, color = {0, 0, 255}));
     connect(door_13.p, switch.n1) annotation(
-      Line(points = {{-68, 68}, {-68, 40}}, color = {0, 0, 255}));
+      Line(points = {{-80, 68}, {-80, 40}}, color = {0, 0, 255}));
     connect(door_13.n, wall_13.n) annotation(
-      Line(points = {{-48, 68}, {-44, 68}, {-44, 4}}, color = {0, 0, 255}));
+      Line(points = {{-60, 68}, {-56, 68}, {-56, 4}}, color = {0, 0, 255}));
     connect(door_3e.p, switch2.n1) annotation(
-      Line(points = {{146, 56}, {146, 68}, {136, 68}}, color = {0, 0, 255}));
+      Line(points = {{134, 56}, {134, 68}, {124, 68}}, color = {0, 0, 255}));
     connect(door_3e.n, Te2.n) annotation(
-      Line(points = {{146, 36}, {104, 36}}, color = {0, 0, 255}));
+      Line(points = {{134, 36}, {92, 36}}, color = {0, 0, 255}));
     connect(door_23.p, switch1.n1) annotation(
-      Line(points = {{48, 66}, {48, 36}}, color = {0, 0, 255}));
+      Line(points = {{36, 66}, {36, 36}}, color = {0, 0, 255}));
     connect(door_23.n, wall_23.n) annotation(
-      Line(points = {{68, 66}, {72, 66}, {72, 4}}, color = {0, 0, 255}));
+      Line(points = {{56, 66}, {60, 66}, {60, 4}}, color = {0, 0, 255}));
+    connect(uh.y, hcRoom1.uh01) annotation(
+      Line(points = {{-329, -162}, {-250, -162}, {-250, -130}, {-232, -130}}, color = {0, 0, 127}));
+    connect(uh.y, hcRoom2.uh01) annotation(
+      Line(points = {{-329, -162}, {-232, -162}}, color = {0, 0, 127}));
+    connect(uh.y, hRoom3.uh01) annotation(
+      Line(points = {{-329, -162}, {-250, -162}, {-250, -190}, {-232, -190}}, color = {0, 0, 127}));
+    connect(uc.y, hcRoom1.uc01) annotation(
+      Line(points = {{-333, -204}, {-256, -204}, {-256, -142}, {-232, -142}}, color = {0, 0, 127}));
+    connect(uc.y, hcRoom2.uc01) annotation(
+      Line(points = {{-333, -204}, {-256, -204}, {-256, -174}, {-232, -174}}, color = {0, 0, 127}));
+    connect(uc.y, hRoom3.uc01) annotation(
+      Line(points = {{-333, -204}, {-277.5, -204}, {-277.5, -202}, {-232, -202}}, color = {0, 0, 127}));
+    connect(hcRoom1.Ph, add.u1) annotation(
+      Line(points = {{-208, -130}, {-208, -128}, {-196, -128}, {-196, -130}}, color = {0, 0, 127}));
+    connect(hcRoom1.Pc, add.u2) annotation(
+      Line(points = {{-208, -142}, {-208, -140}, {-196, -140}, {-196, -142}}, color = {0, 0, 127}));
+    connect(add.y, Actuator1.i) annotation(
+      Line(points = {{-172, -136}, {-142, -136}, {-142, -32}}, color = {0, 0, 127}));
+  connect(hcRoom2.Ph, add2.u1) annotation(
+      Line(points = {{-208, -162}, {-190, -162}}, color = {0, 0, 127}));
+  connect(hcRoom2.Pc, add2.u2) annotation(
+      Line(points = {{-208, -174}, {-190, -174}}, color = {0, 0, 127}));
+  connect(hRoom3.Ph, add3.u1) annotation(
+      Line(points = {{-208, -190}, {-188, -190}, {-188, -188}}, color = {0, 0, 127}));
+  connect(hRoom3.Pc, add3.u2) annotation(
+      Line(points = {{-208, -202}, {-188, -202}, {-188, -200}}, color = {0, 0, 127}));
+  connect(add2.y, Actuator3.i) annotation(
+      Line(points = {{-166, -168}, {-24, -168}, {-24, -32}}, color = {0, 0, 127}));
+  connect(add3.y, Actuator2.i) annotation(
+      Line(points = {{-164, -194}, {80, -194}, {80, -30}}, color = {0, 0, 127}));
+  connect(tePrad.Te, Te.v) annotation(
+      Line(points = {{-292, 28}, {-142, 28}}, color = {0, 0, 127}));
+  connect(tePrad.Prad, Actuator31.i) annotation(
+      Line(points = {{-292, 16}, {104, 16}, {104, 84}}, color = {0, 0, 127}));
+  connect(doorOpenings.door13open, switch.control) annotation(
+      Line(points = {{0, 176}, {-92, 176}, {-92, 30}, {-88, 30}}, color = {255, 0, 255}));
+  connect(doorOpenings.door23open, switch1.control) annotation(
+      Line(points = {{-12, 176}, {28, 176}, {28, 26}}, color = {255, 0, 255}));
+  connect(doorOpenings.door3eopen, switch2.control) annotation(
+      Line(points = {{-24, 176}, {114, 176}, {114, 76}}, color = {255, 0, 255}));
   end Comparison_Circuit_building;
 equation
 
