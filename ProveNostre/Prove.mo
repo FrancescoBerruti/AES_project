@@ -326,6 +326,143 @@ equation
   connect(doorOpenings.door3eopen, switch2.control) annotation(
       Line(points = {{-24, 176}, {114, 176}, {114, 76}}, color = {255, 0, 255}));
   end Comparison_Circuit_building;
+
+  model COSE
+  
+  
+  
+  parameter Temperature               Tstart  = 293.15 "initial T, all elements";
+  parameter Density                   roa     = 1.1 "density of air";
+  parameter SpecificHeatCapacity      ca      = 1020 "specific heat of air";
+  parameter Density                   row     = 2000 "density of walls";
+  parameter SpecificHeatCapacity      cw      = 800 "specific heat of walls";
+  parameter ThermalConductivity       lambdaw = 1.5 "thermal conductivity of walls";
+  parameter CoefficientOfHeatTransfer gammawi = 12 "internal ccht, all walls";
+  parameter CoefficientOfHeatTransfer gammawe = 15 "external ccht, all walls";
+  parameter ThermalConductance        Gdo     = 300 "conductance of open doors";
+  parameter Length                    Lr12    = 4 "length of rooms 1 and 2";
+  parameter Length                    Lr3     = 4 "length of room 3";
+  parameter Length                    Wr1     = 6 "width of room 1";
+  parameter Length                    Wr2     = 4 "width of room 2";
+  parameter Length                    Wr3     = 10 "width of room 3";
+  parameter Length                    H       = 3 "height, all rooms";
+  parameter Length                    tw      = 0.1 "thickness of all walls";
+  
+  
+  Modelica.Electrical.Analog.Basic.Capacitor Room_3(C = ca*roa*Lr3*Wr3*H)  annotation(
+      Placement(transformation(origin = {-54, -28}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Modelica.Electrical.Analog.Basic.Ground ground annotation(
+      Placement(transformation(origin = {-34, -74}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Sources.ConstantCurrent constantCurrent(I = 6000)  annotation(
+      Placement(transformation(origin = {-24, -28}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Resistor wall_3e(R = 1/500)  annotation(
+      Placement(transformation(origin = {-34, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Ground ground1 annotation(
+      Placement(transformation(origin = {-34, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+  Modelica.Electrical.Analog.Sources.ConstantVoltage Te1(V = 274)  annotation(
+      Placement(transformation(origin = {-34, 44}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Capacitor Room_1 annotation(
+      Placement(transformation(origin = {-158, -32}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
+      Placement(transformation(origin = {-176, -80}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Basic.Resistor wall_1e(R = 1/500) annotation(
+      Placement(transformation(origin = {-182, 22}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Ground ground11 annotation(
+      Placement(transformation(origin = {-182, 82}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+  Modelica.Electrical.Analog.Sources.ConstantVoltage Te(V = 274) annotation(
+      Placement(transformation(origin = {-182, 48}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Capacitor Room_2(C = 107712) annotation(
+      Placement(transformation(origin = {84, -40}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+  Modelica.Electrical.Analog.Basic.Ground ground3 annotation(
+      Placement(transformation(origin = {98, -76}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Sources.ConstantCurrent constantCurrent2(I = 6000) annotation(
+      Placement(transformation(origin = {114, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Resistor wall_2e(R = 1/500) annotation(
+      Placement(transformation(origin = {98, 14}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Ground ground12 annotation(
+      Placement(transformation(origin = {98, 76}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+  Modelica.Electrical.Analog.Sources.ConstantVoltage Te2(V = 100) annotation(
+      Placement(transformation(origin = {98, 42}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Resistor wall_23(R = 1/500) annotation(
+      Placement(transformation(origin = {22, 2}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Basic.Resistor wall_13(R = 1/500) annotation(
+      Placement(transformation(origin = {-82, 2}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Basic.Capacitor c_wall_3(C = c_wall_13)  annotation(
+      Placement(transformation(origin = {-126, 2}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch annotation(
+      Placement(transformation(origin = {-98, 28}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Resistor door_13(R = 1/500) annotation(
+      Placement(transformation(origin = {-82, 46}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch1 annotation(
+      Placement(transformation(origin = {8, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  Modelica.Electrical.Analog.Basic.Resistor door_23(R = 1/500) annotation(
+      Placement(transformation(origin = {24, 48}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Basic.Capacitor c_23 annotation(
+      Placement(transformation(origin = {58, 2}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent annotation(
+      Placement(transformation(origin = {-184, -32}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+  equation
+    connect(constantCurrent.p, ground.p) annotation(
+      Line(points = {{-24, -38}, {-24, -52}, {-34, -52}, {-34, -64}}, color = {0, 0, 255}));
+    connect(constantCurrent.n, Room_3.p) annotation(
+      Line(points = {{-24, -18}, {-54, -18}}, color = {0, 0, 255}));
+    connect(wall_3e.p, Room_3.p) annotation(
+      Line(points = {{-34, 10}, {-34, -18}, {-54, -18}}, color = {0, 0, 255}));
+    connect(Te1.p, wall_3e.n) annotation(
+      Line(points = {{-34, 34}, {-34, 30}}, color = {0, 0, 255}));
+    connect(Te1.n, ground1.p) annotation(
+      Line(points = {{-34, 54}, {-34, 68}}, color = {0, 0, 255}));
+    connect(Te.p, wall_1e.n) annotation(
+      Line(points = {{-182, 38}, {-182, 32}}, color = {0, 0, 255}));
+    connect(Te.n, ground11.p) annotation(
+      Line(points = {{-182, 58}, {-182, 72}}, color = {0, 0, 255}));
+    connect(ground3.p, Room_2.n) annotation(
+      Line(points = {{98, -66}, {98, -50}, {84, -50}}, color = {0, 0, 255}));
+    connect(constantCurrent2.p, ground3.p) annotation(
+      Line(points = {{114, -50}, {98, -50}, {98, -66}}, color = {0, 0, 255}));
+    connect(constantCurrent2.n, Room_2.p) annotation(
+      Line(points = {{114, -30}, {84, -30}}, color = {0, 0, 255}));
+    connect(wall_2e.p, Room_2.p) annotation(
+      Line(points = {{98, 4}, {98, -30}, {84, -30}}, color = {0, 0, 255}));
+    connect(Te2.p, wall_2e.n) annotation(
+      Line(points = {{98, 32}, {98, 24}}, color = {0, 0, 255}));
+    connect(Te2.n, ground12.p) annotation(
+      Line(points = {{98, 52}, {98, 66}}, color = {0, 0, 255}));
+    connect(wall_23.p, wall_3e.p) annotation(
+      Line(points = {{12, 2}, {-34, 2}, {-34, 10}}, color = {0, 0, 255}));
+    connect(Room_1.n, ground2.p) annotation(
+      Line(points = {{-158, -42}, {-158, -56}, {-176, -56}, {-176, -70}}, color = {0, 0, 255}));
+    connect(Room_3.n, ground.p) annotation(
+      Line(points = {{-54, -38}, {-54, -52}, {-34, -52}, {-34, -64}}, color = {0, 0, 255}));
+    connect(Room_1.p, wall_1e.p) annotation(
+      Line(points = {{-158, -22}, {-158, 2}, {-182, 2}, {-182, 12}}, color = {0, 0, 255}));
+    connect(wall_13.n, wall_3e.p) annotation(
+      Line(points = {{-72, 2}, {-34, 2}, {-34, 10}}, color = {0, 0, 255}));
+    connect(c_wall_3.n, wall_13.p) annotation(
+      Line(points = {{-116, 2}, {-92, 2}}, color = {0, 0, 255}));
+    connect(c_wall_3.p, wall_1e.p) annotation(
+      Line(points = {{-136, 2}, {-182, 2}, {-182, 12}}, color = {0, 0, 255}));
+    connect(switch.p, wall_13.p) annotation(
+      Line(points = {{-98, 18}, {-92, 18}, {-92, 2}}, color = {0, 0, 255}));
+    connect(switch.n1, door_13.p) annotation(
+      Line(points = {{-102, 38}, {-92, 38}, {-92, 46}}, color = {0, 0, 255}));
+    connect(door_13.n, wall_13.n) annotation(
+      Line(points = {{-72, 46}, {-72, 2}}, color = {0, 0, 255}));
+    connect(switch1.n1, door_23.p) annotation(
+      Line(points = {{4, 40}, {14, 40}, {14, 48}}, color = {0, 0, 255}));
+    connect(switch1.p, wall_23.p) annotation(
+      Line(points = {{8, 20}, {12, 20}, {12, 2}}, color = {0, 0, 255}));
+    connect(door_23.n, wall_23.n) annotation(
+      Line(points = {{34, 48}, {32, 48}, {32, 2}}, color = {0, 0, 255}));
+    connect(wall_23.n, c_23.p) annotation(
+      Line(points = {{32, 2}, {48, 2}}, color = {0, 0, 255}));
+    connect(c_23.n, wall_2e.p) annotation(
+      Line(points = {{68, 2}, {83, 2}, {83, 4}, {98, 4}}, color = {0, 0, 255}));
+  connect(signalCurrent.p, ground2.p) annotation(
+      Line(points = {{-184, -42}, {-176, -42}, {-176, -70}}, color = {0, 0, 255}));
+  connect(signalCurrent.n, Room_1.p) annotation(
+      Line(points = {{-184, -22}, {-158, -22}}, color = {0, 0, 255}));
+  end COSE;
 equation
 
 annotation(

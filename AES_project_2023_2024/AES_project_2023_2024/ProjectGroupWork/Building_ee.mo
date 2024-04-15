@@ -26,7 +26,7 @@ Modelica.Electrical.Analog.Basic.Ground ground1 annotation(
 Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
     Placement(transformation(origin = {106, -102}, extent = {{-10, -10}, {10, 10}})));
 Modelica.Electrical.Analog.Basic.Capacitor Room_1(C = ca*roa*Lr12*Wr1*H) annotation(
-    Placement(transformation(origin = {-12, -12}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Placement(transformation(origin = {-12, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 Modelica.Electrical.Analog.Basic.Capacitor Room_2(C = ca*roa*Lr12*Wr2*H) annotation(
     Placement(transformation(origin = {228, -12}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
 Modelica.Electrical.Analog.Basic.Capacitor Room_3(C = ca*roa*Lr3*Wr3*H) annotation(
@@ -111,11 +111,13 @@ Modelica.Electrical.Analog.Basic.Resistor door_3e(R=1/300) annotation(
     Placement(transformation(origin = {182, -32}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Basic.Capacitor c_wall_3e(C = cw*row*Wr3*tw*H) annotation(
     Placement(transformation(origin = {206, 46}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+    Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor annotation(
+    Placement(transformation(origin = {-58, -12}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
 equation
   connect(ground.p, Actuator1.p) annotation(
     Line(points = {{-12, -94}, {-12, -80}}, color = {0, 0, 255}));
   connect(Actuator1.n, Room_1.n) annotation(
-    Line(points = {{-12, -60}, {-12, -22}}, color = {0, 0, 255}));
+    Line(points = {{-12, -60}, {-12, -20}}, color = {0, 0, 255}));
   connect(ground1.p, Actuator2.p) annotation(
     Line(points = {{228, -92}, {228, -78}}, color = {0, 0, 255}));
   connect(Actuator2.n, Room_2.n) annotation(
@@ -131,13 +133,13 @@ equation
   connect(wall_23.n, Room_2.p) annotation(
     Line(points = {{192, -2}, {228, -2}}, color = {0, 0, 255}));
   connect(Room_1.p, Te.p) annotation(
-    Line(points = {{-12, -2}, {-12, 12}}, color = {0, 0, 255}));
+    Line(points = {{-12, 0}, {-12, 12}}, color = {0, 0, 255}));
   connect(wall_1e.n, Te.n) annotation(
     Line(points = {{-12, 40}, {-12, 32}}, color = {0, 0, 255}));
   connect(ground21.p, wall_1e.p) annotation(
     Line(points = {{-12, 66}, {-12, 60}}, color = {0, 0, 255}));
   connect(wall_13.p, Room_1.p) annotation(
-    Line(points = {{42, -2}, {-12, -2}}, color = {0, 0, 255}));
+    Line(points = {{42, -2}, {14, -2}, {14, 0}, {-12, 0}}, color = {0, 0, 255}));
   connect(wall_2e.n, Te1.n) annotation(
     Line(points = {{106, 36}, {106, 30}}, color = {0, 0, 255}));
   connect(ground211.p, wall_2e.p) annotation(
