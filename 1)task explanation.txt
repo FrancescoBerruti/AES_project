@@ -1,0 +1,7 @@
+1)task explanation
+
+2)system design and configuration
+-explain the parts of hw and sw
+
+3)videos about the current state / demo
+
