@@ -101,7 +101,7 @@ parameter Length                    tw      = 0.1 "thickness of all walls";
   Modelica.Blocks.Interfaces.RealInput d3 annotation(
     Placement(transformation(origin = {14, -48}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-140, 216}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
   Modelica.Blocks.Interfaces.RealInput P3 annotation(
-    Placement(transformation(origin = {18, -26}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-184, 68}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+    Placement(transformation(origin = {18, -26}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-184, 60}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
   Modelica.Blocks.Math.Add add2 annotation(
     Placement(transformation(origin = {52, -36}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression Te1(y = Te)  annotation(
@@ -210,5 +210,6 @@ equation
   connect(signalCurrent.i, add.y) annotation(
     Line(points = {{-196, -34}, {-206, -34}}, color = {0, 0, 127}));
   annotation(
-    Icon(coordinateSystem(extent = {{-100, -200}, {100, 200}}), graphics = {Rectangle(origin = {-2, 99}, fillColor = {135,206,250}, fillPattern = FillPattern.Solid, extent = {{-161, 98}, {161, -295}}), Text(origin = {5, 13}, extent = {{-67, 115}, {67, -115}}, textString = "Building_ee")}));
+    Icon(coordinateSystem(extent = {{-100, -200}, {100, 200}}), graphics = {Rectangle(origin = {-2, 99}, fillColor = {135, 206, 250}, fillPattern = FillPattern.Solid, extent = {{-161, 98}, {161, -295}}), Text(origin = {5, 13}, extent = {{-67, 115}, {67, -115}}, textString = "Building_ee")}),
+  Diagram);
 end Building_ee;
