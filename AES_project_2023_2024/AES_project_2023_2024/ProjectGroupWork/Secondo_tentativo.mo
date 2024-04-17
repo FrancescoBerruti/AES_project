@@ -60,7 +60,7 @@ Modelica.Electrical.Analog.Basic.Resistor door_23(R = 1/300) annotation(
 Modelica.Electrical.Analog.Basic.Capacitor c_wall_23(C = cw*row*Wr2*tw*H)  annotation(
     Placement(transformation(origin = {58, 2}, extent = {{-10, -10}, {10, 10}})));
 Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent annotation(
-    Placement(transformation(origin = {-184, -34}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+    Placement(transformation(origin = {-192, -42}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent1 annotation(
     Placement(transformation(origin = {-46, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent11 annotation(
@@ -135,9 +135,9 @@ equation
   connect(c_wall_23.n, wall_2e.p) annotation(
     Line(points = {{68, 2}, {83, 2}, {83, 40}, {100, 40}}, color = {0, 0, 255}));
   connect(signalCurrent.p, ground2.p) annotation(
-    Line(points = {{-184, -44}, {-174, -44}, {-174, -70}, {-176, -70}}, color = {0, 0, 255}));
+    Line(points = {{-192, -52}, {-174, -52}, {-174, -70}, {-176, -70}}, color = {0, 0, 255}));
   connect(signalCurrent.n, Room_1.p) annotation(
-    Line(points = {{-184, -24}, {-170, -24}, {-170, -22}, {-158, -22}}, color = {0, 0, 255}));
+    Line(points = {{-192, -32}, {-170, -32}, {-170, -22}, {-158, -22}}, color = {0, 0, 255}));
   connect(signalCurrent1.n, wall_3e.p) annotation(
     Line(points = {{-46, -20}, {-46, -2}, {-34, -2}, {-34, 10}}, color = {0, 0, 255}));
   connect(signalCurrent1.p, ground.p) annotation(
@@ -187,7 +187,7 @@ equation
   connect(hRoom3.Pc, add3.u2) annotation(
     Line(points = {{-254, -190}, {-234, -190}, {-234, -188}}, color = {0, 0, 127}));
   connect(add.y, signalCurrent.i) annotation(
-    Line(points = {{-218, -124}, {-196, -124}, {-196, -34}}, color = {0, 0, 127}));
+    Line(points = {{-218, -124}, {-218, -87}, {-204, -87}, {-204, -42}}, color = {0, 0, 127}));
   connect(add2.y, signalCurrent1.i) annotation(
     Line(points = {{-212, -156}, {-58, -156}, {-58, -30}}, color = {0, 0, 127}));
   connect(add3.y, signalCurrent11.i) annotation(
