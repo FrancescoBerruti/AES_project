@@ -51,13 +51,13 @@ equation
     Line(points = {{118, 88}, {8, 88}, {8, 78}, {-14, 78}}, color = {0, 0, 127}));
   connect(uh.y, hcRoom1.uh01) annotation(
     Line(points = {{-135, 90}, {-56, 90}, {-56, 122}, {-38, 122}}, color = {0, 0, 127}));
-  connect(uh.y,hcRoom2.uh01) annotation(
+  connect(uh.y, hcRoom2.uh01) annotation(
     Line(points = {{-135, 90}, {-38, 90}}, color = {0, 0, 127}));
-  connect(uh.y,hRoom3.uh01) annotation(
+  connect(uh.y, hRoom3.uh01) annotation(
     Line(points = {{-135, 90}, {-56, 90}, {-56, 62}, {-38, 62}}, color = {0, 0, 127}));
   connect(uc.y, hcRoom1.uc01) annotation(
     Line(points = {{-135, 50}, {-62, 50}, {-62, 110}, {-38, 110}}, color = {0, 0, 127}));
-  connect(uc.y,hcRoom2.uc01) annotation(
+  connect(uc.y, hcRoom2.uc01) annotation(
     Line(points = {{-135, 50}, {-62, 50}, {-62, 78}, {-38, 78}}, color = {0, 0, 127}));
   connect(uc.y, hRoom3.uc01) annotation(
     Line(points = {{-135, 50}, {-38, 50}}, color = {0, 0, 127}));
