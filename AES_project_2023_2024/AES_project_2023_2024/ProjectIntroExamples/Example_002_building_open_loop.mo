@@ -3,7 +3,7 @@ within AES_project_2023_2024.ProjectIntroExamples;
 model Example_002_building_open_loop
   extends Modelica.Icons.Example;
   ProcessComponents.Building building annotation(
-    Placement(transformation(origin = {44, 68}, extent = {{-20, -30}, {20, 30}})));
+    Placement(transformation(origin = {162, 68}, extent = {{-40, -60}, {40, 60}})));
   ProcessComponents.DoorOpenings doorOpenings annotation(
     Placement(transformation(origin = {-26, 26}, extent = {{-10, -10}, {10, 10}})));
   ProcessComponents.PowerDisturbances powerDisturbances annotation(
@@ -22,33 +22,33 @@ model Example_002_building_open_loop
     Placement(transformation(origin = {-146, 50}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(tePrad.Te, building.Te) annotation(
-    Line(points = {{-14, 182}, {58, 182}, {58, 100}}, color = {0, 0, 127}));
+    Line(points = {{-14, 182}, {58, 182}, {58, 132}, {190, 132}}, color = {0, 0, 127}));
   connect(tePrad.Prad, building.Prad) annotation(
-    Line(points = {{-14, 170}, {52, 170}, {52, 100}}, color = {0, 0, 127}));
+    Line(points = {{-14, 170}, {52, 170}, {52, 132}, {178, 132}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr1, building.Pdr1) annotation(
-    Line(points = {{-14, 152}, {40, 152}, {40, 100}}, color = {0, 0, 127}));
+    Line(points = {{-14, 152}, {40, 152}, {40, 132}, {154, 132}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr2, building.Pdr2) annotation(
-    Line(points = {{-14, 146}, {34, 146}, {34, 100}}, color = {0, 0, 127}));
+    Line(points = {{-14, 146}, {34, 146}, {34, 132}, {142, 132}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr3, building.Pdr3) annotation(
-    Line(points = {{-14, 140}, {28, 140}, {28, 100}}, color = {0, 0, 127}));
+    Line(points = {{-14, 140}, {30, 140}, {30, 132}, {130, 132}}, color = {0, 0, 127}));
   connect(hcRoom1.Ph, building.Phr1) annotation(
-    Line(points = {{-14, 122}, {14, 122}, {14, 92}, {22, 92}}, color = {0, 0, 127}));
+    Line(points = {{-14, 122}, {25, 122}, {25, 116}, {118, 116}}, color = {0, 0, 127}));
   connect(hcRoom1.Pc, building.Pcr1) annotation(
-    Line(points = {{-14, 110}, {10, 110}, {10, 88}, {22, 88}}, color = {0, 0, 127}));
+    Line(points = {{-14, 110}, {27, 110}, {27, 108}, {118, 108}}, color = {0, 0, 127}));
   connect(hcRoom2.Ph, building.Phr2) annotation(
-    Line(points = {{-14, 90}, {4, 90}, {4, 82}, {22, 82}}, color = {0, 0, 127}));
+    Line(points = {{-14, 90}, {4, 90}, {4, 96}, {118, 96}}, color = {0, 0, 127}));
   connect(building.door3eopen, doorOpenings.door3eopen) annotation(
-    Line(points = {{22, 48}, {14, 48}, {14, 20}, {-14, 20}}, color = {255, 0, 255}));
+    Line(points = {{118, 28}, {9, 28}, {9, 20}, {-14, 20}}, color = {255, 0, 255}));
   connect(building.door23open, doorOpenings.door23open) annotation(
-    Line(points = {{22, 54}, {10, 54}, {10, 26}, {-14, 26}}, color = {255, 0, 255}));
+    Line(points = {{118, 40}, {7, 40}, {7, 26}, {-14, 26}}, color = {255, 0, 255}));
   connect(building.door13open, doorOpenings.door13open) annotation(
-    Line(points = {{22, 60}, {6, 60}, {6, 32}, {-14, 32}}, color = {255, 0, 255}));
+    Line(points = {{118, 52}, {6, 52}, {6, 32}, {-14, 32}}, color = {255, 0, 255}));
   connect(building.Pcr3, hRoom3.Pc) annotation(
-    Line(points = {{22, 68}, {2, 68}, {2, 50}, {-14, 50}}, color = {0, 0, 127}));
+    Line(points = {{118, 68}, {2, 68}, {2, 50}, {-14, 50}}, color = {0, 0, 127}));
   connect(building.Phr3, hRoom3.Ph) annotation(
-    Line(points = {{22, 72}, {-2, 72}, {-2, 62}, {-14, 62}}, color = {0, 0, 127}));
+    Line(points = {{118, 76}, {7, 76}, {7, 62}, {-14, 62}}, color = {0, 0, 127}));
   connect(building.Pcr2, hcRoom2.Pc) annotation(
-    Line(points = {{22, 78}, {-14, 78}}, color = {0, 0, 127}));
+    Line(points = {{118, 88}, {8, 88}, {8, 78}, {-14, 78}}, color = {0, 0, 127}));
   connect(uh.y, hcRoom1.uh01) annotation(
     Line(points = {{-135, 90}, {-56, 90}, {-56, 122}, {-38, 122}}, color = {0, 0, 127}));
   connect(uh.y,hcRoom2.uh01) annotation(
