@@ -76,9 +76,9 @@ model Building_ee
  Modelica.Blocks.Interfaces.RealInput P3 annotation(
     Placement(transformation(origin = {-92, -90}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-184, 80}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
  Modelica.Blocks.Interfaces.RealInput PRad annotation(
-    Placement(transformation(origin = {86, 100}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {80, 216}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
+    Placement(transformation(origin = {106, 134}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {80, 216}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
  Modelica.Blocks.Interfaces.RealInput Te annotation(
-    Placement(transformation(origin = {34, 162}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {124, 218}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
+    Placement(transformation(origin = {34, 166}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {124, 218}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
  Modelica.Blocks.Math.Add add annotation(
     Placement(transformation(origin = {-149, -53}, extent = {{-17, -17}, {17, 17}})));
  Modelica.Blocks.Interfaces.RealInput D1 annotation(
@@ -129,11 +129,11 @@ equation
   connect(outside.pin, wallWithoutDoors.pin1) annotation(
     Line(points = {{-64, 98}, {-64, 76}}, color = {0, 0, 255}));
   connect(outside.Te, Te) annotation(
-    Line(points = {{-60, 116}, {-34, 116}, {-34, 162}, {34, 162}}, color = {0, 0, 127}));
+    Line(points = {{-60, 116}, {-34, 116}, {-34, 166}, {34, 166}}, color = {0, 0, 127}));
   connect(outside1.Te, Te) annotation(
-    Line(points = {{34, 142}, {32, 142}, {32, 162}, {34, 162}}, color = {0, 0, 127}));
+    Line(points = {{34, 142}, {34, 166}}, color = {0, 0, 127}));
   connect(outside11.Te, Te) annotation(
-    Line(points = {{150, 128}, {152, 128}, {152, 162}, {34, 162}}, color = {0, 0, 127}));
+    Line(points = {{150, 128}, {152, 128}, {152, 166}, {34, 166}}, color = {0, 0, 127}));
   connect(Room2.t, T2) annotation(
     Line(points = {{192, -50}, {216, -50}}, color = {0, 0, 127}));
   connect(Room3.t, T3) annotation(
@@ -147,7 +147,7 @@ equation
  connect(W23.pin1, Room3.pin1) annotation(
     Line(points = {{94, 8}, {44, 8}, {44, -36}}, color = {0, 0, 255}));
  connect(Prad.i, PRad) annotation(
-    Line(points = {{72, 134}, {64, 134}, {64, 100}, {86, 100}}, color = {0, 0, 127}));
+    Line(points = {{72, 134}, {106, 134}}, color = {0, 0, 127}));
  connect(W23.pin2, Room2.pin1) annotation(
     Line(points = {{120, 10}, {154, 10}, {154, -36}}, color = {0, 0, 255}));
  connect(add2.u1, P2) annotation(

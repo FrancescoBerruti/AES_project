@@ -15,14 +15,10 @@ model Building_thermal_electrical_comparison
     Placement(transformation(origin = {4, -62}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add11(k2 = -1) annotation(
     Placement(transformation(origin = {6, -90}, extent = {{-10, -10}, {10, 10}})));
-  AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances4(Pdmax = 0)  annotation(
-    Placement(transformation(origin = {122, 4}, extent = {{-22, -22}, {22, 22}}, rotation = -90)));
   AES_project_2023_2024.ProcessComponents.DoorOpenings doorOpenings annotation(
     Placement(transformation(origin = {-10, -140}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.Building building annotation(
     Placement(transformation(origin = {130, 106}, extent = {{-40, -60}, {40, 60}})));
-  AES_project_2023_2024.ProcessComponents.DoorOpenings doorOpenings1 annotation(
-    Placement(transformation(origin = {-26, 26}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {108, 216}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   AES_project_2023_2024.ProcessComponents.TePrad tePrad1 annotation(
@@ -34,7 +30,7 @@ model Building_thermal_electrical_comparison
   AES_project_2023_2024.ProcessComponents.HCactuator hRoom31 annotation(
     Placement(transformation(origin = {-26, 56}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Constant const(k = 0)  annotation(
-    Placement(transformation(origin = {-274, 14}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-288, 20}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add2(k2 = -1) annotation(
     Placement(transformation(origin = {-190, -12}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3(k2 = -1) annotation(
@@ -90,18 +86,6 @@ equation
     Line(points = {{108, 204}, {108, 187}, {110, 187}, {110, 170}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr1, building.Pdr1) annotation(
     Line(points = {{114, 204}, {122, 204}, {122, 170}}, color = {0, 0, 127}));
-  connect(powerDisturbances4.Pdr3, building_ee.D1) annotation(
-    Line(points = {{108, -22}, {108, -45}, {111, -45}}, color = {0, 0, 127}));
-  connect(powerDisturbances4.Pdr2, building_ee.D2) annotation(
-    Line(points = {{122, -22}, {122, -45}, {125, -45}}, color = {0, 0, 127}));
-  connect(powerDisturbances4.Pdr1, building_ee.D3) annotation(
-    Line(points = {{136, -22}, {136, -32.5}, {138, -32.5}, {138, -45}}, color = {0, 0, 127}));
-  connect(doorOpenings1.door13open, building.door13open) annotation(
-    Line(points = {{-14, 32}, {86, 32}, {86, 90}}, color = {255, 0, 255}));
-  connect(doorOpenings1.door23open, building.door23open) annotation(
-    Line(points = {{-14, 26}, {86, 26}, {86, 78}}, color = {255, 0, 255}));
-  connect(doorOpenings1.door3eopen, building.door3eopen) annotation(
-    Line(points = {{-14, 20}, {76, 20}, {76, 62}, {86, 62}, {86, 66}}, color = {255, 0, 255}));
   connect(add3.y, hRoom3.uc01) annotation(
     Line(points = {{-192, -82}, {-72, -82}, {-72, -96}, {-40, -96}}, color = {0, 0, 127}));
   connect(hcRoom2.uc01, add3.y) annotation(
@@ -126,10 +110,10 @@ equation
     Line(points = {{-40, -56}, {-114, -56}, {-114, -12}, {-178, -12}}, color = {0, 0, 127}));
   connect(hRoom3.uh01, add2.y) annotation(
     Line(points = {{-40, -84}, {-114, -84}, {-114, -12}, {-178, -12}}, color = {0, 0, 127}));
-  connect(const.y, add2.u2) annotation(
-    Line(points = {{-262, 14}, {-238, 14}, {-238, -16}, {-202, -16}, {-202, -18}}, color = {0, 0, 127}));
-  connect(const.y, add3.u2) annotation(
-    Line(points = {{-262, 14}, {-238, 14}, {-238, -88}, {-216, -88}}, color = {0, 0, 127}));
+  connect( const.y, add2.u2) annotation(
+    Line(points = {{-277, 20}, {-277, -16}, {-202, -16}, {-202, -18}}, color = {0, 0, 127}));
+  connect( const.y, add3.u2) annotation(
+    Line(points = {{-277, 20}, {-238, 20}, {-238, -88}, {-216, -88}}, color = {0, 0, 127}));
   connect(add3.u1, uc.y) annotation(
     Line(points = {{-216, -76}, {-250, -76}, {-250, -74}}, color = {0, 0, 127}));
   connect(uh.y, add2.u1) annotation(
@@ -138,6 +122,18 @@ equation
     Line(points = {{158, 192}, {184, 192}, {184, -44}}, color = {0, 0, 127}));
   connect(tePrad1.Prad, building_ee.PRad) annotation(
     Line(points = {{146, 192}, {172, 192}, {172, -46}}, color = {0, 0, 127}));
+  connect(building_ee.D1, powerDisturbances.Pdr3) annotation(
+    Line(points = {{110, -46}, {102, -46}, {102, 204}}, color = {0, 0, 127}));
+  connect(building_ee.D2, powerDisturbances.Pdr2) annotation(
+    Line(points = {{124, -46}, {108, -46}, {108, 204}}, color = {0, 0, 127}));
+  connect(building_ee.D3, powerDisturbances.Pdr1) annotation(
+    Line(points = {{138, -44}, {114, -44}, {114, 204}}, color = {0, 0, 127}));
+  connect(building.door3eopen, doorOpenings.door3eopen) annotation(
+    Line(points = {{86, 66}, {68, 66}, {68, -146}, {2, -146}}, color = {255, 0, 255}));
+  connect(building.door23open, doorOpenings.door23open) annotation(
+    Line(points = {{86, 78}, {72, 78}, {72, -140}, {2, -140}}, color = {255, 0, 255}));
+  connect(building.door13open, doorOpenings.door13open) annotation(
+    Line(points = {{86, 90}, {64, 90}, {64, -134}, {2, -134}}, color = {255, 0, 255}));
   annotation(
     Diagram(coordinateSystem(extent = {{-300, 240}, {200, -160}})));
 end Building_thermal_electrical_comparison;

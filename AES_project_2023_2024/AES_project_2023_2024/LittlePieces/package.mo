@@ -46,7 +46,7 @@ package LittlePieces
     parameter Real Gw2;
     parameter Real Cw;
     Modelica.Electrical.Analog.Basic.Conductor conductor(G = Gw1) annotation(
-      Placement(transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {-14, 0}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(start = 293.15, fixed = true)) annotation(
       Placement(transformation(origin = {2, -26}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
@@ -56,11 +56,11 @@ package LittlePieces
     Modelica.Electrical.Analog.Basic.Conductor conductor4(G = Gw1+ Gd/2) annotation(
       Placement(transformation(origin = {-14, 18}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Basic.Conductor conductor1(G = Gw2) annotation(
-      Placement(transformation(origin = {52, 0}, extent = {{-10, -10}, {10, 10}})));
+      Placement(transformation(origin = {52, 2}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch1 annotation(
       Placement(transformation(origin = {20, -2}, extent = {{-10, -10}, {10, 10}})));
-    Modelica.Electrical.Analog.Basic.Conductor conductor41(G = (Gw2 + Gd/2)) annotation(
-      Placement(transformation(origin = {52, 20}, extent = {{-10, -10}, {10, 10}})));
+    Modelica.Electrical.Analog.Basic.Conductor conductor41(G = Gw2+ Gd/2) annotation(
+      Placement(transformation(origin = {50, 20}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Interfaces.Pin pin1 annotation(
       Placement(transformation(origin = {-78, -4}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-60, -6}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Interfaces.Pin pin2 annotation(
@@ -69,31 +69,31 @@ package LittlePieces
       Placement(transformation(origin = {-16, 56}, extent = {{-20, -20}, {20, 20}}, rotation = 90), iconTransformation(origin = {-72, 42}, extent = {{-20, -20}, {20, 20}})));
   equation
     connect(capacitor1.p, conductor.n) annotation(
-      Line(points = {{2, -16}, {2, -2}, {-4, -2}}, color = {0, 0, 255}));
+      Line(points = {{2, -16}, {2, 0}, {-4, 0}}, color = {0, 0, 255}));
     connect(ground2.p, capacitor1.n) annotation(
       Line(points = {{2, -48}, {2, -36}}, color = {0, 0, 255}));
-    connect(conductor.p, switch.n2) annotation(
-      Line(points = {{-24, -2}, {-36, -2}, {-36, -4}}, color = {0, 0, 255}));
-    connect(switch.n1, conductor4.p) annotation(
-      Line(points = {{-36, 0}, {-24, 0}, {-24, 18}}, color = {0, 0, 255}));
-  connect(conductor4.n, conductor.n) annotation(
-      Line(points = {{-4, 18}, {-4, -2}}, color = {0, 0, 255}));
-    connect(conductor1.p, switch1.n2) annotation(
-      Line(points = {{42, 0}, {30, 0}, {30, -2}}, color = {0, 0, 255}));
-  connect(switch1.n1, conductor41.p) annotation(
-      Line(points = {{30, 2}, {42, 2}, {42, 20}}, color = {0, 0, 255}));
+    connect(conductor4.n, conductor.n) annotation(
+      Line(points = {{-4, 18}, {-4, 0}}, color = {0, 0, 255}));
     connect(switch1.p, conductor.n) annotation(
-      Line(points = {{10, -2}, {-4, -2}}, color = {0, 0, 255}));
+      Line(points = {{10, -2}, {3, -2}, {3, 0}, {-4, 0}}, color = {0, 0, 255}));
     connect(conductor41.n, conductor1.n) annotation(
-      Line(points = {{62, 20}, {62, 0}}, color = {0, 0, 255}));
+      Line(points = {{60, 20}, {60, 10}, {62, 10}, {62, 2}}, color = {0, 0, 255}));
     connect(pin1, switch.p) annotation(
       Line(points = {{-78, -4}, {-56, -4}}, color = {0, 0, 255}));
     connect(pin2, conductor1.n) annotation(
-      Line(points = {{94, -2}, {62, -2}, {62, 0}}, color = {0, 0, 255}));
+      Line(points = {{94, -2}, {94, 0}, {62, 0}, {62, 2}}, color = {0, 0, 255}));
     connect(doorin, switch.control) annotation(
       Line(points = {{-16, 56}, {-46, 56}, {-46, 8}}, color = {255, 0, 255}));
     connect(doorin, switch1.control) annotation(
       Line(points = {{-16, 56}, {20, 56}, {20, 10}}, color = {255, 0, 255}));
+  connect(conductor.p, switch.n1) annotation(
+      Line(points = {{-24, 0}, {-36, 0}}, color = {0, 0, 255}));
+  connect(conductor4.p, switch.n2) annotation(
+      Line(points = {{-24, 18}, {-30, 18}, {-30, -4}, {-36, -4}}, color = {0, 0, 255}));
+  connect(conductor41.p, switch1.n2) annotation(
+      Line(points = {{40, 20}, {36, 20}, {36, -2}, {30, -2}}, color = {0, 0, 255}));
+  connect(conductor1.p, switch1.n1) annotation(
+      Line(points = {{42, 2}, {30, 2}}, color = {0, 0, 255}));
     annotation(
       Icon(coordinateSystem(extent = {{-50, -200}, {50, 200}}), graphics = {Rectangle(origin = {30, -4}, rotation = -90, fillColor = {255, 165, 0}, fillPattern = FillPattern.Solid, extent = {{-200, 24}, {199, -75}}), Text(origin = {-1, -4}, rotation = -90, extent = {{-52, 19}, {52, -19}}, textString = "WallWithDoor")}));
   end WallWithDoor;
@@ -104,9 +104,9 @@ package LittlePieces
     Modelica.Electrical.Analog.Basic.Conductor WallResistance1(G = Gext) annotation(
       Placement(transformation(origin = {-2, -36}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Capacitor T1(C = C, v(fixed = true, start = 293.15)) annotation(
-      Placement(transformation(origin = {-28, -18}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+      Placement(transformation(origin = {-28, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
     Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
-      Placement(transformation(origin = {-72, -18}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
+      Placement(transformation(origin = {-72, -16}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Interfaces.Pin pin1 annotation(
       Placement(transformation(origin = {-2, 26}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-60, -2}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Interfaces.Pin pin2 annotation(
@@ -118,9 +118,9 @@ package LittlePieces
     connect(WallResistance.n, WallResistance1.p) annotation(
       Line(points = {{-2, -16}, {-2, -26}}, color = {0, 0, 255}));
     connect(T1.p, WallResistance.n) annotation(
-      Line(points = {{-18, -18}, {-18, -16}, {-2, -16}}, color = {0, 0, 255}));
+      Line(points = {{-18, -16}, {-2, -16}}, color = {0, 0, 255}));
     connect(ground2.p, T1.n) annotation(
-      Line(points = {{-62, -18}, {-38, -18}}, color = {0, 0, 255}));
+      Line(points = {{-62, -16}, {-38, -16}}, color = {0, 0, 255}));
     connect(WallResistance.p, pin1) annotation(
       Line(points = {{-2, 4}, {-2, 26}}, color = {0, 0, 255}));
     connect(pin2, WallResistance1.n) annotation(
