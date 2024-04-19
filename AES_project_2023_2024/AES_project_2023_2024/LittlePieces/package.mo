@@ -1,11 +1,11 @@
-  within AES_project_2023_2024;
+within AES_project_2023_2024;
 package LittlePieces
 
   model RoomWithHeater
     parameter Real Croom;
    Modelica.Electrical.Analog.Basic.Ground ground annotation(
       Placement(transformation(origin = {0, -54}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Capacitor capacitor(v(start = 300, fixed = true), C = Croom)  annotation(
+  Modelica.Electrical.Analog.Basic.Capacitor capacitor(v(start = 293.15, fixed = true), C = Croom)  annotation(
       Placement(transformation(origin = {18, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent annotation(
       Placement(transformation(origin = {-18, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
@@ -14,7 +14,7 @@ package LittlePieces
   Modelica.Blocks.Interfaces.RealInput PowerIn annotation(
       Placement(transformation(origin = {-58, -8}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-130, -28}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
   Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor annotation(
-      Placement(transformation(origin = {60, -8}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
+      Placement(transformation(origin = {60, -8}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Blocks.Interfaces.RealOutput t annotation(
       Placement(transformation(origin = {96, -4}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {144, -26}, extent = {{-10, -10}, {10, 10}})));
     
@@ -29,14 +29,15 @@ package LittlePieces
       Line(points = {{18, 0}, {-2, 0}, {-2, 14}}, color = {0, 0, 255}));
   connect(signalCurrent.i, PowerIn) annotation(
       Line(points = {{-30, -10}, {-44, -10}, {-44, -8}, {-58, -8}}, color = {0, 0, 127}));
-  connect(voltageSensor.p, capacitor.n) annotation(
-      Line(points = {{60, -18}, {18, -18}, {18, -20}}, color = {0, 0, 255}));
-  connect(voltageSensor.n, capacitor.p) annotation(
-      Line(points = {{60, 2}, {18, 2}, {18, 0}}, color = {0, 0, 255}));
   connect(voltageSensor.v, t) annotation(
-      Line(points = {{72, -8}, {96, -8}, {96, -4}}, color = {0, 0, 127}));
+      Line(points = {{50, -8}, {38, -8}, {38, 10}, {80, 10}, {80, -4}, {96, -4}}, color = {0, 0, 127}));
+  connect(capacitor.p, voltageSensor.p) annotation(
+      Line(points = {{18, 0}, {60, 0}, {60, 2}}, color = {0, 0, 255}));
+  connect(capacitor.n, voltageSensor.n) annotation(
+      Line(points = {{18, -20}, {60, -20}, {60, -18}}, color = {0, 0, 255}));
     annotation(
-      Icon(coordinateSystem(extent = {{-100, -200}, {100, 200}}), graphics = {Rectangle(origin = {11, 5}, fillColor = {135, 206, 250}, fillPattern = FillPattern.Solid, extent = {{-120, 54}, {120, -161}}), Text(origin = {15, -41}, extent = {{-49, 71}, {49, -71}}, textString = "RoomWithHeater")}));
+      Icon(coordinateSystem(extent = {{-100, -200}, {100, 200}}), graphics = {Rectangle(origin = {11, 5}, fillColor = {135, 206, 250}, fillPattern = FillPattern.Solid, extent = {{-120, 54}, {120, -161}}), Text(origin = {15, -41}, extent = {{-49, 71}, {49, -71}}, textString = "RoomWithHeater")}),
+  Diagram);
   end RoomWithHeater;
 
   model WallWithDoor
@@ -46,19 +47,19 @@ package LittlePieces
     parameter Real Cw;
     Modelica.Electrical.Analog.Basic.Conductor conductor(G = Gw1) annotation(
       Placement(transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}})));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(start = 300, fixed = true)) annotation(
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(start = 293.15, fixed = true)) annotation(
       Placement(transformation(origin = {2, -26}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
       Placement(transformation(origin = {2, -58}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch annotation(
       Placement(transformation(origin = {-46, -4}, extent = {{-10, -10}, {10, 10}})));
-    Modelica.Electrical.Analog.Basic.Conductor conductor4(G = Gw1 + Gd) annotation(
+    Modelica.Electrical.Analog.Basic.Conductor conductor4(G = Gw1+ Gd/2) annotation(
       Placement(transformation(origin = {-14, 18}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Basic.Conductor conductor1(G = Gw2) annotation(
       Placement(transformation(origin = {52, 0}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch1 annotation(
       Placement(transformation(origin = {20, -2}, extent = {{-10, -10}, {10, 10}})));
-    Modelica.Electrical.Analog.Basic.Conductor conductor41(G = Gw2 + Gd) annotation(
+    Modelica.Electrical.Analog.Basic.Conductor conductor41(G = (Gw2 + Gd/2)) annotation(
       Placement(transformation(origin = {52, 20}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Electrical.Analog.Interfaces.Pin pin1 annotation(
       Placement(transformation(origin = {-78, -4}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-60, -6}, extent = {{-10, -10}, {10, 10}})));
@@ -75,11 +76,11 @@ package LittlePieces
       Line(points = {{-24, -2}, {-36, -2}, {-36, -4}}, color = {0, 0, 255}));
     connect(switch.n1, conductor4.p) annotation(
       Line(points = {{-36, 0}, {-24, 0}, {-24, 18}}, color = {0, 0, 255}));
-    connect(conductor4.n, conductor.n) annotation(
+  connect(conductor4.n, conductor.n) annotation(
       Line(points = {{-4, 18}, {-4, -2}}, color = {0, 0, 255}));
     connect(conductor1.p, switch1.n2) annotation(
       Line(points = {{42, 0}, {30, 0}, {30, -2}}, color = {0, 0, 255}));
-    connect(switch1.n1, conductor41.p) annotation(
+  connect(switch1.n1, conductor41.p) annotation(
       Line(points = {{30, 2}, {42, 2}, {42, 20}}, color = {0, 0, 255}));
     connect(switch1.p, conductor.n) annotation(
       Line(points = {{10, -2}, {-4, -2}}, color = {0, 0, 255}));
@@ -102,7 +103,7 @@ package LittlePieces
       Placement(transformation(origin = {-2, -6}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Conductor WallResistance1(G = Gext) annotation(
       Placement(transformation(origin = {-2, -36}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-    Modelica.Electrical.Analog.Basic.Capacitor T1(C = C, v(fixed = true, start = 300)) annotation(
+    Modelica.Electrical.Analog.Basic.Capacitor T1(C = C, v(fixed = true, start = 293.15)) annotation(
       Placement(transformation(origin = {-28, -18}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
     Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
       Placement(transformation(origin = {-72, -18}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
