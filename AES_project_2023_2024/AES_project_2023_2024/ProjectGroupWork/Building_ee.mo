@@ -44,27 +44,25 @@ model Building_ee
  LittlePieces.RoomWithHeater Room1(Croom = Cr1)  annotation(
     Placement(transformation(origin = {-71, -49}, extent = {{-31, -31}, {31, 31}})));
  LittlePieces.RoomWithHeater Room3(Croom = Cr3)  annotation(
-    Placement(transformation(origin = {44, -46}, extent = {{-26, -26}, {26, 26}})));
+    Placement(transformation(origin = {44, -50}, extent = {{-26, -26}, {26, 26}})));
  LittlePieces.RoomWithHeater Room2(Croom = Cr2)  annotation(
     Placement(transformation(origin = {154, -46}, extent = {{-26, -26}, {26, 26}})));
- LittlePieces.WallWithDoor W13(Cw = Cw13, Gw1 = Gr1w13, Gw2 = Gr1w13)  annotation(
-    Placement(transformation(origin = {-6.25, 9}, extent = {{-10.25, -41}, {10.25, 41}})));
- LittlePieces.WallWithDoor W23( Cw = Cw23, Gw1 = Gr2w23, Gw2 = Gr2w23)  annotation(
+ LittlePieces.WallWithDoor W13(Cw = Cw13, Gw1 = Gr1w13, Gw2 = Gr3w13)  annotation(
+    Placement(transformation(origin = {-8.25, 17}, extent = {{-10.25, -41}, {10.25, 41}})));
+ LittlePieces.WallWithDoor W23( Cw = Cw23, Gw1 = Gr3w23, Gw2 = Gr2w23)  annotation(
     Placement(transformation(origin = {107.5, 10}, extent = {{-10.5, -42}, {10.5, 42}})));
- LittlePieces.WallWithDoor W3e( Cw = Cw3e, Gw1 = Gr3w3e, Gw2 = Gw3e)  annotation(
-    Placement(transformation(origin = {30, 67.5}, extent = {{-9.5, -38}, {9.5, 38}}, rotation = -90)));
  LittlePieces.WallWithoutDoors wallWithoutDoors(C = Cw1e, Gin = Gr1w1e, Gext = Gw1e)  annotation(
     Placement(transformation(origin = {-64, 63}, extent = {{-10, -40}, {10, 40}}, rotation = -90)));
  LittlePieces.WallWithoutDoors wallWithoutDoors1( C = Cw2e, Gin = Gr2w2e, Gext = Gw2e)  annotation(
     Placement(transformation(origin = {154, 65}, extent = {{-10, -40}, {10, 40}}, rotation = -90)));
  LittlePieces.Outside outside annotation(
-    Placement(transformation(origin = {-66, 108}, extent = {{-9, -18}, {9, 18}}, rotation = 90)));
+    Placement(transformation(origin = {-64, 136}, extent = {{-9, -18}, {9, 18}}, rotation = 90)));
  LittlePieces.Outside outside1 annotation(
-    Placement(transformation(origin = {28, 134}, extent = {{-9, -18}, {9, 18}}, rotation = 90)));
+    Placement(transformation(origin = {28, 144}, extent = {{-9, -18}, {9, 18}}, rotation = 90)));
  LittlePieces.Outside outside11 annotation(
     Placement(transformation(origin = {144, 120}, extent = {{-9, -18}, {9, 18}}, rotation = 90)));
  Modelica.Blocks.Interfaces.BooleanInput door1 annotation(
-    Placement(transformation(origin = {-38, 22}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-184, -66}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+    Placement(transformation(origin = {-38, 30}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-184, -66}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
  Modelica.Blocks.Interfaces.BooleanInput door2 annotation(
     Placement(transformation(origin = {80, 72}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-184, -124}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
  Modelica.Blocks.Interfaces.BooleanInput door3 annotation(
@@ -97,10 +95,8 @@ model Building_ee
     Placement(transformation(origin = {104, -52}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {170, 78}, extent = {{-10, -10}, {10, 10}})));
  Modelica.Blocks.Interfaces.RealOutput T2 annotation(
     Placement(transformation(origin = {216, -50}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {170, 118}, extent = {{-10, -10}, {10, 10}})));
- Modelica.Electrical.Analog.Sources.SignalCurrent Prad annotation(
-    Placement(transformation(origin = {60, 134}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
- Modelica.Electrical.Analog.Basic.Ground ground annotation(
-    Placement(transformation(origin = {60, 158}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
+ LittlePieces.RoomWithDoorAndRadiation roomWithDoorAndRadiation(Gw1 = Gr3w3e, Gw2 = Gw3e, Cw = Cw3e)  annotation(
+    Placement(transformation(origin = {27, 88.75}, extent = {{-12.25, -49}, {12.25, 49}}, rotation = 90)));
 equation
   connect(add.u1, P1) annotation(
     Line(points = {{-169, -43}, {-169, -38}, {-204, -38}}, color = {0, 0, 127}));
@@ -111,60 +107,56 @@ equation
   connect(add2.y, Room2.PowerIn) annotation(
     Line(points = {{96, -108}, {122, -108}, {122, -50}, {120, -50}}, color = {0, 0, 127}));
   connect(add1.y, Room3.PowerIn) annotation(
-    Line(points = {{-14, -100}, {10, -100}, {10, -50}}, color = {0, 0, 127}));
-  connect(W13.doorin, door1) annotation(
-    Line(points = {{-21, 18}, {-38, 18}, {-38, 22}}, color = {255, 0, 255}));
+    Line(points = {{-14, -100}, {-14, -102}, {10, -102}, {10, -54}}, color = {0, 0, 127}));
+ connect(W13.doorin, door1) annotation(
+    Line(points = {{-23, 26}, {-30.5, 26}, {-30.5, 30}, {-38, 30}}, color = {255, 0, 255}));
   connect(W13.pin1, Room1.pin1) annotation(
-    Line(points = {{-18, 8}, {-70, 8}, {-70, -38}}, color = {0, 0, 255}));
+    Line(points = {{-21, 16}, {-73, 16}, {-73, -38}, {-70, -38}}, color = {0, 0, 255}));
   connect(wallWithoutDoors.pin2, Room1.pin1) annotation(
     Line(points = {{-64, 52}, {-70, 52}, {-70, -38}}, color = {0, 0, 255}));
-  connect(W23.doorin, door3) annotation(
-    Line(points = {{92, 18}, {70, 18}}, color = {255, 0, 255}));
   connect(wallWithoutDoors1.pin2, Room2.pin1) annotation(
     Line(points = {{153, 53}, {153, -36}, {154, -36}}, color = {0, 0, 255}));
   connect(wallWithoutDoors1.pin1, outside11.pin) annotation(
     Line(points = {{154, 77}, {154, 110}, {146, 110}}, color = {0, 0, 255}));
-  connect(door2, W3e.doorin) annotation(
-    Line(points = {{80, 72}, {80, 94}, {38, 94}, {38, 81}}, color = {255, 0, 255}));
   connect(outside.pin, wallWithoutDoors.pin1) annotation(
-    Line(points = {{-64, 98}, {-64, 76}}, color = {0, 0, 255}));
+    Line(points = {{-62, 126}, {-62, 101}, {-64, 101}, {-64, 76}}, color = {0, 0, 255}));
   connect(outside.Te, Te) annotation(
-    Line(points = {{-60, 116}, {-34, 116}, {-34, 166}, {34, 166}}, color = {0, 0, 127}));
+    Line(points = {{-58, 144}, {-44, 144}, {-44, 166}, {34, 166}}, color = {0, 0, 127}));
   connect(outside1.Te, Te) annotation(
-    Line(points = {{34, 142}, {34, 166}}, color = {0, 0, 127}));
+    Line(points = {{34, 152}, {34, 166}}, color = {0, 0, 127}));
   connect(outside11.Te, Te) annotation(
     Line(points = {{150, 128}, {152, 128}, {152, 166}, {34, 166}}, color = {0, 0, 127}));
   connect(Room2.t, T2) annotation(
     Line(points = {{192, -50}, {216, -50}}, color = {0, 0, 127}));
   connect(Room3.t, T3) annotation(
-    Line(points = {{82, -50}, {89, -50}, {89, -52}, {104, -52}}, color = {0, 0, 127}));
+    Line(points = {{81, -53}, {89, -53}, {89, -52}, {104, -52}}, color = {0, 0, 127}));
   connect(Room1.t, T1) annotation(
     Line(points = {{-26, -54}, {-6, -54}}, color = {0, 0, 127}));
-  connect(Room3.pin1, W3e.pin2) annotation(
-    Line(points = {{44, -36}, {44, -34}, {30, -34}, {30, 56}}, color = {0, 0, 255}));
- connect(W13.pin2, Room3.pin1) annotation(
-    Line(points = {{6, 8}, {44, 8}, {44, -36}}, color = {0, 0, 255}));
- connect(W23.pin1, Room3.pin1) annotation(
-    Line(points = {{94, 8}, {44, 8}, {44, -36}}, color = {0, 0, 255}));
- connect(Prad.i, PRad) annotation(
-    Line(points = {{72, 134}, {106, 134}}, color = {0, 0, 127}));
- connect(W23.pin2, Room2.pin1) annotation(
+  connect(W13.pin2, Room3.pin1) annotation(
+    Line(points = {{4, 17}, {4, -41}, {45, -41}}, color = {0, 0, 255}));
+  connect(W23.pin1, Room3.pin1) annotation(
+    Line(points = {{94, 8}, {94, -41}, {45, -41}}, color = {0, 0, 255}));
+  connect(W23.pin2, Room2.pin1) annotation(
     Line(points = {{120, 10}, {154, 10}, {154, -36}}, color = {0, 0, 255}));
- connect(add2.u1, P2) annotation(
+  connect(add2.u1, P2) annotation(
     Line(points = {{56, -98}, {34, -98}, {34, -96}}, color = {0, 0, 127}));
- connect(add2.u2, D2) annotation(
+  connect(add2.u2, D2) annotation(
     Line(points = {{56, -120}, {34, -120}, {34, -124}}, color = {0, 0, 127}));
- connect(D3, add1.u2) annotation(
+  connect(D3, add1.u2) annotation(
     Line(points = {{-92, -118}, {-54, -118}, {-54, -112}}, color = {0, 0, 127}));
- connect(P3, add1.u1) annotation(
+  connect(P3, add1.u1) annotation(
     Line(points = {{-92, -90}, {-54, -90}}, color = {0, 0, 127}));
- connect(Prad.n, outside1.pin) annotation(
-    Line(points = {{60, 124}, {30, 124}}, color = {0, 0, 255}));
- connect(outside1.pin, W3e.pin1) annotation(
-    Line(points = {{30, 124}, {30, 102}, {28, 102}, {28, 78}}, color = {0, 0, 255}));
- connect(ground.p, Prad.p) annotation(
-    Line(points = {{60, 148}, {60, 144}}, color = {0, 0, 255}));
+ connect(roomWithDoorAndRadiation.pinOut, Room3.pin1) annotation(
+    Line(points = {{28, 74}, {28, 72}, {44, 72}, {44, -40}}, color = {0, 0, 255}));
+ connect(roomWithDoorAndRadiation.pinIn, outside1.pin) annotation(
+    Line(points = {{27, 103}, {27, 134}, {30, 134}}, color = {0, 0, 255}));
+ connect(PRad, roomWithDoorAndRadiation.Prad) annotation(
+    Line(points = {{106, 134}, {106, 132}, {36, 132}, {36, 74}}, color = {0, 0, 127}));
+ connect(door3, roomWithDoorAndRadiation.doorin) annotation(
+    Line(points = {{70, 18}, {16, 18}, {16, 72}}, color = {255, 0, 255}));
+ connect(door2, W23.doorin) annotation(
+    Line(points = {{80, 72}, {92, 72}, {92, 18}}, color = {255, 0, 255}));
   annotation(
     Icon(coordinateSystem(extent = {{-100, -200}, {100, 200}}), graphics = {Rectangle(origin = {-2, 99}, fillColor = {128, 128, 0}, fillPattern = FillPattern.Solid, extent = {{-161, 98}, {161, -295}}), Text(origin = {5, 13}, extent = {{-67, 115}, {67, -115}}, textString = "Building_ee")}),
- Diagram(coordinateSystem(extent = {{-240, 180}, {240, -140}})));
+ Diagram(coordinateSystem(extent = {{-240, 180}, {240, -140}}), graphics = {Text(extent = {{18, 92}, {18, 92}}, textString = "text")}));
 end Building_ee;

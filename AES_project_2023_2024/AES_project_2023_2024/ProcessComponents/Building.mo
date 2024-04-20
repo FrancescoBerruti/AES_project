@@ -71,7 +71,8 @@ protected
     parameter HeatCapacity Cw23 = cw*row*Wr2*tw*H;
     parameter HeatCapacity Cw1e = cw*row*Wr1*tw*H;
     parameter HeatCapacity Cw2e = cw*row*Wr2*tw*H;
-    parameter HeatCapacity Cw3e = cw*row*Wr3*tw*H;
+    parameter HeatCapacity Cw3e = cw*row*Wr3*tw*H;     
+ 
 
     parameter ThermalConductance Gr1w13 = 1/(1/gammawi/(Wr1*H)+0.5*tw/lambdaw/(Wr1*H));
     parameter ThermalConductance Gr1w1e = 1/(1/gammawi/(Wr1*H)+0.5*tw/lambdaw/(Wr1*H));
