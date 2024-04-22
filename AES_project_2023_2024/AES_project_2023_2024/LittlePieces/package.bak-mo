@@ -105,7 +105,7 @@ package LittlePieces
       Placement(transformation(origin = {-2, -66}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {60, -4}, extent = {{-10, -10}, {10, 10}})));
     parameter Real Gin;
     parameter Real Gext;
-    parameter Real C;
+    parameter Integer C;
   equation
     connect(WallResistance.n, WallResistance1.p) annotation(
       Line(points = {{-2, -6}, {-2, -26}}, color = {0, 0, 255}));
