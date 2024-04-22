@@ -125,14 +125,14 @@ package LittlePieces
     Modelica.Electrical.Analog.Interfaces.Pin pin annotation(
       Placement(transformation(origin = {2, 20}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-58, -10}, extent = {{-10, -10}, {10, 10}})));
     Modelica.Blocks.Interfaces.RealInput Te annotation(
-      Placement(transformation(origin = {34, -30}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {42, -36}, extent = {{-20, -20}, {20, 20}})));
+      Placement(transformation(origin = {28, -28}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {42, -36}, extent = {{-20, -20}, {20, 20}})));
   equation
     connect(signalVoltage.p, pin) annotation(
       Line(points = {{0, -18}, {0, 0}, {2, 0}, {2, 20}}, color = {0, 0, 255}));
     connect(ground.p, signalVoltage.n) annotation(
       Line(points = {{0, -56}, {0, -38}}, color = {0, 0, 255}));
     connect(signalVoltage.v, Te) annotation(
-      Line(points = {{12, -28}, {25, -28}, {25, -30}, {34, -30}}, color = {0, 0, 127}));
+      Line(points = {{12, -28}, {28, -28}}, color = {0, 0, 127}));
     annotation(
       Icon(coordinateSystem(extent = {{-50, -100}, {50, 100}}), graphics = {Rectangle(origin = {25, 0}, rotation = -90, fillColor = {0, 128, 0}, fillPattern = FillPattern.Solid, extent = {{-100, 23}, {99, -72}}), Text(origin = {-1, 8}, rotation = -90, extent = {{-52, 19}, {52, -19}}, textString = "Outside")}));
   end Outside;
