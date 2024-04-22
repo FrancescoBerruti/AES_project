@@ -110,8 +110,6 @@ equation
     Line(points = {{-14, -100}, {-14, -102}, {10, -102}, {10, -54}}, color = {0, 0, 127}));
  connect(W13.doorin, door1) annotation(
     Line(points = {{-23, 26}, {-30.5, 26}, {-30.5, 30}, {-38, 30}}, color = {255, 0, 255}));
-  connect(W13.pin1, Room1.pin1) annotation(
-    Line(points = {{-21, 16}, {-73, 16}, {-73, -38}, {-70, -38}}, color = {0, 0, 255}));
   connect(wallWithoutDoors.pin2, Room1.pin1) annotation(
     Line(points = {{-64, 52}, {-70, 52}, {-70, -38}}, color = {0, 0, 255}));
   connect(wallWithoutDoors1.pin2, Room2.pin1) annotation(
@@ -132,12 +130,6 @@ equation
     Line(points = {{81, -53}, {89, -53}, {89, -52}, {104, -52}}, color = {0, 0, 127}));
   connect(Room1.t, T1) annotation(
     Line(points = {{-26, -54}, {-6, -54}}, color = {0, 0, 127}));
-  connect(W13.pin2, Room3.pin1) annotation(
-    Line(points = {{4, 17}, {4, -41}, {45, -41}}, color = {0, 0, 255}));
-  connect(W23.pin1, Room3.pin1) annotation(
-    Line(points = {{94, 8}, {94, -41}, {45, -41}}, color = {0, 0, 255}));
-  connect(W23.pin2, Room2.pin1) annotation(
-    Line(points = {{120, 10}, {154, 10}, {154, -36}}, color = {0, 0, 255}));
   connect(add2.u1, P2) annotation(
     Line(points = {{56, -98}, {34, -98}, {34, -96}}, color = {0, 0, 127}));
   connect(add2.u2, D2) annotation(
