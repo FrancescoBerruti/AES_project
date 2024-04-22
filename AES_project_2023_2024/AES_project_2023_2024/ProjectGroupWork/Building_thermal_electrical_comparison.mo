@@ -15,7 +15,7 @@ model Building_thermal_electrical_comparison
     Placement(transformation(origin = {4, -62}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add11(k2 = -1) annotation(
     Placement(transformation(origin = {6, -90}, extent = {{-10, -10}, {10, 10}})));
-  AES_project_2023_2024.ProcessComponents.Building_noConns building annotation(
+  AES_project_2023_2024.ProcessComponents.Building building annotation(
     Placement(transformation(origin = {130, 106}, extent = {{-40, -60}, {40, 60}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {110, 218}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
