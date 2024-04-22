@@ -151,14 +151,7 @@ equation
     Line(points = {{70, 18}, {16, 18}, {16, 72}}, color = {255, 0, 255}));
   connect(door2, wall_23.doorin) annotation(
     Line(points = {{80, 72}, {92, 72}, {92, 18}}, color = {255, 0, 255}));
- connect(W13.pin1, Room1.pin1) annotation(
-    Line(points = {{-20, 16}, {-70, 16}, {-70, -38}}, color = {0, 0, 255}));
- connect(W13.pin2, Room3.pin1) annotation(
-    Line(points = {{4, 16}, {44, 16}, {44, -40}}, color = {0, 0, 255}));
- connect(W23.pin1, Room3.pin1) annotation(
-    Line(points = {{94, 8}, {44, 8}, {44, -40}}, color = {0, 0, 255}));
- connect(W23.pin2, Room2.pin1) annotation(
-    Line(points = {{120, 10}, {154, 10}, {154, -36}}, color = {0, 0, 255}));
+ 
   annotation(
     Icon(coordinateSystem(extent = {{-100, -200}, {100, 200}}), graphics = {Rectangle(origin = {-2, 99}, fillColor = {128, 128, 0}, fillPattern = FillPattern.Solid, extent = {{-161, 98}, {161, -295}}), Text(origin = {5, 13}, extent = {{-67, 115}, {67, -115}}, textString = "Building_ee")}),
     Diagram(graphics = {Text(extent = {{18, 92}, {18, 92}}, textString = "text"), Text(origin = {-97, 77}, extent = {{-9, 9}, {9, -9}}, textString = "Wall_1e"), Text(origin = {107, 55}, extent = {{-9, 9}, {9, -9}}, textString = "Wall_23"), Text(origin = {-7, 61}, extent = {{-9, 9}, {9, -9}}, textString = "Wall_13"), Text(origin = {135, 77}, extent = {{-9, 9}, {9, -9}}, textString = "Wall_2e"), Text(origin = {-9, 105}, extent = {{-9, 9}, {9, -9}}, textString = "Wall_3e"), Text(origin = {-91, -35}, extent = {{-9, 9}, {9, -9}}, textString = "Room_1"), Text(origin = {25, -37}, extent = {{-9, 9}, {9, -9}}, textString = "Room_3"), Text(origin = {135, -33}, extent = {{-9, 9}, {9, -9}}, textString = "Room_2"), Text(origin = {-97, 77}, extent = {{-9, 9}, {9, -9}}, textString = "Wall_1e")}, coordinateSystem(extent = {{-240, 200}, {240, -140}})));
