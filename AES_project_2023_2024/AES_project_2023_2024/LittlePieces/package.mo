@@ -144,7 +144,7 @@ package LittlePieces
   end Outside;
 
 
-model RoomWithDoorAndRadiation
+model WallWithDoorAndRadiation
   
   parameter Real Gd = 300;
   parameter Real Gw1;
@@ -200,7 +200,7 @@ equation
   annotation(Icon(coordinateSystem(extent = {{-50, -200}, {50, 200}}), graphics = {Rectangle(origin = {30, -4}, rotation = -90, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-200, 24}, {199, -75}}), Text(origin = {-1, -4}, rotation = -90, extent = {{-52, 19}, {52, -19}}, textString = "WallWithRadiation")}),
   Diagram(graphics = {Text(origin = {-47, -4}, extent = {{-1, 2}, {1, -2}}, textString = "text")}));
 
-end RoomWithDoorAndRadiation;
+end WallWithDoorAndRadiation;
 
 equation
 
