@@ -5,3 +5,7 @@ WallWithDoor
 WallWithoutDoors
 Outside
 WallWithDoorAndRadiation
+Controlled_Building_2
+Scheduler
+Loose_Controller
+ComputeEnergies
