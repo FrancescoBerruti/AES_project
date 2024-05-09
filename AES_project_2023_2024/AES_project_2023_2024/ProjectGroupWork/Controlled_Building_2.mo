@@ -23,6 +23,8 @@ model Controlled_Building_2
     Placement(transformation(origin = {-142, 84}, extent = {{-116, -174}, {116, 174}})));
   Modelica.Blocks.Sources.Constant const(k = 0)  annotation(
     Placement(transformation(origin = {-425, 209}, extent = {{-39, -39}, {39, 39}})));
+  ComputeEnergies computeEnergies annotation(
+    Placement(transformation(origin = {99, 338.5}, extent = {{-51, -76.5}, {51, 76.5}})));
 equation
   connect(doorOpenings.door3eopen, building_ee.door3) annotation(
     Line(points = {{108, -145}, {108, -162}, {220, -162}}, color = {255, 0, 255}));
@@ -70,6 +72,12 @@ equation
     Line(points = {{-271, 210}, {-382, 210}}, color = {0, 0, 127}));
   connect(scheduler.h3_strict, const.y) annotation(
     Line(points = {{-271, 183}, {-292, 183}, {-292, 210}, {-382, 210}}, color = {0, 0, 127}));
+  connect(scheduler.h1out, computeEnergies.h1) annotation(
+    Line(points = {{-4, 188}, {4, 188}, {4, 374}, {42, 374}}, color = {0, 0, 127}));
+  connect(scheduler.h2out, computeEnergies.h2) annotation(
+    Line(points = {{-2, 130}, {26, 130}, {26, 352}, {42, 352}}, color = {0, 0, 127}));
+  connect(scheduler.h3out, computeEnergies.h3) annotation(
+    Line(points = {{-2, 52}, {16, 52}, {16, 332}, {42, 332}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-1000, 420}, {540, -240}})));
 end Controlled_Building_2;
