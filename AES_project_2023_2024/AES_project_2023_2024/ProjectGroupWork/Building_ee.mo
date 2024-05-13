@@ -1,7 +1,7 @@
 within AES_project_2023_2024.ProjectGroupWork;
 
 model Building_ee
-  parameter Temperature Tstart = 293.15 "initial T, all elements";
+  parameter Voltage Tstart = 293.15 "initial T, all elements";
   parameter Density roa = 1.1 "density of air";
   parameter SpecificHeatCapacity ca = 1020 "specific heat of air";
   parameter Density row = 2000 "density of walls";
@@ -36,19 +36,19 @@ model Building_ee
   parameter ThermalConductance Gw1e = 1/(1/gammawe/(Wr1*H) + 0.5*tw/lambdaw/(Wr1*H));
   parameter ThermalConductance Gw2e = 1/(1/gammawe/(Wr2*H) + 0.5*tw/lambdaw/(Wr2*H));
   parameter ThermalConductance Gw3e = 1/(1/gammawe/(Wr3*H) + 0.5*tw/lambdaw/(Wr3*H));
-  RoomWithHeater Room1(Croom = Cr1) annotation(
-    Placement(transformation(origin = {-297, -51}, extent = {{-31, -31}, {31, 31}})));
-  RoomWithHeater Room3(Croom = Cr3) annotation(
-    Placement(transformation(origin = {-30, -60}, extent = {{-26, -26}, {26, 26}})));
-  RoomWithHeater Room2(Croom = Cr2) annotation(
+  RoomWithHeater Room1(Croom = Cr1, Tstart = Tstart) annotation(
+    Placement(transformation(origin = {-299, -51}, extent = {{-31, -31}, {31, 31}})));
+  RoomWithHeater Room3(Croom = Cr3, Tstart = Tstart) annotation(
+    Placement(transformation(origin = {-2, -88}, extent = {{-26, -26}, {26, 26}})));
+  RoomWithHeater Room2(Croom = Cr2, Tstart = Tstart) annotation(
     Placement(transformation(origin = {298, -32}, extent = {{-26, -26}, {26, 26}})));
-  WallWithDoor wall_13(Cw = Cw13, Gw1 = Gr1w13, Gw2 = Gr3w13) annotation(
+  WallWithDoor wall_13(Cw = Cw13, Gw1 = Gr1w13, Gw2 = Gr3w13, Tstart = Tstart) annotation(
     Placement(transformation(origin = {-144.25, 7}, extent = {{-10.25, -41}, {10.25, 41}})));
-  WallWithDoor wall_23(Cw = Cw23, Gw1 = Gr3w23, Gw2 = Gr2w23) annotation(
+  WallWithDoor wall_23(Cw = Cw23, Gw1 = Gr3w23, Gw2 = Gr2w23, Tstart = Tstart) annotation(
     Placement(transformation(origin = {105.5, 10}, extent = {{-10.5, -42}, {10.5, 42}})));
-  WallWithoutDoors wall_1e(C = Cw1e, Gin = Gr1w1e, Gext = Gw1e) annotation(
+  WallWithoutDoors wall_1e(C = Cw1e, Gin = Gr1w1e, Gext = Gw1e, Tstart = Tstart) annotation(
     Placement(transformation(origin = {-292, 88.5}, extent = {{-20.5, -82}, {20.5, 82}}, rotation = 90)));
-  WallWithoutDoors wall_2e(C = Cw2e, Gin = Gr2w2e, Gext = Gw2e) annotation(
+  WallWithoutDoors wall_2e(C = Cw2e, Gin = Gr2w2e, Gext = Gw2e, Tstart = Tstart) annotation(
     Placement(transformation(origin = {297, 76.75}, extent = {{-10.25, -41}, {10.25, 41}}, rotation = 90)));
   Outside outside1 annotation(
     Placement(transformation(origin = {-31, 196.5}, extent = {{-21.5, -43}, {21.5, 43}}, rotation = 90)));
@@ -86,7 +86,7 @@ model Building_ee
     Placement(transformation(origin = {36, -52}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {170, 78}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput T2 annotation(
     Placement(transformation(origin = {360, -36}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {170, 118}, extent = {{-10, -10}, {10, 10}})));
-  WallWithDoorAndRadiation wall_3e(Gw1 = Gr3w3e, Gw2 = Gw3e, Cw = Cw3e) annotation(
+  WallWithDoorAndRadiation wall_3e(Gw1 = Gr3w3e, Gw2 = Gw3e, Cw = Cw3e, Tstart = Tstart, Gd = 1) annotation(
     Placement(transformation(origin = {-29, 94.75}, extent = {{-12.25, -49}, {12.25, 49}}, rotation = 90)));
 equation
   connect(add.u1, P1) annotation(
@@ -94,7 +94,7 @@ equation
   connect(add.u2, D1) annotation(
     Line(points = {{-391.4, -69.2}, {-391.4, -74.2}, {-438.4, -74.2}}, color = {0, 0, 127}));
   connect(add.y, Room1.PowerIn) annotation(
-    Line(points = {{-352, -59}, {-343.5, -59}, {-343.5, -55}, {-337, -55}}, color = {0, 0, 127}));
+    Line(points = {{-352, -59}, {-344.5, -59}, {-344.5, -55}, {-339, -55}}, color = {0, 0, 127}));
   connect(wall_13.doorin, door1) annotation(
     Line(points = {{-159, 16}, {-186, 16}}, color = {255, 0, 255}));
   connect(outside1.Te, Te) annotation(
@@ -102,7 +102,7 @@ equation
   connect(Room2.t, T2) annotation(
     Line(points = {{335.44, -35.38}, {359.44, -35.38}}, color = {0, 0, 127}));
   connect(Room1.t, T1) annotation(
-    Line(points = {{-252.36, -55.03}, {-238.36, -55.03}, {-238.36, -52.03}, {-228.36, -52.03}}, color = {0, 0, 127}));
+    Line(points = {{-254, -55}, {-238.36, -55}, {-238.36, -52.03}, {-228.36, -52.03}}, color = {0, 0, 127}));
   connect(add2.u1, P2) annotation(
     Line(points = {{170.6, -24.8}, {170.6, -21.8}, {149.6, -21.8}}, color = {0, 0, 127}));
   connect(add2.u2, D2) annotation(
@@ -120,19 +120,19 @@ equation
   connect(door2, wall_23.doorin) annotation(
     Line(points = {{58, 20}, {58, 19}, {90, 19}}, color = {255, 0, 255}));
   connect(wall_3e.pinOut, Room3.pin1) annotation(
-    Line(points = {{-29, -39}, {-29, -51}}, color = {0, 0, 255}));
+    Line(points = {{-29, -39}, {-29, -57}, {-1, -57}, {-1, -79}}, color = {0, 0, 255}));
   connect(add1.y, Room3.PowerIn) annotation(
-    Line(points = {{-104, -65}, {-64, -65}, {-64, -64}}, color = {0, 0, 127}));
+    Line(points = {{-104, -65}, {-104, -63}, {-36, -63}, {-36, -92}}, color = {0, 0, 127}));
   connect(wall_23.pin1, Room3.pin1) annotation(
-    Line(points = {{-29, -51}, {-29, 8}, {92, 8}}, color = {0, 0, 255}));
+    Line(points = {{-1, -79}, {-1, 8}, {92, 8}}, color = {0, 0, 255}));
   connect(wall_13.pin2, Room3.pin1) annotation(
-    Line(points = {{-29, -51}, {-29, 6}, {-132, 6}}, color = {0, 0, 255}));
+    Line(points = {{-1, -79}, {-1, 6}, {-132, 6}}, color = {0, 0, 255}));
   connect(Room3.pin1, wall_23.pin1) annotation(
     Line(points = {{-26, -28}, {-26, 8}, {92, 8}}, color = {0, 0, 255}));
   connect(Room3.pin1, wall_13.pin2) annotation(
     Line(points = {{-26, -28}, {-26, 6}, {-132, 6}}, color = {0, 0, 255}));
   connect(wall_13.pin1, Room1.pin1) annotation(
-    Line(points = {{-156, 6}, {-296, 6}, {-296, -40}}, color = {0, 0, 255}));
+    Line(points = {{-298, -40}, {-298, 6}, {-156, 6}}, color = {0, 0, 255}));
   connect(add2.y, Room2.PowerIn) annotation(
     Line(points = {{210, -35}, {264, -35}, {264, -36}}, color = {0, 0, 127}));
   connect(wall_23.pin2, Room2.pin1) annotation(
@@ -144,9 +144,9 @@ equation
   connect(wall_3e.pinOut, wall_23.pin1) annotation(
     Line(points = {{-28, 80}, {-30, 80}, {-30, 8}, {92, 8}}, color = {0, 0, 255}));
   connect(T3, Room3.t) annotation(
-    Line(points = {{36, -52}, {22, -52}, {22, -63}, {7, -63}}, color = {0, 0, 127}));
+    Line(points = {{36, -52}, {22, -52}, {22, -91}, {35, -91}}, color = {0, 0, 127}));
   connect(wall_1e.pin1, Room1.pin1) annotation(
-    Line(points = {{-292, 64}, {-296, 64}, {-296, -40}}, color = {0, 0, 255}));
+    Line(points = {{-292, 64}, {-292, 2}, {-298, 2}, {-298, -40}}, color = {0, 0, 255}));
   connect(wall_1e.pin2, outside1.pin) annotation(
     Line(points = {{-290, 114}, {-282, 114}, {-282, 172}, {-26, 172}}, color = {0, 0, 255}));
   connect(wall_2e.pin1, Room2.pin1) annotation(

@@ -1,0 +1,74 @@
+within AES_project_2023_2024.ProjectGroupWork;
+
+model Scheduler_controllers
+  parameter Real hod_start=10;
+  parameter Real hod_end=16;
+  Modelica.Blocks.Interfaces.RealInput h1_strict annotation(
+    Placement(transformation(origin = {-104, 60}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-124, -44}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput h2_strict annotation(
+    Placement(transformation(origin = {-106, 18}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-124, -216}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput h3_strict annotation(
+    Placement(transformation(origin = {-102, -30}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-134, -308}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput c1_strict annotation(
+    Placement(transformation(origin = {-38, 62}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-124, -84}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput c2_strict annotation(
+    Placement(transformation(origin = {-40, 20}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-126, -146}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput c3_strict annotation(
+    Placement(transformation(origin = {-36, -28}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-130, -366}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput h1_loose annotation(
+    Placement(transformation(origin = {24, 58}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-118, 278}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput h2_loose annotation(
+    Placement(transformation(origin = {22, 16}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-120, 170}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput h3_loose annotation(
+    Placement(transformation(origin = {26, -32}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-128, 70}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput c1_loose annotation(
+    Placement(transformation(origin = {90, 60}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-124, 234}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput c2_loose annotation(
+    Placement(transformation(origin = {88, 18}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-122, 116}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput c3_loose annotation(
+    Placement(transformation(origin = {92, -30}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-128, 22}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealOutput h1out annotation(
+    Placement(transformation(origin = {-98, -58}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, 224}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput h2out annotation(
+    Placement(transformation(origin = {-36, -62}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {112, 106}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput h3out annotation(
+    Placement(transformation(origin = {38, -64}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, -12}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput c1out annotation(
+    Placement(transformation(origin = {-108, -86}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {112, 196}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput c2out annotation(
+    Placement(transformation(origin = {-34, -88}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {112, 64}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput c3out annotation(
+    Placement(transformation(origin = {38, -92}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {110, -58}, extent = {{-10, -10}, {10, 10}})));
+equation
+  
+
+algorithm
+              
+ if Functions.hod(time)>=hod_start and Functions.hod(time)<hod_end then
+    h1out := h1_strict;
+    h2out := h2_strict;
+    h3out := h3_strict;
+    c1out:= c1_strict;
+    c2out:= c2_strict;
+    c3out:=c3_strict;
+
+ else
+    h1out := h1_loose;
+    h2out := h2_loose;
+    h3out := h3_loose;                        
+    c1out:= c1_loose;
+    c2out :=c2_loose;
+    c3out:=c3_loose;
+    
+ end if;
+ 
+initial algorithm
+  h1out := 0;
+  h2out := 0;
+  h3out := 0;
+
+  
+  
+  
+annotation(Icon(coordinateSystem(extent = {{-100, -300}, {100, 300}}), graphics = {Rectangle( origin = {-3, -44},fillColor = {128, 50, 0}, fillPattern = FillPattern.Solid, extent = {{-103, -344}, {103, 344}}), Text(origin = {-3, 0}, extent = {{-53, 72}, {53, -72}}, textString = "Scheduler")}));
+end Scheduler_controllers;
