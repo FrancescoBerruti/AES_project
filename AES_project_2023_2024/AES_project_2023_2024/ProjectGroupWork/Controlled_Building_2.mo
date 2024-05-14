@@ -6,7 +6,7 @@ model Controlled_Building_2
   ProcessComponents.DoorOpenings doorOpenings annotation(
     Placement(transformation(origin = {280, -178}, extent = {{-42, -42}, {42, 42}})));
   Modelica.Blocks.Sources.RealExpression realExpression12(y = building_ee.T3) annotation(
-    Placement(transformation(origin = {-994, -46}, extent = {{-92, -42}, {92, 42}})));
+    Placement(transformation(origin = {-994, -44}, extent = {{-92, -42}, {92, 42}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {522, 444}, extent = {{-40, -40}, {40, 40}}, rotation = -90)));
   AES_project_2023_2024.ProcessComponents.TePrad tePrad1(Temax(displayUnit = "degC"), Temin (displayUnit = "degC")) annotation(
@@ -17,12 +17,10 @@ model Controlled_Building_2
     Placement(transformation(origin = {-372, 54}, extent = {{-116, -174}, {116, 174}})));
   Modelica.Blocks.Sources.Constant const(k = 0) annotation(
     Placement(transformation(origin = {-637, 193}, extent = {{-39, -39}, {39, 39}})));
-  ComputeEnergies computeEnergies annotation(
-    Placement(transformation(origin = {-805, 320.5}, extent = {{-75, -112.5}, {75, 112.5}})));
   ProcessComponents.HCactuator HC1(Ph(fixed = false), Pc(fixed = false))  annotation(
     Placement(transformation(origin = {102, 234}, extent = {{-36, -36}, {36, 36}})));
   HotAndCoolRegulator hotAndCoolRegulator annotation(
-    Placement(transformation(origin = {-114, 66}, extent = {{-51, -204}, {51, 204}})));
+    Placement(transformation(origin = {-74, 82}, extent = {{-51, -204}, {51, 204}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC2(Ph(fixed = false), Pc(fixed = false))  annotation(
     Placement(transformation(origin = {114, 122}, extent = {{-36, -36}, {36, 36}})));
   ProcessComponents.HCactuator HC3(Ph(fixed = false), Pc(fixed = false))  annotation(
@@ -33,15 +31,11 @@ model Controlled_Building_2
     Placement(transformation(origin = {274, 116}, extent = {{-46, -46}, {46, 46}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
     Placement(transformation(origin = {254, 4}, extent = {{-46, -46}, {46, 46}})));
-  Modelica.Blocks.Sources.RealExpression realExpression1(y = P2.y) annotation(
-    Placement(transformation(origin = {-1076, 328}, extent = {{-80, -46}, {80, 46}})));
-  Modelica.Blocks.Sources.RealExpression realExpression21(y = P3.y) annotation(
-    Placement(transformation(origin = {-1079, 257}, extent = {{-87, -45}, {87, 45}})));
-  Modelica.Blocks.Sources.RealExpression realExpression121(y = P1.y) annotation(
-    Placement(transformation(origin = {-1062, 382}, extent = {{-112, -34}, {112, 34}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-949, -223}, extent = {{-45, -45}, {45, 45}})));
+  public Real Etot(start=0.0);
 equation
+  der(Etot) = abs(P1.y) + abs(P2.y) + abs(P3.y);
   connect(doorOpenings.door3eopen, building_ee.door3) annotation(
     Line(points = {{330, -203}, {330, -244}, {458.5, -244}}, color = {255, 0, 255}));
   connect(doorOpenings.door23open, building_ee.door2) annotation(
@@ -65,23 +59,23 @@ equation
   connect(scheduler.h3_strict, const.y) annotation(
     Line(points = {{-501, 153}, {-545.5, 153}, {-545.5, 193}, {-594, 193}}, color = {0, 0, 127}));
   connect(scheduler.h1out, hotAndCoolRegulator.u1) annotation(
-    Line(points = {{-234, 158}, {-234, 176}, {-181, 176}, {-181, 123}}, color = {0, 0, 127}));
+    Line(points = {{-234, 158}, {-234, 176}, {-141, 176}, {-141, 139}}, color = {0, 0, 127}));
   connect(scheduler.h2out, hotAndCoolRegulator.u2) annotation(
-    Line(points = {{-233, 100}, {-224.5, 100}, {-224.5, 78}, {-181, 78}}, color = {0, 0, 127}));
+    Line(points = {{-233, 100}, {-187, 100}, {-187, 94}, {-141, 94}}, color = {0, 0, 127}));
   connect(scheduler.h3out, hotAndCoolRegulator.u3) annotation(
-    Line(points = {{-233, 23}, {-181, 23}}, color = {0, 0, 127}));
+    Line(points = {{-233, 23}, {-193, 23}, {-193, 39}, {-141, 39}}, color = {0, 0, 127}));
   connect(hotAndCoolRegulator.h1, HC1.uh01) annotation(
-    Line(points = {{-49, 246}, {-27.5, 246}, {-27.5, 256}, {59, 256}}, color = {0, 0, 127}));
+    Line(points = {{-9, 262}, {22, 262}, {22, 256}, {59, 256}}, color = {0, 0, 127}));
   connect(HC1.uc01, hotAndCoolRegulator.c1) annotation(
-    Line(points = {{59, 212}, {-49, 212}, {-49, 213}}, color = {0, 0, 127}));
+    Line(points = {{59, 212}, {-9, 212}, {-9, 229}}, color = {0, 0, 127}));
   connect(hotAndCoolRegulator.h2, HC2.uh01) annotation(
-    Line(points = {{-49, 152}, {-19, 152}, {-19, 144}, {71, 144}}, color = {0, 0, 127}));
+    Line(points = {{-9, 168}, {21, 168}, {21, 144}, {71, 144}}, color = {0, 0, 127}));
   connect(HC2.uc01, hotAndCoolRegulator.c2) annotation(
-    Line(points = {{71, 100}, {-49, 100}, {-49, 127}}, color = {0, 0, 127}));
+    Line(points = {{71, 100}, {-9, 100}, {-9, 143}}, color = {0, 0, 127}));
   connect(hotAndCoolRegulator.h3, HC3.uh01) annotation(
-    Line(points = {{-49, 15}, {-24.5, 15}, {-24.5, 29}, {60, 29}}, color = {0, 0, 127}));
+    Line(points = {{-9, 31}, {22.5, 31}, {22.5, 29}, {60, 29}}, color = {0, 0, 127}));
   connect(hotAndCoolRegulator.c3, HC3.uc01) annotation(
-    Line(points = {{-49, -16}, {60, -16}, {60, -17}}, color = {0, 0, 127}));
+    Line(points = {{-9, 0}, {64, 0}, {64, -17}, {60, -17}}, color = {0, 0, 127}));
   connect(HC1.Ph, P1.u1) annotation(
     Line(points = {{145.2, 255.6}, {201.2, 255.6}}, color = {0, 0, 127}));
   connect(HC1.Pc, P1.u2) annotation(
@@ -100,18 +94,12 @@ equation
     Line(points = {{151.6, -16.8}, {197.6, -16.8}, {197.6, -24.8}}, color = {0, 0, 127}));
   connect(P3.y, building_ee.P3) annotation(
     Line(points = {{304.6, 4}, {388.6, 4}, {388.6, 97}, {458.5, 97}}, color = {0, 0, 127}));
-  connect(realExpression121.y, computeEnergies.h1) annotation(
-    Line(points = {{-938, 382}, {-888, 382}, {-888, 374}}, color = {0, 0, 127}));
-  connect(computeEnergies.h2, realExpression1.y) annotation(
-    Line(points = {{-888, 340}, {-988, 340}, {-988, 328}}, color = {0, 0, 127}));
-  connect(realExpression21.y, computeEnergies.h3) annotation(
-    Line(points = {{-983, 257}, {-888, 257}, {-888, 310}}, color = {0, 0, 127}));
   connect(scheduler.h3_loose, loose_Controller.h3_loose) annotation(
     Line(points = {{-501, -94}, {-629, -94}}, color = {0, 0, 127}));
   connect(realExpression12.y, loose_Controller.T3) annotation(
-    Line(points = {{-892.8, -46}, {-830.8, -46}, {-830.8, -43}}, color = {0, 0, 127}));
+    Line(points = {{-893, -44}, {-893, -43}, {-830.8, -43}}, color = {0, 0, 127}));
   connect(SetPointTable.y[3], loose_Controller.Tdes3) annotation(
     Line(points = {{-899.5, -223}, {-829, -223}, {-829, -214}}, color = {0, 0, 127}));
   annotation(
-    Diagram(coordinateSystem(extent = {{-1400, 520}, {960, -320}})));
+    Diagram(coordinateSystem(extent = {{-1140, 520}, {960, -300}})));
 end Controlled_Building_2;

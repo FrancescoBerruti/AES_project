@@ -12,7 +12,7 @@ model HotAndCoolRegulator
   Modelica.Blocks.Interfaces.RealOutput h2 annotation(
     Placement(transformation(origin = {4, 24}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {64, 84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput h3 annotation(
-    Placement(transformation(origin = {0, -6}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {64, -50}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {18, -6}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {64, -50}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput c1 annotation(
     Placement(transformation(origin = {-2, -38}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {64, 144}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput c2 annotation(
