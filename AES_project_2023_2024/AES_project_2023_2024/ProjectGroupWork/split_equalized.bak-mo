@@ -1,0 +1,21 @@
+within AES_project_2023_2024.ProjectGroupWork;
+
+model split_equalized
+  Modelica.Blocks.Interfaces.RealInput y_meas annotation(
+    Placement(transformation(origin = {-120, 40}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-80, 46}, extent = {{-20, -20}, {20, 20}})));
+  Modelica.Blocks.Interfaces.RealInput y_ref annotation(
+    Placement(transformation(origin = {-120, -40}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-112, -22}, extent = {{-20, -20}, {20, 20}})));
+  Modelica.Blocks.Math.Add add(k1 = -1)  annotation(
+    Placement(transformation(origin = {-68, 0}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Interfaces.RealOutput actuation annotation(
+    Placement(transformation(origin = {132, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {132, 0}, extent = {{-10, -10}, {10, 10}})));
+equation
+  connect(y_meas, add.u1) annotation(
+    Line(points = {{-120, 40}, {-90, 40}, {-90, 6}, {-80, 6}}, color = {0, 0, 127}));
+  connect(y_ref, add.u2) annotation(
+    Line(points = {{-120, -40}, {-88, -40}, {-88, -6}, {-80, -6}}, color = {0, 0, 127}));
+  connect(add.y, actuation) annotation(
+    Line(points = {{-56, 0}, {132, 0}}, color = {0, 0, 127}));
+  annotation(Icon(coordinateSystem(extent = {{-50, -200}, {50, 200}}), graphics = {Rectangle(origin = {30, -4}, rotation = -90, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-200, 24}, {199, -75}}), Text(origin = {-1, -4}, rotation = -90, extent = {{-52, 19}, {52, -19}}, textString = "split_equalized")}),
+  Diagram(graphics = {Text(origin = {-47, -4}, extent = {{-1, 2}, {1, -2}}, textString = "text")}));
+end split_equalized;
