@@ -6,9 +6,10 @@ package ProjectGroupWork
 
   model RoomWithHeater
     parameter Real Croom;
+    parameter Real Tstart;
     Modelica.Electrical.Analog.Basic.Ground ground annotation(
       Placement(transformation(origin = {0, -54}, extent = {{-10, -10}, {10, 10}})));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor(v(start = 293.15, fixed = true), C = Croom) annotation(
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor(v(start = Tstart, fixed = true), C = Croom) annotation(
       Placement(transformation(origin = {18, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent annotation(
       Placement(transformation(origin = {-18, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
@@ -51,9 +52,10 @@ package ProjectGroupWork
     parameter Real Gw1;
     parameter Real Gw2;
     parameter Real Cw;
+    parameter Real Tstart;
     Modelica.Electrical.Analog.Basic.Conductor conductor(G = Gw1) annotation(
       Placement(transformation(origin = {-14, 0}, extent = {{-10, -10}, {10, 10}})));
-    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(start = 293.15, fixed = true)) annotation(
+    Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(start = Tstart, fixed = true)) annotation(
       Placement(transformation(origin = {2, -26}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
       Placement(transformation(origin = {2, -58}, extent = {{-10, -10}, {10, 10}})));
@@ -98,7 +100,7 @@ package ProjectGroupWork
       Placement(transformation(origin = {-2, 4}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
     Modelica.Electrical.Analog.Basic.Conductor WallResistance1(G = Gext) annotation(
       Placement(transformation(origin = {-2, -36}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-    Modelica.Electrical.Analog.Basic.Capacitor T1(C = C, v(start = 293.15, fixed = true)) annotation(
+    Modelica.Electrical.Analog.Basic.Capacitor T1(C = C, v(start = Tstart, fixed = true)) annotation(
       Placement(transformation(origin = {-28, -16}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
     Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
       Placement(transformation(origin = {-72, -16}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -109,6 +111,7 @@ package ProjectGroupWork
     parameter Real Gin;
     parameter Real Gext;
     parameter Real C;
+    parameter Real Tstart;
   equation
     connect(WallResistance.n, WallResistance1.p) annotation(
       Line(points = {{-2, -6}, {-2, -26}}, color = {0, 0, 255}));
@@ -153,9 +156,10 @@ model WallWithDoorAndRadiation
   parameter Real Gw1;
   parameter Real Gw2;
   parameter Real Cw;
+  parameter Real Tstart;
   Modelica.Electrical.Analog.Basic.Conductor conductor(G = Gw1) annotation(
     Placement(transformation(origin = {-28, 4}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(fixed = true, start = 293.15)) annotation(
+  Modelica.Electrical.Analog.Basic.Capacitor capacitor1(C = Cw, v(fixed = true, start = Tstart)) annotation(
     Placement(transformation(origin = {14, -34}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   Modelica.Electrical.Analog.Basic.Ground ground2 annotation(
     Placement(transformation(origin = {-4, -76}, extent = {{-10, -10}, {10, 10}})));
