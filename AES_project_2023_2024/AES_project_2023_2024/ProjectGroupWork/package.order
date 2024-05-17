@@ -4,10 +4,10 @@ WallWithoutDoors
 Outside
 WallWithDoorAndRadiation
 Building_controlled
-Split_Equalizer
 Building_ee
 Controlled_Building_2
 Building_thermal_electrical_comparison
 HotAndCoolRegulator
 Loose_Controller
 Scheduler
+Split_Equalizer
