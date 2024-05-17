@@ -19,7 +19,7 @@ model Split_Equalizer
     Placement(transformation(origin = {128, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealInput y_meas annotation(
     Placement(transformation(origin = {-160, 30}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {-70, 42}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
-  Modelica.Blocks.Math.Gain gain(k = 134640)  annotation(
+  Modelica.Blocks.Math.Gain gain(k = 1)  annotation(
     Placement(transformation(origin = {-40, -2}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(splitRange01.CSo01_pos, equalizer_heating.u) annotation(
