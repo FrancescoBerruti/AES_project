@@ -39,9 +39,6 @@ model Controlled_Building_2
     Placement(transformation(origin = {-99, 31}, extent = {{-41, -45}, {41, 45}})));
 equation
   der(Etot) = abs(P1.y) + abs(P2.y) + abs(P3.y);
-  der(Eheat)= abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
-  der(Ecool) = abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc);
-
   connect(doorOpenings.door3eopen, building_ee.door3) annotation(
     Line(points = {{330, -203}, {330, -244}, {458.5, -244}}, color = {255, 0, 255}));
   connect(doorOpenings.door23open, building_ee.door2) annotation(

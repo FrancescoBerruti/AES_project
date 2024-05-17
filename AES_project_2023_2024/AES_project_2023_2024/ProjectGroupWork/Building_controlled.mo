@@ -2,10 +2,10 @@ within AES_project_2023_2024.ProjectGroupWork;
 
 model Building_controlled
   Building_ee building_ee annotation(
-    Placement(transformation(origin = {147.5, -59}, extent = {{-45.5, -91}, {45.5, 91}})));
+    Placement(transformation(origin = {145.5, -59}, extent = {{-45.5, -91}, {45.5, 91}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {108, 106}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  AES_project_2023_2024.ProcessComponents.TePrad tePrad1(Temax(displayUnit = "degC"), Temin(displayUnit = "degC")) annotation(
+  AES_project_2023_2024.ProcessComponents.TePrad tePrad1(Temax(displayUnit = "K"), Temin(displayUnit = "K")) annotation(
     Placement(transformation(origin = {192, 96}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
   ProcessComponents.DoorOpenings doorOpenings annotation(
     Placement(transformation(origin = {-101, -219}, extent = {{-41, -41}, {41, 41}})));
@@ -31,15 +31,15 @@ model Building_controlled
     Placement(transformation(origin = {250, 54}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
 equation
   connect(tePrad1.Te, building_ee.Te) annotation(
-    Line(points = {{198, 84}, {198, 62}, {204, 62}, {204, 40}}, color = {0, 0, 127}));
+    Line(points = {{198, 84}, {198, 62}, {202, 62}, {202, 40}}, color = {0, 0, 127}));
   connect(tePrad1.Prad, building_ee.PRad) annotation(
-    Line(points = {{186, 84}, {186, 59.5}, {184, 59.5}, {184, 39}}, color = {0, 0, 127}));
+    Line(points = {{186, 84}, {186, 59.5}, {182, 59.5}, {182, 39}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr1, building_ee.D1) annotation(
-    Line(points = {{114, 94}, {114, 39}, {131, 39}}, color = {0, 0, 127}));
+    Line(points = {{114, 94}, {114, 40}, {130, 40}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr2, building_ee.D2) annotation(
-    Line(points = {{108, 94}, {108, 67}, {109, 67}, {109, 39}}, color = {0, 0, 127}));
+    Line(points = {{108, 94}, {108, 40}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr3, building_ee.D3) annotation(
-    Line(points = {{102, 94}, {102, 57}, {85, 57}, {85, 39}}, color = {0, 0, 127}));
+    Line(points = {{102, 94}, {102, 57}, {82, 57}, {82, 40}}, color = {0, 0, 127}));
   connect(building_ee.door1, doorOpenings.door13open) annotation(
     Line(points = {{62, -90}, {42, -90}, {42, -194}, {-52, -194}}, color = {255, 0, 255}));
   connect(building_ee.door3, doorOpenings.door3eopen) annotation(
@@ -75,9 +75,9 @@ equation
   connect(deMultiplex3.y3[1], split_Equalizer2.y_meas) annotation(
     Line(points = {{-22, 156}, {-76, 156}, {-76, -68}, {-32, -68}}, color = {0, 0, 127}));
   connect(building_ee.T1, multiplex3.u1[1]) annotation(
-    Line(points = {{224, 15}, {224, 24}, {247, 24}}, color = {0, 0, 127}));
+    Line(points = {{222, 14}, {244, 14}, {244, 42}}, color = {0, 0, 127}));
   connect(building_ee.T2, multiplex3.u2[1]) annotation(
-    Line(points = {{225, -5}, {225, 24}, {254, 24}}, color = {0, 0, 127}));
+    Line(points = {{222, -6}, {250, -6}, {250, 42}}, color = {0, 0, 127}));
   connect(building_ee.T3, multiplex3.u3[1]) annotation(
     Line(points = {{222, -24}, {258, -24}, {258, 42}}, color = {0, 0, 127}));
   annotation(
