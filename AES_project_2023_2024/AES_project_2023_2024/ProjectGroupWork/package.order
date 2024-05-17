@@ -1,18 +1,15 @@
+Split_Equalizer
+StrictController
+Scheduler
+Observer
+Loose_Controller
+HotAndCoolRegulator
+Controlled_Building_2
+Building_thermal_electrical_comparison
+Building_ee
+Building_controlled
 RoomWithHeater
 WallWithDoor
 WallWithoutDoors
 Outside
 WallWithDoorAndRadiation
-Building_controlled
-Building_ee
-Controlled_Building_2
-Building_thermal_electrical_comparison
-HotAndCoolRegulator
-Loose_Controller
-Scheduler
-<<<<<<< Updated upstream
-Split_Equalizer
-=======
-StrictController
-Observer
->>>>>>> Stashed changes
