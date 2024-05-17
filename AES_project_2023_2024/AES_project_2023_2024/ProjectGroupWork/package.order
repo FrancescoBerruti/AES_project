@@ -10,9 +10,6 @@ Building_thermal_electrical_comparison
 HotAndCoolRegulator
 Loose_Controller
 Scheduler
-<<<<<<< Updated upstream
 Split_Equalizer
-=======
 StrictController
 Observer
->>>>>>> Stashed changes
