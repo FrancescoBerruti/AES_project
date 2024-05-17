@@ -124,24 +124,24 @@ n= rank(M_R);   %if full rank, then reachable
 pp = [ -0.03, -0.01, -0.001];
 Kpp = place(AA,BB,pp);
 
-%% State Observer Design
-M_o = obsv (A,C);
-rank(M_o) == n;
+% %% State Observer Design
+% M_o = obsv (A,C);
+% rank(M_o) == n;
+% 
+% % Define obsv equation and find the obsv gain using PP approach
+% % We take the obsv. poles suff, larger than PP poles (like x10)
+% 
+% obsv_poles = [pole 1*10, pole 2*10, pole 3*10];
+% 
+% %We traspose 
+% L = place(A', C', obsv_poles)';
 
-% Define obsv equation and find the obsv gain using PP approach
-% We take the obsv. poles suff, larger than PP poles (like x10)
-
-obsv_poles = [pole 1*10, pole 2*10, pole 3*10];
-
-%We traspose 
-L = place(A', C', obsv_poles)';
-
-%% Implement the observer 
-
-A_ob = A-L*C;
-B_ob = [B - L*D, L];
-C_ob = eye(n);
-D_ob = zeros(n, m+p);
+% %% Implement the observer 
+% 
+% A_ob = A-L*C;
+% B_ob = [B - L*D, L];
+% C_ob = eye(n);
+% D_ob = zeros(n, m+p);
 
 
 
