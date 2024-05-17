@@ -1,6 +1,6 @@
 within AES_project_2023_2024.ProjectGroupWork;
 
-model Split_Equalizer
+model split_equalizer
   Modelica.Blocks.Math.Add loop_error_sum(k1 = -1) annotation(
     Placement(transformation(origin = {-312, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.TransferFunction equalizer_heating(a = {30, 1}, b = {0.0075, 0.00025}) annotation(
@@ -76,4 +76,4 @@ equation
   annotation(
     Diagram(graphics = {Text(origin = {-165, -4}, extent = {{-1, 2}, {1, -2}}, textString = "text")}, coordinateSystem(extent = {{-280, 60}, {200, -60}})),
     Icon(coordinateSystem(extent = {{-50, 50}, {50, -50}}), graphics = {Rectangle(origin = {-1, 13}, rotation = -90, fillColor = {255, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-71, 49}, {71, -49}}), Text(origin = {-1, 8}, rotation = -90, extent = {{-52, 19}, {52, -19}}, textString = "Split Equalizer")}));
-end Split_Equalizer;
+end split_equalizer;
