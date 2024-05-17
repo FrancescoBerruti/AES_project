@@ -15,8 +15,6 @@ model Controlled_Building_2
     Placement(transformation(origin = {-730.333, -114.5}, extent = {{-89.6667, -134.5}, {89.6667, 134.5}})));
   Scheduler scheduler annotation(
     Placement(transformation(origin = {-382, 96}, extent = {{-116, -174}, {116, 174}})));
-  Modelica.Blocks.Sources.Constant const(k = 0) annotation(
-    Placement(transformation(origin = {-637, 193}, extent = {{-39, -39}, {39, 39}})));
   ProcessComponents.HCactuator HC1(Ph(fixed = false), Pc(fixed = false))  annotation(
     Placement(transformation(origin = {102, 234}, extent = {{-36, -36}, {36, 36}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC2(Ph(fixed = false), Pc(fixed = false))  annotation(
@@ -40,9 +38,8 @@ model Controlled_Building_2
     Placement(transformation(origin = {-99, 31}, extent = {{-41, -45}, {41, 45}})));
 equation
   der(Etot) = abs(P1.y) + abs(P2.y) + abs(P3.y);
-  der(Eheat)= abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
+  der(Eheat) = abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
   der(Ecool) = abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc);
-
   connect(doorOpenings.door3eopen, building_ee.door3) annotation(
     Line(points = {{330, -203}, {330, -244}, {458.5, -244}}, color = {255, 0, 255}));
   connect(doorOpenings.door23open, building_ee.door2) annotation(
@@ -59,12 +56,6 @@ equation
     Line(points = {{498, 396}, {498, 272.7}, {522, 272.7}, {522, 284}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr2, building_ee.D2) annotation(
     Line(points = {{522, 396}, {522, 346}, {596, 346}, {596, 284}}, color = {0, 0, 127}));
-  connect(const.y, scheduler.h1_strict) annotation(
-    Line(points = {{-594, 193}, {-540.6, 193}, {-540.6, 250}, {-511, 250}}, color = {0, 0, 127}));
-  connect(scheduler.h2_strict, const.y) annotation(
-    Line(points = {{-511, 222}, {-532.26, 222}, {-532.26, 193}, {-594, 193}}, color = {0, 0, 127}));
-  connect(scheduler.h3_strict, const.y) annotation(
-    Line(points = {{-511, 195}, {-562.5, 195}, {-562.5, 193}, {-594, 193}}, color = {0, 0, 127}));
   connect(HC1.Ph, P1.u1) annotation(
     Line(points = {{145.2, 255.6}, {201.2, 255.6}}, color = {0, 0, 127}));
   connect(HC1.Pc, P1.u2) annotation(
