@@ -28,9 +28,16 @@ model Controlled_Building_2
   Modelica.Blocks.Math.Add P2(k2 = -1) annotation(
     Placement(transformation(origin = {274, 116}, extent = {{-46, -46}, {46, 46}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
+<<<<<<< Updated upstream
     Placement(transformation(origin = {254, 4}, extent = {{-46, -46}, {46, 46}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-949, -223}, extent = {{-45, -45}, {45, 45}}))); Real Etot(start=0.0);
+=======
+    Placement(transformation(origin = {254, 4}, extent = {{-46, -46}, {46, 46}}))); 
+    Real Etot(start=0.0);
+    Real Ecool(start=0.0);
+    Real Eheat(start=0.0);
+>>>>>>> Stashed changes
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange1 annotation(
     Placement(transformation(origin = {-97, 221}, extent = {{-39, -41}, {39, 41}})));
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange11 annotation(
@@ -39,6 +46,9 @@ model Controlled_Building_2
     Placement(transformation(origin = {-99, 31}, extent = {{-41, -45}, {41, 45}})));
 equation
   der(Etot) = abs(P1.y) + abs(P2.y) + abs(P3.y);
+  der(Eheat)= abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
+  der(Ecool) = abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc);
+
   connect(doorOpenings.door3eopen, building_ee.door3) annotation(
     Line(points = {{330, -203}, {330, -244}, {458.5, -244}}, color = {255, 0, 255}));
   connect(doorOpenings.door23open, building_ee.door2) annotation(
