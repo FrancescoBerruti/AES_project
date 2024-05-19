@@ -1,7 +1,7 @@
 within AES_project_2023_2024.ProjectGroupWork;
 
-model Building_controlled
-  Building_ee building_ee annotation(
+model Controlled_building
+  Building_ee building_ee(Tstart = 288.15)  annotation(
     Placement(transformation(origin = {145.5, -59}, extent = {{-45.5, -91}, {45.5, 91}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {108, 106}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
@@ -102,14 +102,6 @@ equation
     Line(points = {{-165, 11}, {-62, 11}, {-62, 6}}, color = {0, 0, 127}));
   connect(splitRange012.CSi01, strictController.u3) annotation(
     Line(points = {{-54, -68}, {-54, -66}, {-165, -66}, {-165, -16}}, color = {0, 0, 127}));
-  connect(strictController.y_meas2, T11.y) annotation(
-    Line(points = {{-286, 29}, {-319, 29}, {-319, 36}}, color = {0, 0, 127}));
-  connect(strictController.y_meas3, T111.y) annotation(
-    Line(points = {{-286, -30}, {-304, -30}, {-304, -28}, {-322, -28}}, color = {0, 0, 127}));
-  connect(strictController.y_meas1, T1.y) annotation(
-    Line(points = {{-348, 84}, {-348, 79}, {-286, 79}}, color = {0, 0, 127}));
-  connect(T1.y, strictController.y_meas1) annotation(
-    Line(points = {{-348, 84}, {-292, 84}, {-292, 82}}, color = {0, 0, 127}));
   connect(SetPointTable.y[1], system1.u) annotation(
     Line(points = {{-467, 40}, {-430, 40}}, color = {0, 0, 127}));
   connect(SetPointTable.y[2], system2.u) annotation(
@@ -122,6 +114,12 @@ equation
     Line(points = {{-286, 0}, {-406, 0}}, color = {0, 0, 127}));
   connect(strictController.setpoint3, system3.y) annotation(
     Line(points = {{-286, -55}, {-286, -54}, {-406, -54}, {-406, -40}}, color = {0, 0, 127}));
+  connect(strictController.y_meas1, T1.y) annotation(
+    Line(points = {{-286, 80}, {-348, 80}, {-348, 84}}, color = {0, 0, 127}));
+  connect(strictController.y_meas2, T11.y) annotation(
+    Line(points = {{-286, 30}, {-318, 30}, {-318, 36}}, color = {0, 0, 127}));
+  connect(strictController.y_meas3, T111.y) annotation(
+    Line(points = {{-286, -30}, {-322, -30}, {-322, -28}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-420, 180}, {260, -160}})));
-end Building_controlled;
+end Controlled_building;

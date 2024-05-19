@@ -25,12 +25,6 @@ model StrictController
     Placement(transformation(origin = {46, -4}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {84, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput u3 annotation(
     Placement(transformation(origin = {42, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {84, -42}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Interfaces.RealInput Gained_T1 annotation(
-    Placement(transformation(origin = {-162, 114}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-56, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealInput Gained_T2 annotation(
-    Placement(transformation(origin = {-160, 28}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-12, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealInput Gained_T3 annotation(
-    Placement(transformation(origin = {-150, -52}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {44, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
 equation
   connect(split_equalizer.y_meas, y_meas1) annotation(
     Line(points = {{-48, 87}, {-65, 87}, {-65, 80}, {-166, 80}}, color = {0, 0, 127}));
@@ -50,12 +44,6 @@ equation
     Line(points = {{42, 74}, {42, 76}, {8, 76}, {8, 74}}, color = {0, 0, 127}));
   connect(split_equalizer2.actuation_signal, u3) annotation(
     Line(points = {{-2, -80}, {42, -80}}, color = {0, 0, 127}));
-  connect(Gained_T1, split_equalizer.gained_T) annotation(
-    Line(points = {{-162, 114}, {-26, 114}}, color = {0, 0, 127}));
-  connect(Gained_T2, split_equalizer1.gained_T) annotation(
-    Line(points = {{-160, 28}, {-30, 28}}, color = {0, 0, 127}));
-  connect(Gained_T3, split_equalizer2.gained_T) annotation(
-    Line(points = {{-150, -52}, {-30, -52}, {-30, -48}}, color = {0, 0, 127}));
   annotation(
     Diagram(graphics = {Text(origin = {-79, -4}, extent = {{-1, 2}, {1, -2}}, textString = "text")}, coordinateSystem(extent = {{-200, 180}, {60, -120}})),
     Icon(coordinateSystem(extent = {{-50, 50}, {50, -50}}), graphics = {Rectangle(origin = {-3, -1}, rotation = -90, fillColor = {0, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-121, 77}, {121, -77}}), Text(origin = {-1, 6}, extent = {{-52, 19}, {52, -19}}, textString = "StrictController")}));
