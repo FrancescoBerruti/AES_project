@@ -16,8 +16,8 @@ model StrictController
   Modelica.Blocks.Interfaces.RealInput setpoint2 annotation(
     Placement(transformation(origin = {-430, -48}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-100, -18}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
   Modelica.Blocks.Interfaces.RealInput y_meas3 annotation(
-    Placement(transformation(origin = {-430, -92}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-100, -64}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
-  Modelica.Blocks.Interfaces.RealInput setpoint3 annotation(
+    Placement(transformation(origin = {-430, -92}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-100, -58}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
+  Modelica.Blocks.Interfaces.RealInput setpoint3 annotation( Placement(transformation(origin = {-430, -92}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-100, -98}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
   Modelica.Blocks.Interfaces.RealOutput u1 annotation(
     Placement(transformation(origin = {80, 74}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {84, 36}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput u2 annotation(
