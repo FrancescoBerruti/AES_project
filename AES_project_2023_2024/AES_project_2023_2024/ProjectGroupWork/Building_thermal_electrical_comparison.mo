@@ -9,7 +9,7 @@ model Building_thermal_electrical_comparison
     Placement(transformation(origin = {-46, -16}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator hRoom3 annotation(
     Placement(transformation(origin = {-28, -90}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add(k2 = -1)  annotation(
+  Modelica.Blocks.Math.Add add(k2 = -1) annotation(
     Placement(transformation(origin = {10, 16}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add1(k2 = -1) annotation(
     Placement(transformation(origin = {8, -14}, extent = {{-10, -10}, {10, 10}})));
@@ -19,7 +19,7 @@ model Building_thermal_electrical_comparison
     Placement(transformation(origin = {130, 106}, extent = {{-40, -60}, {40, 60}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {98, 284}, extent = {{-24, -24}, {24, 24}}, rotation = -90)));
-  AES_project_2023_2024.ProcessComponents.TePrad tePrad1(Temax(displayUnit = "K"), Temin (displayUnit = "K"))  annotation(
+  AES_project_2023_2024.ProcessComponents.TePrad tePrad1(Temax(displayUnit = "K"), Temin(displayUnit = "K")) annotation(
     Placement(transformation(origin = {162, 282}, extent = {{-26, -26}, {26, 26}}, rotation = -90)));
   AES_project_2023_2024.ProcessComponents.HCactuator hcRoom11 annotation(
     Placement(transformation(origin = {-26, 116}, extent = {{-10, -10}, {10, 10}})));
@@ -31,20 +31,14 @@ model Building_thermal_electrical_comparison
     Placement(transformation(origin = {-190, -12}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3(k2 = -1) annotation(
     Placement(transformation(origin = {-204, -82}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Constant const(k = 0)  annotation(
+  Modelica.Blocks.Sources.Constant const(k = 0) annotation(
     Placement(transformation(origin = {-340, -18}, extent = {{-10, -10}, {10, 10}})));
-  ProcessComponents.DoorOpenings doorOpenings(hod_start = 8, hod_end = 8)  annotation(
+  ProcessComponents.DoorOpenings doorOpenings(hod_start = 8, hod_end = 8) annotation(
     Placement(transformation(origin = {-445, 91}, extent = {{-41, -41}, {41, 41}})));
   Modelica.Blocks.Sources.Sine uh(amplitude = 1.2, f = 1/1800) annotation(
     Placement(transformation(origin = {-308, -12}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Sine uc(amplitude = 1.5, f = 1/3600, phase = 1.570796326794897) annotation(
     Placement(transformation(origin = {-296, -68}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.StateSpace StateSpace_building(A = [-0.00381971677559913, 0, 0, 0.00190985838779956, 0, 0.00190985838779956, 0, 0; 0, -0.00381970439691028, 0, 0, 0.00190985219845514, 0, 0.00190985219845514, 0; 0, 0, -0.00190985591206179, 0.00114591503267974, 0.000763940879382056, 0, 0, 0.00190985591206179; 5.35715277777778e-05, 0, 0, -0.000107143055555556, 0, 0, 0, 0; 0, 5.35713541666667e-05, 0, 0, -0.000107142708333333, 0, 0, 0; 5.35715277777778e-05, 0, 0, 0, 0, -0.000116071527777778, 0, 0; 0, 5.35713541666667e-05, 0, 0, 0, 0, -0.000116071354166667, 0; 0, 0, 5.35714583333333e-05, 0, 0, 0, 0, -0.000116071458333333], B = [1.23786888492771e-05, -1.23786888492771e-05, 1.23786888492771e-05, 0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 0, 1.85680332739156e-05, -1.85680332739156e-05, 1.85680332739156e-05, 0, 0, 0, 0, 0; 0, 0, 0, 0, 0, 0, 7.42721330956625e-06, -7.42721330956625e-06, 7.42721330956625e-06, 0, 2.08333333333333e-07; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.25000000000000e-05, 0; 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.25000000000000e-05, 0; 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.25000000000000e-05, 0], C = [1, 0, 0, 0, 0, 0, 0, 0; 0, 1, 0, 0, 0, 0, 0, 0; 0, 0, 1, 0, 0, 0, 0, 0], D = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  annotation(
-    Placement(transformation(origin = {122, -236}, extent = {{-48, -48}, {48, 48}})));
-  Modelica.Blocks.Routing.Multiplex mux(n = 11)  annotation(
-    Placement(transformation(origin = {9, -235}, extent = {{-35, -35}, {35, 35}})));
-  Modelica.Blocks.Routing.DeMultiplex3 deMultiplex3 annotation(
-    Placement(transformation(origin = {238, -234}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(hcRoom1.Ph, add.u1) annotation(
     Line(points = {{-24, 24}, {-13, 24}, {-13, 22}, {-2, 22}}, color = {0, 0, 127}));
@@ -140,32 +134,6 @@ equation
     Line(points = {{-296, -12}, {-202, -12}, {-202, -6}}, color = {0, 0, 127}));
   connect(uc.y, add3.u1) annotation(
     Line(points = {{-284, -68}, {-216, -68}, {-216, -76}}, color = {0, 0, 127}));
-  connect(hcRoom1.Ph, mux.u[1]) annotation(
-    Line(points = {{-24, 24}, {-90, 24}, {-90, -180}, {-40, -180}, {-40, -235}, {-26, -235}}, color = {0, 0, 127}));
-  connect(hcRoom1.Pc, mux.u[2]) annotation(
-    Line(points = {{-24, 12}, {-104, 12}, {-104, -198}, {-44, -198}, {-44, -235}, {-26, -235}}, color = {0, 0, 127}));
-  connect(powerDisturbances.Pdr1, mux.u[3]) annotation(
-    Line(points = {{112, 255}, {-124, 255}, {-124, -212}, {-48, -212}, {-48, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(hcRoom2.Ph, mux.u[4]) annotation(
-    Line(points = {{-34, -10}, {-144, -10}, {-144, -226}, {-48, -226}, {-48, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(hcRoom2.Pc, mux.u[5]) annotation(
-    Line(points = {{-34, -22}, {-160, -22}, {-160, -242}, {-40, -242}, {-40, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(powerDisturbances.Pdr2, mux.u[6]) annotation(
-    Line(points = {{98, 256}, {98, 226}, {-174, 226}, {-174, -258}, {-42, -258}, {-42, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(hRoom3.Ph, mux.u[7]) annotation(
-    Line(points = {{-16, -84}, {-184, -84}, {-184, -272}, {-40, -272}, {-40, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(hRoom3.Pc, mux.u[8]) annotation(
-    Line(points = {{-16, -96}, {-196, -96}, {-196, -286}, {-40, -286}, {-40, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(powerDisturbances.Pdr3, mux.u[9]) annotation(
-    Line(points = {{84, 256}, {84, 202}, {-208, 202}, {-208, -302}, {-40, -302}, {-40, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(tePrad1.Te, mux.u[10]) annotation(
-    Line(points = {{178, 250}, {-224, 250}, {-224, -320}, {-40, -320}, {-40, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(tePrad1.Prad, mux.u[11]) annotation(
-    Line(points = {{146, 250}, {-234, 250}, {-234, -338}, {-38, -338}, {-38, -234}, {-26, -234}}, color = {0, 0, 127}));
-  connect(mux.y, StateSpace_building.u) annotation(
-    Line(points = {{48, -234}, {54, -234}, {54, -236}, {64, -236}}, color = {0, 0, 127}, thickness = 0.5));
-  connect(StateSpace_building.y, deMultiplex3.u) annotation(
-    Line(points = {{174, -236}, {226, -236}, {226, -234}}, color = {0, 0, 127}, thickness = 0.5));
   annotation(
-    Diagram(graphics = {Text(origin = {-73, -176}, extent = {{-9, 8}, {9, -8}}, textString = "Ph1"), Text(origin = {-75, -194}, extent = {{-9, 8}, {9, -8}}, textString = "Pcr1"), Text(origin = {-79, -314}, extent = {{-9, 8}, {9, -8}}, textString = "Te"), Text(origin = {-75, -207}, extent = {{-11, 7}, {11, -7}}, textString = "Pdr1"), Text(origin = {-79, -220}, extent = {{-9, 8}, {9, -8}}, textString = "Ph2"), Text(origin = {-77, -236}, extent = {{-9, 8}, {9, -8}}, textString = "Pcr2"), Text(origin = {-79, -253}, extent = {{-11, 7}, {11, -7}}, textString = "Pdr2"), Text(origin = {-77, -334}, extent = {{-9, 8}, {9, -8}}, textString = "Prad"), Text(origin = {-79, -266}, extent = {{-9, 8}, {9, -8}}, textString = "Ph3"), Text(origin = {-79, -280}, extent = {{-9, 8}, {9, -8}}, textString = "Pcr3"), Text(origin = {-79, -295}, extent = {{-11, 7}, {11, -7}}, textString = "Pdr3")}, coordinateSystem(extent = {{-380, 260}, {260, -280}})));
+    Diagram(coordinateSystem(extent = {{-380, 260}, {260, -280}})));
 end Building_thermal_electrical_comparison;
