@@ -32,13 +32,13 @@ model Building_thermal_electrical_comparison
   Modelica.Blocks.Math.Add add3(k2 = -1) annotation(
     Placement(transformation(origin = {-204, -82}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Constant const(k = 0) annotation(
-    Placement(transformation(origin = {-340, -18}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-334, -44}, extent = {{-10, -10}, {10, 10}})));
   ProcessComponents.DoorOpenings doorOpenings(hod_start = 8, hod_end = 8) annotation(
     Placement(transformation(origin = {-445, 91}, extent = {{-41, -41}, {41, 41}})));
   Modelica.Blocks.Sources.Sine uh(amplitude = 1.2, f = 1/1800) annotation(
-    Placement(transformation(origin = {-308, -12}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-334, -8}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.Sine uc(amplitude = 1.5, f = 1/3600, phase = 1.570796326794897) annotation(
-    Placement(transformation(origin = {-296, -68}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-334, -78}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(hcRoom1.Ph, add.u1) annotation(
     Line(points = {{-24, 24}, {-13, 24}, {-13, 22}, {-2, 22}}, color = {0, 0, 127}));
@@ -103,9 +103,9 @@ equation
   connect(tePrad1.Prad, building_ee.PRad) annotation(
     Line(points = {{146, 251}, {146, 192}, {182, 192}, {182, 39}}, color = {0, 0, 127}));
   connect(add2.u2, const.y) annotation(
-    Line(points = {{-202, -18}, {-329, -18}}, color = {0, 0, 127}));
+    Line(points = {{-202, -18}, {-265.5, -18}, {-265.5, -44}, {-323, -44}}, color = {0, 0, 127}));
   connect(const.y, add3.u2) annotation(
-    Line(points = {{-329, -18}, {-254, -18}, {-254, -88}, {-216, -88}}, color = {0, 0, 127}));
+    Line(points = {{-323, -44}, {-254, -44}, {-254, -88}, {-216, -88}}, color = {0, 0, 127}));
   connect(doorOpenings.door13open, building.door13open) annotation(
     Line(points = {{-396, 116}, {-80, 116}, {-80, 90}, {86, 90}}, color = {255, 0, 255}));
   connect(doorOpenings.door23open, building.door23open) annotation(
@@ -131,9 +131,9 @@ equation
   connect(building_ee.door3, doorOpenings.door3eopen) annotation(
     Line(points = {{62, -136}, {-242, -136}, {-242, 66}, {-396, 66}}, color = {255, 0, 255}));
   connect(uh.y, add2.u1) annotation(
-    Line(points = {{-296, -12}, {-202, -12}, {-202, -6}}, color = {0, 0, 127}));
+    Line(points = {{-323, -8}, {-265.5, -8}, {-265.5, -6}, {-202, -6}}, color = {0, 0, 127}));
   connect(uc.y, add3.u1) annotation(
-    Line(points = {{-284, -68}, {-216, -68}, {-216, -76}}, color = {0, 0, 127}));
+    Line(points = {{-323, -78}, {-268.5, -78}, {-268.5, -76}, {-216, -76}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-380, 260}, {260, -280}})));
 end Building_thermal_electrical_comparison;

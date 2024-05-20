@@ -23,12 +23,12 @@ model Loose_Controller
     Placement(transformation(origin = {-458, -46}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-224, 160}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
   Modelica.Blocks.Interfaces.RealInput Tdes3 annotation(
     Placement(transformation(origin = {-602, -28}, extent = {{-28, -28}, {28, 28}}, rotation = 180), iconTransformation(origin = {-220, -222}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
-  Modelica.Blocks.Interfaces.RealOutput h3_loose(start=0.0) annotation(
+  Modelica.Blocks.Interfaces.RealOutput h3_loose annotation(
     Placement(transformation(origin = {-55, -35}, extent = {{-45, -45}, {45, 45}}), iconTransformation(origin = {227, 45}, extent = {{-25, -25}, {25, 25}})));
   Modelica.Blocks.Nonlinear.Limiter limiter12(uMax = 1, uMin = 0) annotation(
     Placement(transformation(origin = {-293, -73}, extent = {{-19, -19}, {19, 19}})));
   Modelica.Blocks.Nonlinear.Limiter limiter22(uMax = 1, uMin = 0) annotation(
-    Placement(transformation(origin = {-273, -17}, extent = {{-19, -19}, {19, 19}})));
+    Placement(transformation(origin = {-293, -17}, extent = {{-19, -19}, {19, 19}})));
 equation
   connect(add213.y, gain3.u) annotation(
     Line(points = {{-407, -22}, {-397.5, -22}, {-397.5, -20}, {-390, -20}}, color = {0, 0, 127}));
@@ -51,13 +51,13 @@ equation
   connect(add.y, h3_loose) annotation(
     Line(points = {{-151.1, -35}, {-101.1, -35}, {-101.1, -36}, {-54.1, -36}}, color = {0, 0, 127}));
   connect(limiter22.y, add.u1) annotation(
-    Line(points = {{-252.1, -17}, {-218.1, -17}, {-218.1, -18}}, color = {0, 0, 127}));
+    Line(points = {{-272, -17}, {-220, -17}, {-220, -18}, {-218.1, -18}}, color = {0, 0, 127}));
   connect(add.u2, limiter12.y) annotation(
     Line(points = {{-217.8, -52.4}, {-271.8, -52.4}, {-271.8, -72.4}}, color = {0, 0, 127}));
   connect(limiter12.u, gain22.y) annotation(
     Line(points = {{-315.8, -73}, {-373.8, -73}}, color = {0, 0, 127}));
   connect(limiter22.u, gain3.y) annotation(
-    Line(points = {{-295.8, -17}, {-369.8, -17}, {-369.8, -20}, {-365.8, -20}}, color = {0, 0, 127}));
+    Line(points = {{-316, -17}, {-369.8, -17}, {-369.8, -20}, {-365.8, -20}}, color = {0, 0, 127}));
   connect(const.y, add2221.u1) annotation(
     Line(points = {{-694.2, 28}, {-564.2, 28}, {-564.2, 4}}, color = {0, 0, 127}));
   annotation(
