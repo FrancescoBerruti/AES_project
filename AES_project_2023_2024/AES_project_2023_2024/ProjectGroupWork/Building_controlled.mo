@@ -32,7 +32,7 @@ model Building_controlled
   Modelica.Blocks.Sources.RealExpression T1(y = building_ee.T1) annotation(
     Placement(transformation(origin = {-360, 84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression T11(y = building_ee.T2) annotation(
-    Placement(transformation(origin = {-328, 32}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-364, 30}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression T111(y = building_ee.T3) annotation(
     Placement(transformation(origin = {-334, -28}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
@@ -103,7 +103,7 @@ equation
   connect(splitRange012.CSi01, strictController.u3) annotation(
     Line(points = {{-54, -68}, {-54, -66}, {-165, -66}, {-165, -16}}, color = {0, 0, 127}));
   connect(strictController.y_meas2, T11.y) annotation(
-    Line(points = {{-286, 25}, {-286, 29}, {-317, 29}, {-317, 32}}, color = {0, 0, 127}));
+    Line(points = {{-286, 25}, {-286, 29}, {-353, 29}, {-353, 30}}, color = {0, 0, 127}));
   connect(strictController.y_meas3, T111.y) annotation(
     Line(points = {{-286, -30}, {-304, -30}, {-304, -28}, {-322, -28}}, color = {0, 0, 127}));
   connect(strictController.y_meas1, T1.y) annotation(
