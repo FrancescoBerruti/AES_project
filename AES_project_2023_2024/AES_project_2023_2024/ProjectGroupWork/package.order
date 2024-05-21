@@ -2,13 +2,12 @@ Building_ee
 Building_thermal_electrical_comparison
 Controlled_Building_1
 Controlled_Building_2
-StrictController
-Scheduler
-Loose_Controller
-HotAndCoolRegulator
 RoomWithHeater
 WallWithDoor
 WallWithoutDoors
 Outside
 WallWithDoorAndRadiation
+Scheduler
+Loose_Controller
 split_equalizer
+StrictController
