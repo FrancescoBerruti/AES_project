@@ -20,7 +20,7 @@ model Controlled_Building_1
   Modelica.Blocks.Math.Add P2(k2 = -1) annotation(
     Placement(transformation(origin = {30, 6}, extent = {{-10, -10}, {10, 10}})));
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011 annotation(
-    Placement(transformation(origin = {-50, 10}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-50, 6}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC3 annotation(
     Placement(transformation(origin = {-4, -68}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
@@ -43,13 +43,16 @@ model Controlled_Building_1
     Placement(transformation(origin = {-418, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Continuous.FirstOrder system3(T = 3000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
     Placement(transformation(origin = {-418, -40}, extent = {{-10, -10}, {10, 10}})));
-  Real Etot;
-  Real Eheat;
-  Real Ecool;
+  Real Etot(quantity="Energy",unit="kWh") "total energy consumed";
+  Real Eheat(quantity="Energy",unit="kWh") "Energy used for heating";
+  Real Ecool(quantity="Energy",unit="kWh") "Enegy used for cooling";
 equation
+//  der(Etot) = (abs(P1.y) + abs(P2.y) + abs(P3.y))/(3.6*10^6);
+//  der(Eheat) = abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
+//  der(Ecool) = abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc);
   der(Etot) = (abs(P1.y) + abs(P2.y) + abs(P3.y))/(3.6*10^6);
-  der(Eheat) = abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
-  der(Ecool) = abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc);
+  der(Eheat) = (abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph))/(3.6*10^6);
+  der(Ecool) = (abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc))/(3.6*10^6);
   connect(tePrad1.Te, building_ee.Te) annotation(
     Line(points = {{202, 122}, {202, 40}}, color = {0, 0, 127}));
   connect(tePrad1.Prad, building_ee.PRad) annotation(
@@ -81,9 +84,9 @@ equation
   connect(HC2.Pc, P2.u2) annotation(
     Line(points = {{0, 0}, {18, 0}}, color = {0, 0, 127}));
   connect(splitRange011.CSo01_neg, HC2.uc01) annotation(
-    Line(points = {{-38, 4}, {-31, 4}, {-31, 0}, {-24, 0}}, color = {0, 0, 127}));
+    Line(points = {{-38, 0}, {-24, 0}}, color = {0, 0, 127}));
   connect(HC2.uh01, splitRange011.CSo01_pos) annotation(
-    Line(points = {{-24, 12}, {-31, 12}, {-31, 16}, {-38, 16}}, color = {0, 0, 127}));
+    Line(points = {{-24, 12}, {-38, 12}}, color = {0, 0, 127}));
   connect(P2.y, building_ee.P2) annotation(
     Line(points = {{42, 6}, {62, 6}, {62, -2}, {64, -2}}, color = {0, 0, 127}));
   connect(HC3.Ph, P3.u1) annotation(
@@ -99,7 +102,7 @@ equation
   connect(strictController.u1, splitRange01.CSi01) annotation(
     Line(points = {{-155, 22}, {-106, 22}, {-106, 84}, {-56, 84}}, color = {0, 0, 127}));
   connect(strictController.u2, splitRange011.CSi01) annotation(
-    Line(points = {{-155, -3}, {-62, -3}, {-62, 10}}, color = {0, 0, 127}));
+    Line(points = {{-155, -3}, {-155, -5}, {-62, -5}, {-62, 6}}, color = {0, 0, 127}));
   connect(splitRange012.CSi01, strictController.u3) annotation(
     Line(points = {{-54, -68}, {-54, -66}, {-155, -66}, {-155, -30}}, color = {0, 0, 127}));
   connect(strictController.y_meas2, T11.y) annotation(

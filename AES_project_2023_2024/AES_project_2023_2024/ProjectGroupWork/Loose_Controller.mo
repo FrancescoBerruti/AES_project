@@ -2,7 +2,7 @@ within AES_project_2023_2024.ProjectGroupWork;
 
 model Loose_Controller
   Modelica.Blocks.Math.Add add(k2 = -1) annotation(
-    Placement(transformation(origin = {-183, -35}, extent = {{-29, -29}, {29, 29}})));
+    Placement(transformation(origin = {-179, -43}, extent = {{-29, -29}, {29, 29}})));
   Modelica.Blocks.Math.Gain gain3(k = 134640/4000) annotation(
     Placement(transformation(origin = {-378, -20}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add213(k2 = -1) annotation(
@@ -49,11 +49,11 @@ equation
   connect(const1.y, add22111.u2) annotation(
     Line(points = {{-685.9, -89}, {-637.9, -89}, {-637.9, -92}, {-557.9, -92}}, color = {0, 0, 127}));
   connect(add.y, h3_loose) annotation(
-    Line(points = {{-151.1, -35}, {-101.1, -35}, {-101.1, -36}, {-54.1, -36}}, color = {0, 0, 127}));
+    Line(points = {{-147, -43}, {-101.1, -43}, {-101.1, -36}, {-54.1, -36}}, color = {0, 0, 127}));
   connect(limiter22.y, add.u1) annotation(
-    Line(points = {{-272, -17}, {-220, -17}, {-220, -18}, {-218.1, -18}}, color = {0, 0, 127}));
+    Line(points = {{-272, -17}, {-220, -17}, {-220, -26}, {-214, -26}}, color = {0, 0, 127}));
   connect(add.u2, limiter12.y) annotation(
-    Line(points = {{-217.8, -52.4}, {-271.8, -52.4}, {-271.8, -72.4}}, color = {0, 0, 127}));
+    Line(points = {{-214, -60}, {-214, -72.4}, {-271.8, -72.4}}, color = {0, 0, 127}));
   connect(limiter12.u, gain22.y) annotation(
     Line(points = {{-315.8, -73}, {-373.8, -73}}, color = {0, 0, 127}));
   connect(limiter22.u, gain3.y) annotation(

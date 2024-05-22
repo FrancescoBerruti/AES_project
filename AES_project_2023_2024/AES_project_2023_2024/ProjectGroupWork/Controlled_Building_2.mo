@@ -31,11 +31,11 @@ model Controlled_Building_2
     Real Ecool(start=0.0);
     Real Eheat(start=0.0);
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange1 annotation(
-    Placement(transformation(origin = {293, 207}, extent = {{-39, -41}, {39, 41}})));
+    Placement(transformation(origin = {307, 215}, extent = {{-39, -41}, {39, 41}})));
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange11 annotation(
     Placement(transformation(origin = {308, 103}, extent = {{-44, -35}, {44, 35}})));
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange12 annotation(
-    Placement(transformation(origin = {291, 17}, extent = {{-41, -45}, {41, 45}})));
+    Placement(transformation(origin = {313, -13}, extent = {{-41, -45}, {41, 45}})));
   StrictController strictController(Tau = 120)  annotation(
     Placement(transformation(origin = {-384, 194}, extent = {{-61, -61}, {61, 61}})));
   Modelica.Blocks.Sources.RealExpression realExpression121(y = building_ee.T1) annotation(
@@ -47,7 +47,7 @@ model Controlled_Building_2
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-1253, 281}, extent = {{-51, -51}, {51, 51}})));
   Modelica.Blocks.Continuous.FirstOrder system1(T = 1000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
-    Placement(transformation(origin = {-1077, 413}, extent = {{-47, -47}, {47, 47}})));
+    Placement(transformation(origin = {-1099, 405}, extent = {{-47, -47}, {47, 47}})));
   Modelica.Blocks.Continuous.FirstOrder system2(T = 2000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
     Placement(transformation(origin = {-1096, 214}, extent = {{-52, -52}, {52, 52}})));
   Modelica.Blocks.Continuous.FirstOrder system3(T = 3000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
@@ -95,11 +95,11 @@ equation
   connect(realExpression12.y, loose_Controller.T3) annotation(
     Line(points = {{-502.8, -58}, {-502.8, -49}, {-437, -49}}, color = {0, 0, 127}));
   connect(scheduler.h1out, splitRange1.CSi01) annotation(
-    Line(points = {{146.04, 186.4}, {246.04, 186.4}, {246.04, 207.4}}, color = {0, 0, 127}));
+    Line(points = {{146.04, 186.4}, {146.04, 215}, {260, 215}}, color = {0, 0, 127}));
   connect(splitRange1.CSo01_pos, HC1.uh01) annotation(
-    Line(points = {{339.8, 231.6}, {339.8, 241.6}, {447.8, 241.6}}, color = {0, 0, 127}));
+    Line(points = {{354, 240}, {354, 241.6}, {447.8, 241.6}}, color = {0, 0, 127}));
   connect(HC1.uc01, splitRange1.CSo01_neg) annotation(
-    Line(points = {{448.8, 198.4}, {352.8, 198.4}, {352.8, 182.4}, {340.8, 182.4}}, color = {0, 0, 127}));
+    Line(points = {{448.8, 198.4}, {352.8, 198.4}, {352.8, 190}, {354, 190}}, color = {0, 0, 127}));
   connect(scheduler.h2out, splitRange11.CSi01) annotation(
     Line(points = {{147.2, 128.4}, {238.2, 128.4}, {238.2, 103.4}, {255.2, 103.4}}, color = {0, 0, 127}));
   connect(splitRange11.CSo01_neg, HC2.uc01) annotation(
@@ -107,11 +107,11 @@ equation
   connect(HC2.uh01, splitRange11.CSo01_pos) annotation(
     Line(points = {{460.8, 129.6}, {384.3, 129.6}, {384.3, 123.6}, {361.8, 123.6}}, color = {0, 0, 127}));
   connect(scheduler.h3out, splitRange12.CSi01) annotation(
-    Line(points = {{147.2, 50.68}, {199.7, 50.68}, {199.7, 16.68}, {242.2, 16.68}}, color = {0, 0, 127}));
+    Line(points = {{147.2, 50.68}, {199.7, 50.68}, {199.7, -13}, {264, -13}}, color = {0, 0, 127}));
   connect(HC3.uh01, splitRange12.CSo01_pos) annotation(
-    Line(points = {{450.4, 14.8}, {396.4, 14.8}, {396.4, 44.8}, {340.4, 44.8}}, color = {0, 0, 127}));
+    Line(points = {{450.4, 14.8}, {396.4, 14.8}, {396.4, 14}, {362, 14}}, color = {0, 0, 127}));
   connect(splitRange12.CSo01_neg, HC3.uc01) annotation(
-    Line(points = {{340.2, -10}, {450.2, -10}, {450.2, -30}}, color = {0, 0, 127}));
+    Line(points = {{362, -40}, {402.1, -40}, {402.1, -30}, {450.2, -30}}, color = {0, 0, 127}));
   connect(strictController.u3, scheduler.h3_strict) annotation(
     Line(points = {{-281.52, 142.76}, {-119.52, 142.76}, {-119.52, 180.76}}, color = {0, 0, 127}));
   connect(scheduler.h2_strict, strictController.u2) annotation(
@@ -119,13 +119,13 @@ equation
   connect(strictController.u1, scheduler.h1_strict) annotation(
     Line(points = {{-281.52, 237.92}, {-203.52, 237.92}, {-203.52, 235.92}, {-119.52, 235.92}}, color = {0, 0, 127}));
   connect(SetPointTable.y[1], system1.u) annotation(
-    Line(points = {{-1196.9, 281}, {-1182.4, 281}, {-1182.4, 413}, {-1132.9, 413}}, color = {0, 0, 127}));
+    Line(points = {{-1196.9, 281}, {-1182.4, 281}, {-1182.4, 405}, {-1155, 405}}, color = {0, 0, 127}));
   connect(SetPointTable.y[2], system2.u) annotation(
     Line(points = {{-1196.9, 281}, {-1181.9, 281}, {-1181.9, 214}, {-1158, 214}}, color = {0, 0, 127}));
   connect(SetPointTable.y[3], system3.u) annotation(
     Line(points = {{-1196.9, 281}, {-1181.9, 281}, {-1181.9, 17}, {-1154, 17}}, color = {0, 0, 127}));
   connect(system1.y, strictController.setpoint1) annotation(
-    Line(points = {{-1025.3, 413}, {-935.3, 413}, {-935.3, 273}, {-505.3, 273}}, color = {0, 0, 127}));
+    Line(points = {{-1047, 405}, {-935.3, 405}, {-935.3, 273}, {-505.3, 273}}, color = {0, 0, 127}));
   connect(system2.y, strictController.setpoint2) annotation(
     Line(points = {{-1038.8, 214}, {-952.8, 214}, {-952.8, 172}, {-506.8, 172}}, color = {0, 0, 127}));
   connect(system3.y, strictController.setpoint3) annotation(
