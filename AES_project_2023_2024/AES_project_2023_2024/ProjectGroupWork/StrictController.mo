@@ -55,11 +55,11 @@ model StrictController
     Placement(transformation(origin = {-596, 14}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-8, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
   Modelica.Blocks.Math.Add add31(k2 = -1)  annotation(
     Placement(transformation(origin = {-140, 20}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add CompensatorTe1(k2 = 83.071) annotation(
+  Modelica.Blocks.Math.Add CompensatorTe1(k2 = -83.071) annotation(
     Placement(transformation(origin = {-76, 82}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add312(k2 = -1) annotation(
     Placement(transformation(origin = {-118, -118}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add CompensatorTe2(k2 = 55.385) annotation(
+  Modelica.Blocks.Math.Add CompensatorTe2(k2 = -55.385) annotation(
     Placement(transformation(origin = {-58, -28}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe3(k2 = 138.462) annotation(
     Placement(transformation(origin = {-46, -228}, extent = {{-10, -10}, {10, 10}})));
@@ -69,11 +69,11 @@ model StrictController
     Placement(transformation(origin = {164, 70}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add4(k2 = -1)  annotation(
     Placement(transformation(origin = {162, -46}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add3 add32(k1 = (154.286/2)*1, k2 = (102.857/2)*1)  annotation(
+  Modelica.Blocks.Math.Add3 add32(k1 = (-154.286/2)*1, k2 = (-102.857/2)*1)  annotation(
     Placement(transformation(origin = {174, -234}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add5(k2 = (-102.857/2)*1)  annotation(
+  Modelica.Blocks.Math.Add add5(k2 = (102.857/2)*1)  annotation(
     Placement(transformation(origin = {216, -50}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add51(k1 = +1, k2 = (-154.286/2)*1)  annotation(
+  Modelica.Blocks.Math.Add add51(k1 = +1, k2 = (154.286/2)*1)  annotation(
     Placement(transformation(origin = {214, 72}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter annotation(
     Placement(transformation(origin = {-182, 88}, extent = {{-10, -10}, {10, 10}})));

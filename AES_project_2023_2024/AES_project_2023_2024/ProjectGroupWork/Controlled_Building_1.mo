@@ -1,7 +1,7 @@
 within AES_project_2023_2024.ProjectGroupWork;
 
 model Controlled_Building_1
-  parameter Real dead_zone = 0.4;
+  parameter Real dead_zone = 0.1;
   Building_ee building_ee annotation(
     Placement(transformation(origin = {145.5, -59}, extent = {{-45.5, -91}, {45.5, 91}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
@@ -38,11 +38,11 @@ model Controlled_Building_1
     Placement(transformation(origin = {-332, -44}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-478, 40}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.FirstOrder system1(T = 1000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
+  Modelica.Blocks.Continuous.FirstOrder system1(T = 1, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
     Placement(transformation(origin = {-418, 40}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.FirstOrder system2(T = 2000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
+  Modelica.Blocks.Continuous.FirstOrder system2(T = 1, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
     Placement(transformation(origin = {-418, 0}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.FirstOrder system3(T = 3000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
+  Modelica.Blocks.Continuous.FirstOrder system3(T = 1, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
     Placement(transformation(origin = {-418, -40}, extent = {{-10, -10}, {10, 10}})));
   Real Etot(quantity="Energy",unit="kWh") "total energy consumed";
   Real Eheat(quantity="Energy",unit="kWh") "Energy used for heating";
