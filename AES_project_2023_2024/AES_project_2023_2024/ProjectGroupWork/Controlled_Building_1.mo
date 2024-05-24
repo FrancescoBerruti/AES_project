@@ -27,7 +27,7 @@ model Controlled_Building_1
     Placement(transformation(origin = {38, -68}, extent = {{-10, -10}, {10, 10}})));
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012 annotation(
     Placement(transformation(origin = {-42, -68}, extent = {{-10, -10}, {10, 10}})));
-  StrictController strictController( Tau = 120)  annotation(
+  StrictController strictController(Tau = 120) annotation(
     Placement(transformation(origin = {-210, -2}, extent = {{-33, -33}, {33, 33}})));
   Modelica.Blocks.Sources.RealExpression T1(y = building_ee.T1) annotation(
     Placement(transformation(origin = {-364, 68}, extent = {{-10, -10}, {10, 10}})));
