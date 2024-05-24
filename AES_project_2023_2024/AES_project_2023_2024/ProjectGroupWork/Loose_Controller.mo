@@ -11,9 +11,9 @@ model Loose_Controller
     Placement(transformation(origin = {-386, -72}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add2112(k2 = -1) annotation(
     Placement(transformation(origin = {-422, -72}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Constant const(k = -1) annotation(
+  Modelica.Blocks.Sources.Constant const(k = -0.1) annotation(
     Placement(transformation(origin = {-736, 28}, extent = {{-38, -38}, {38, 38}})));
-  Modelica.Blocks.Sources.Constant const1(k = 1) annotation(
+  Modelica.Blocks.Sources.Constant const1(k = 0.1) annotation(
     Placement(transformation(origin = {-731, -89}, extent = {{-41, -41}, {41, 41}})));
   Modelica.Blocks.Math.Add add2221 annotation(
     Placement(transformation(origin = {-537, -9}, extent = {{-23, -23}, {23, 23}})));
