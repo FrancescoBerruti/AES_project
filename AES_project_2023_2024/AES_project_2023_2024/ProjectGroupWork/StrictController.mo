@@ -67,7 +67,7 @@ model StrictController
     Placement(transformation(origin = {-118, -118}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe2(k2 = -55.385) annotation(
     Placement(transformation(origin = {-58, -28}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add CompensatorTe3(k2 = -138.462) annotation(
+  Modelica.Blocks.Math.Add CompensatorTe3(k2 = 138.462) annotation(
     Placement(transformation(origin = {-46, -228}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3121(k2 = -1) annotation(
     Placement(transformation(origin = {-136, -290}, extent = {{-10, -10}, {10, 10}})));
