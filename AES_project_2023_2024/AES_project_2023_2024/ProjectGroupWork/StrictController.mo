@@ -4,7 +4,7 @@ model StrictController
   AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer(K = 80784) annotation(
     Placement(transformation(origin = {273, 55}, extent = {{-22, -22}, {22, 22}})));
   AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer1(K = 53856) annotation(
-    Placement(transformation(origin = {279, -47}, extent = {{-18, -18}, {18, 18}})));
+    Placement(transformation(origin = {287, -45}, extent = {{-18, -18}, {18, 18}})));
   AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer2(K = 134640) annotation(
     Placement(transformation(origin = {232, -250}, extent = {{-17, -17}, {17, 17}})));
   Modelica.Blocks.Interfaces.RealInput y_meas1 annotation(
@@ -50,52 +50,51 @@ model StrictController
   Modelica.Blocks.Math.Add loop_error_sum2(k1 = -1) annotation(
     Placement(transformation(origin = {-358, 94}, extent = {{-10, -10}, {10, 10}})));
   parameter Real Tau = 10;
-
   Modelica.Blocks.Interfaces.RealInput Te annotation(
     Placement(transformation(origin = {-596, 14}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-8, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
-  Modelica.Blocks.Math.Add add31(k2 = -1)  annotation(
+  Modelica.Blocks.Math.Add add31(k2 = -1) annotation(
     Placement(transformation(origin = {-140, 20}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add CompensatorTe1(k2 = -83.071) annotation(
+  Modelica.Blocks.Math.Add CompensatorTe1(k2 = 83.071) annotation(
     Placement(transformation(origin = {-76, 82}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add312(k2 = -1) annotation(
     Placement(transformation(origin = {-118, -118}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add CompensatorTe2(k2 = -55.385) annotation(
+  Modelica.Blocks.Math.Add CompensatorTe2(k2 = 55.385) annotation(
     Placement(transformation(origin = {-58, -28}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe3(k2 = 138.462) annotation(
     Placement(transformation(origin = {-46, -228}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3121(k2 = -1) annotation(
     Placement(transformation(origin = {-136, -290}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add(k2 = -1)  annotation(
+  Modelica.Blocks.Math.Add add(k2 = -1) annotation(
     Placement(transformation(origin = {164, 70}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add4(k2 = -1)  annotation(
+  Modelica.Blocks.Math.Add add4(k2 = -1) annotation(
     Placement(transformation(origin = {162, -46}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add3 add32(k1 = (-154.286/2)*1, k2 = (-102.857/2)*1)  annotation(
+  Modelica.Blocks.Math.Add3 add32(k1 = (-154.286/2)*1, k2 = (-102.857/2)*1) annotation(
     Placement(transformation(origin = {174, -234}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add5(k2 = (102.857/2)*1)  annotation(
+  Modelica.Blocks.Math.Add add5(k2 = (102.857/2)*1) annotation(
     Placement(transformation(origin = {216, -50}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add51(k1 = +1, k2 = (154.286/2)*1)  annotation(
+  Modelica.Blocks.Math.Add add51(k1 = +1, k2 = (154.286/2)*1) annotation(
     Placement(transformation(origin = {214, 72}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter annotation(
     Placement(transformation(origin = {-182, 88}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression(y = 4000 - add31.y*83.071)  annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression(y = 4000 - add31.y*83.071 - add51.u2*add51.k2) annotation(
     Placement(transformation(origin = {-222, 102}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression1(y = -1000 - add31.y*83.071) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression1(y = -1000 - add31.y*83.071 - add51.u2*add51.k2) annotation(
     Placement(transformation(origin = {-224, 76}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter1 annotation(
     Placement(transformation(origin = {-146, -24}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression2(y = 4000 - add312.y*55.385) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression2(y = 4000 - add312.y*55.385 - add5.u2*add5.k2) annotation(
     Placement(transformation(origin = {-186, -10}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression11(y = -1000 - add312.y*55.385) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression11(y = -1000 - add312.y*55.385 - add5.u2*add5.k2) annotation(
     Placement(transformation(origin = {-188, -36}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter11 annotation(
     Placement(transformation(origin = {-100, -220}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression21(y = 4000 - add3121.y*138.462) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression21(y = 4000 - add3121.y*138.462 - add32.k1*add32.u1 - add32.k2*add32.u2) annotation(
     Placement(transformation(origin = {-140, -206}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression realExpression111(y = -1000 - add3121.y*138.462) annotation(
     Placement(transformation(origin = {-142, -232}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(split_equalizer1.actuation_signal, u2) annotation(
-    Line(points = {{300, -43}, {313.76, -43}, {313.76, -40}, {342, -40}}, color = {0, 0, 127}));
+    Line(points = {{308, -41}, {313.76, -41}, {313.76, -40}, {342, -40}}, color = {0, 0, 127}));
   connect(u1, split_equalizer.actuation_signal) annotation(
     Line(points = {{328, 60}, {299, 60}}, color = {0, 0, 127}));
   connect(split_equalizer2.actuation_signal, u3) annotation(
@@ -169,7 +168,7 @@ equation
   connect(add4.y, add5.u2) annotation(
     Line(points = {{174, -46}, {196, -46}, {196, -56}, {204, -56}}, color = {0, 0, 127}));
   connect(add5.y, split_equalizer1.Prequested) annotation(
-    Line(points = {{228, -50}, {254, -50}, {254, -32}}, color = {0, 0, 127}));
+    Line(points = {{227, -46}, {240.5, -46}, {240.5, -30}, {262, -30}}, color = {0, 0, 127}));
   connect(add4.y, add32.u2) annotation(
     Line(points = {{174, -46}, {178, -46}, {178, -204}, {120, -204}, {120, -234}, {162, -234}}, color = {0, 0, 127}));
   connect(add.y, add32.u1) annotation(
