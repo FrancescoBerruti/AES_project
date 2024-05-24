@@ -1,6 +1,7 @@
 within AES_project_2023_2024.ProjectGroupWork;
 
 model Controlled_Building_1
+  parameter Real dead_zone = 0.4;
   Building_ee building_ee annotation(
     Placement(transformation(origin = {145.5, -59}, extent = {{-45.5, -91}, {45.5, 91}})));
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
@@ -10,23 +11,23 @@ model Controlled_Building_1
   ProcessComponents.DoorOpenings doorOpenings annotation(
     Placement(transformation(origin = {-92, -114}, extent = {{-22, -22}, {22, 22}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC1 annotation(
-    Placement(transformation(origin = {-6, 84}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-14, 58}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P1(k2 = -1) annotation(
-    Placement(transformation(origin = {36, 84}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01 annotation(
-    Placement(transformation(origin = {-44, 84}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {26, 58}, extent = {{-10, -10}, {10, 10}})));
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = dead_zone)  annotation(
+    Placement(transformation(origin = {-54, 58}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC2 annotation(
-    Placement(transformation(origin = {-12, 6}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P2(k2 = -1) annotation(
-    Placement(transformation(origin = {30, 6}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011 annotation(
-    Placement(transformation(origin = {-50, 6}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {26, -2}, extent = {{-10, -10}, {10, 10}})));
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = dead_zone)  annotation(
+    Placement(transformation(origin = {-54, -2}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC3 annotation(
-    Placement(transformation(origin = {-4, -68}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-12, -62}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
-    Placement(transformation(origin = {38, -68}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012 annotation(
-    Placement(transformation(origin = {-42, -68}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {30, -62}, extent = {{-10, -10}, {10, 10}})));
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = dead_zone)  annotation(
+    Placement(transformation(origin = {-54, -62}, extent = {{-10, -10}, {10, 10}})));
   StrictController strictController(Tau = 120) annotation(
     Placement(transformation(origin = {-210, -2}, extent = {{-33, -33}, {33, 33}})));
   Modelica.Blocks.Sources.RealExpression T1(y = building_ee.T1) annotation(
@@ -70,41 +71,37 @@ equation
   connect(doorOpenings.door23open, building_ee.door2) annotation(
     Line(points = {{-66, -114}, {13, -114}, {13, -118}, {64, -118}}, color = {255, 0, 255}));
   connect(HC1.Ph, P1.u1) annotation(
-    Line(points = {{6, 90}, {24, 90}}, color = {0, 0, 127}));
+    Line(points = {{-2, 64}, {14, 64}}, color = {0, 0, 127}));
   connect(HC1.Pc, P1.u2) annotation(
-    Line(points = {{6, 78}, {24, 78}}, color = {0, 0, 127}));
+    Line(points = {{-2, 52}, {14, 52}}, color = {0, 0, 127}));
   connect(splitRange01.CSo01_neg, HC1.uc01) annotation(
-    Line(points = {{-32, 78}, {-18, 78}}, color = {0, 0, 127}));
+    Line(points = {{-42, 52}, {-26, 52}}, color = {0, 0, 127}));
   connect(HC1.uh01, splitRange01.CSo01_pos) annotation(
-    Line(points = {{-18, 90}, {-32, 90}}, color = {0, 0, 127}));
+    Line(points = {{-26, 64}, {-42, 64}}, color = {0, 0, 127}));
   connect(P1.y, building_ee.P1) annotation(
-    Line(points = {{48, 84}, {48, 17}, {64, 17}}, color = {0, 0, 127}));
+    Line(points = {{37, 58}, {37, 17}, {64, 17}}, color = {0, 0, 127}));
   connect(HC2.Ph, P2.u1) annotation(
-    Line(points = {{0, 12}, {18, 12}}, color = {0, 0, 127}));
+    Line(points = {{-2, 4}, {14, 4}}, color = {0, 0, 127}));
   connect(HC2.Pc, P2.u2) annotation(
-    Line(points = {{0, 0}, {18, 0}}, color = {0, 0, 127}));
+    Line(points = {{-2, -8}, {14, -8}}, color = {0, 0, 127}));
   connect(splitRange011.CSo01_neg, HC2.uc01) annotation(
-    Line(points = {{-38, 0}, {-24, 0}}, color = {0, 0, 127}));
+    Line(points = {{-42, -8}, {-26, -8}}, color = {0, 0, 127}));
   connect(HC2.uh01, splitRange011.CSo01_pos) annotation(
-    Line(points = {{-24, 12}, {-38, 12}}, color = {0, 0, 127}));
+    Line(points = {{-26, 4}, {-42, 4}}, color = {0, 0, 127}));
   connect(P2.y, building_ee.P2) annotation(
-    Line(points = {{42, 6}, {62, 6}, {62, -2}, {64, -2}}, color = {0, 0, 127}));
+    Line(points = {{37, -2}, {64, -2}}, color = {0, 0, 127}));
   connect(HC3.Ph, P3.u1) annotation(
-    Line(points = {{8, -62}, {26, -62}}, color = {0, 0, 127}));
+    Line(points = {{0, -56}, {18, -56}}, color = {0, 0, 127}));
   connect(HC3.Pc, P3.u2) annotation(
-    Line(points = {{8, -74}, {26, -74}}, color = {0, 0, 127}));
+    Line(points = {{0, -68}, {18, -68}}, color = {0, 0, 127}));
   connect(splitRange012.CSo01_neg, HC3.uc01) annotation(
-    Line(points = {{-30, -74}, {-16, -74}}, color = {0, 0, 127}));
+    Line(points = {{-42, -68}, {-24, -68}}, color = {0, 0, 127}));
   connect(HC3.uh01, splitRange012.CSo01_pos) annotation(
-    Line(points = {{-16, -62}, {-30, -62}}, color = {0, 0, 127}));
+    Line(points = {{-24, -56}, {-42, -56}}, color = {0, 0, 127}));
   connect(P3.y, building_ee.P3) annotation(
-    Line(points = {{50, -68}, {50, -23}, {64, -23}}, color = {0, 0, 127}));
-  connect(strictController.u1, splitRange01.CSi01) annotation(
-    Line(points = {{-155, 22}, {-106, 22}, {-106, 84}, {-56, 84}}, color = {0, 0, 127}));
+    Line(points = {{41, -62}, {41, -23}, {64, -23}}, color = {0, 0, 127}));
   connect(strictController.u2, splitRange011.CSi01) annotation(
-    Line(points = {{-155, -3}, {-155, -5}, {-62, -5}, {-62, 6}}, color = {0, 0, 127}));
-  connect(splitRange012.CSi01, strictController.u3) annotation(
-    Line(points = {{-54, -68}, {-54, -66}, {-155, -66}, {-155, -30}}, color = {0, 0, 127}));
+    Line(points = {{-155, -3}, {-155, -5}, {-66, -5}, {-66, -2}}, color = {0, 0, 127}));
   connect(strictController.y_meas2, T11.y) annotation(
     Line(points = {{-276, 15}, {-353, 15}, {-353, 30}}, color = {0, 0, 127}));
   connect(strictController.y_meas3, T111.y) annotation(
@@ -125,6 +122,10 @@ equation
     Line(points = {{-276, -69}, {-276, -54}, {-406, -54}, {-406, -40}}, color = {0, 0, 127}));
   connect(strictController.Te, tePrad1.Te) annotation(
     Line(points = {{-216, 90}, {-218, 90}, {-218, 122}, {202, 122}}, color = {0, 0, 127}));
+  connect(strictController.u1, splitRange01.CSi01) annotation(
+    Line(points = {{-154, 22}, {-150, 22}, {-150, 58}, {-66, 58}}, color = {0, 0, 127}));
+  connect(strictController.u3, splitRange012.CSi01) annotation(
+    Line(points = {{-154, -30}, {-152, -30}, {-152, -62}, {-66, -62}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-420, 180}, {260, -160}})));
 
