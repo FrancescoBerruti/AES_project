@@ -53,17 +53,17 @@ model StrictController
 
   Modelica.Blocks.Interfaces.RealInput Te annotation(
     Placement(transformation(origin = {-596, 14}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-8, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
-  Modelica.Blocks.Math.Add add31(k2 = 0, k1 = 0)  annotation(
+  Modelica.Blocks.Math.Add add31(k2 = -1)  annotation(
     Placement(transformation(origin = {-140, 20}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe1(k2 = 83.071) annotation(
     Placement(transformation(origin = {-76, 82}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add312(k2 = 0, k1 = 0) annotation(
+  Modelica.Blocks.Math.Add add312(k2 = -1) annotation(
     Placement(transformation(origin = {-118, -118}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe2(k2 = 55.385) annotation(
     Placement(transformation(origin = {-58, -28}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe3(k2 = 138.462) annotation(
     Placement(transformation(origin = {-46, -228}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add3121(k2 = 0, k1 = 0) annotation(
+  Modelica.Blocks.Math.Add add3121(k2 = -1) annotation(
     Placement(transformation(origin = {-136, -290}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add(k2 = -1)  annotation(
     Placement(transformation(origin = {164, 70}, extent = {{-10, -10}, {10, 10}})));
