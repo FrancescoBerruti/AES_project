@@ -56,7 +56,7 @@ model StrictController
   Modelica.Blocks.Math.Add add31(k2 = -1)  annotation(
     Placement(transformation(origin = {-140, 20}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe1(k2 = 83.071) annotation(
-    Placement(transformation(origin = {-76, 82}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-76, 84}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add312(k2 = -1) annotation(
     Placement(transformation(origin = {-118, -118}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe2(k2 = 55.385) annotation(
@@ -131,7 +131,7 @@ equation
   connect(gain3.u, loop_error_sum.y) annotation(
     Line(points = {{-288, -216}, {-334, -216}, {-334, -214}}, color = {0, 0, 127}));
   connect(add31.y, CompensatorTe1.u2) annotation(
-    Line(points = {{-128, 20}, {-128, 22}, {-88, 22}, {-88, 76}}, color = {0, 0, 127}));
+    Line(points = {{-128, 20}, {-128, 22}, {-88, 22}, {-88, 78}}, color = {0, 0, 127}));
   connect(add312.u1, y_meas2) annotation(
     Line(points = {{-130, -112}, {-378, -112}, {-378, -18}, {-428, -18}}, color = {0, 0, 127}));
   connect(CompensatorTe2.u2, add312.y) annotation(
@@ -159,7 +159,7 @@ equation
   connect(add.y, add51.u2) annotation(
     Line(points = {{176, 70}, {202, 70}, {202, 66}}, color = {0, 0, 127}));
   connect(CompensatorTe1.y, add51.u1) annotation(
-    Line(points = {{-65, 82}, {66.5, 82}, {66.5, 78}, {202, 78}}, color = {0, 0, 127}));
+    Line(points = {{-65, 84}, {66.5, 84}, {66.5, 78}, {202, 78}}, color = {0, 0, 127}));
   connect(add51.y, split_equalizer.Prequested) annotation(
     Line(points = {{226, 72}, {235, 72}, {235, 74}, {242, 74}}, color = {0, 0, 127}));
   connect(CompensatorTe2.y, add5.u1) annotation(
@@ -181,7 +181,7 @@ equation
   connect(variableLimiter.u, add1.y) annotation(
     Line(points = {{-194, 88}, {-246, 88}}, color = {0, 0, 127}));
   connect(variableLimiter.y, CompensatorTe1.u1) annotation(
-    Line(points = {{-170, 88}, {-88, 88}}, color = {0, 0, 127}));
+    Line(points = {{-170, 88}, {-129, 88}, {-129, 90}, {-88, 90}}, color = {0, 0, 127}));
   connect(Ti1.u, variableLimiter.y) annotation(
     Line(points = {{-172, 56}, {-142, 56}, {-142, 88}, {-170, 88}}, color = {0, 0, 127}));
   connect(variableLimiter1.limit1, realExpression2.y) annotation(
