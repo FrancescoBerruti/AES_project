@@ -86,7 +86,7 @@ model Building_ee
     Placement(transformation(origin = {100, -106}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {170, 78}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput T2 annotation(
     Placement(transformation(origin = {360, -36}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {170, 118}, extent = {{-10, -10}, {10, 10}})));
-  WallWithDoorAndRadiation wall_3e(Gw1 = Gr3w3e, Gw2 = Gw3e, Cw = Cw3e, Tstart = Tstart, Gd = 1) annotation(
+  WallWithDoorAndRadiation wall_3e(Gw1 = Gr3w3e, Gw2 = Gw3e, Cw = Cw3e, Tstart = Tstart) annotation(
     Placement(transformation(origin = {-31, 94.75}, extent = {{-12.25, -49}, {12.25, 49}}, rotation = 90)));
 equation
   connect(door1, wall_13.doorin) annotation(
