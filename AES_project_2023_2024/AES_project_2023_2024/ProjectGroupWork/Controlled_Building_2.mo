@@ -10,7 +10,7 @@ model Controlled_Building_2
   AES_project_2023_2024.ProcessComponents.PowerDisturbances powerDisturbances annotation(
     Placement(transformation(origin = {1004, 494}, extent = {{-40, -40}, {40, 40}}, rotation = -90)));
   AES_project_2023_2024.ProcessComponents.TePrad tePrad1(Temax(displayUnit = "degC"), Temin (displayUnit = "degC")) annotation(
-    Placement(transformation(origin = {1246, 610}, extent = {{-38, -38}, {38, 38}}, rotation = -90)));
+    Placement(transformation(origin = {1242, 662}, extent = {{-38, -38}, {38, 38}}, rotation = -90)));
   Loose_Controller loose_Controller(h3_loose(fixed = false))  annotation(
     Placement(transformation(origin = {-336.333, -120.5}, extent = {{-89.6667, -134.5}, {89.6667, 134.5}})));
   Scheduler scheduler annotation(
@@ -46,12 +46,8 @@ model Controlled_Building_2
     Placement(transformation(origin = {-780, 104}, extent = {{-92, -42}, {92, 42}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-1253, 281}, extent = {{-51, -51}, {51, 51}})));
-  Modelica.Blocks.Continuous.FirstOrder system1(T = 1000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
-    Placement(transformation(origin = {-1099, 405}, extent = {{-47, -47}, {47, 47}})));
-  Modelica.Blocks.Continuous.FirstOrder system2(T = 2000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
-    Placement(transformation(origin = {-1096, 214}, extent = {{-52, -52}, {52, 52}})));
-  Modelica.Blocks.Continuous.FirstOrder system3(T = 3000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
-    Placement(transformation(origin = {-1093, 17}, extent = {{-51, -51}, {51, 51}})));
+  Modelica.Blocks.Sources.RealExpression Te(y = tePrad1.Te)  annotation(
+    Placement(transformation(origin = {-590, 393}, extent = {{-48, -31}, {48, 31}})));
 equation
   der(Etot) = abs(P1.y) + abs(P2.y) + abs(P3.y);
   der(Eheat) = abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
@@ -63,9 +59,9 @@ equation
   connect(doorOpenings.door13open, building_ee.door1) annotation(
     Line(points = {{720.4, -166.8}, {803.8, -166.8}, {803.8, -108}, {848.5, -108}}, color = {255, 0, 255}));
   connect(tePrad1.Te, building_ee.Te) annotation(
-    Line(points = {{1269, 564}, {1269, 354.9}, {1272, 354.9}, {1272, 283}}, color = {0, 0, 127}));
+    Line(points = {{1265, 616}, {1265, 354.9}, {1272, 354.9}, {1272, 283}}, color = {0, 0, 127}));
   connect(tePrad1.Prad, building_ee.PRad) annotation(
-    Line(points = {{1223, 564}, {1223, 354.4}, {1211.5, 354.4}, {1211.5, 280}}, color = {0, 0, 127}));
+    Line(points = {{1219, 616}, {1219, 354.4}, {1211.5, 354.4}, {1211.5, 280}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr1, building_ee.D1) annotation(
     Line(points = {{1028, 446}, {1028, 268.7}, {1052, 268.7}, {1052, 280}}, color = {0, 0, 127}));
   connect(powerDisturbances.Pdr3, building_ee.D3) annotation(
@@ -118,28 +114,22 @@ equation
     Line(points = {{-120.76, 208.44}, {-282.76, 208.44}, {-282.76, 192.44}}, color = {0, 0, 127}));
   connect(strictController.u1, scheduler.h1_strict) annotation(
     Line(points = {{-281.52, 237.92}, {-203.52, 237.92}, {-203.52, 235.92}, {-119.52, 235.92}}, color = {0, 0, 127}));
-  connect(SetPointTable.y[1], system1.u) annotation(
-    Line(points = {{-1196.9, 281}, {-1182.4, 281}, {-1182.4, 405}, {-1155, 405}}, color = {0, 0, 127}));
-  connect(SetPointTable.y[2], system2.u) annotation(
-    Line(points = {{-1196.9, 281}, {-1181.9, 281}, {-1181.9, 214}, {-1158, 214}}, color = {0, 0, 127}));
-  connect(SetPointTable.y[3], system3.u) annotation(
-    Line(points = {{-1196.9, 281}, {-1181.9, 281}, {-1181.9, 17}, {-1154, 17}}, color = {0, 0, 127}));
-  connect(system1.y, strictController.setpoint1) annotation(
-    Line(points = {{-1047, 405}, {-935.3, 405}, {-935.3, 273}, {-505.3, 273}}, color = {0, 0, 127}));
-  connect(system2.y, strictController.setpoint2) annotation(
-    Line(points = {{-1038.8, 214}, {-952.8, 214}, {-952.8, 172}, {-506.8, 172}}, color = {0, 0, 127}));
-  connect(system3.y, strictController.setpoint3) annotation(
-    Line(points = {{-1037, 17}, {-510.9, 17}, {-510.9, 69}, {-506.9, 69}}, color = {0, 0, 127}));
-  connect(loose_Controller.Tdes3, system3.y) annotation(
-    Line(points = {{-435, -220}, {-1036.97, -220}, {-1036.97, 17.97}}, color = {0, 0, 127}));
   connect(realExpression1211.y, strictController.y_meas3) annotation(
     Line(points = {{-678.8, 104}, {-506.8, 104}, {-506.8, 116}}, color = {0, 0, 127}));
   connect(strictController.y_meas2, realExpression122.y) annotation(
     Line(points = {{-506, 225.72}, {-682, 225.72}, {-682, 215.72}}, color = {0, 0, 127}));
   connect(realExpression121.y, strictController.y_meas1) annotation(
     Line(points = {{-682.8, 328}, {-506.8, 328}, {-506.8, 318}}, color = {0, 0, 127}));
-  connect(tePrad1.Te, strictController.Te) annotation(
-    Line(points = {{1268, 564}, {-394, 564}, {-394, 364}}, color = {0, 0, 127}));
+  connect(SetPointTable.y[1], strictController.setpoint1) annotation(
+    Line(points = {{-1196, 282}, {-506, 282}, {-506, 274}}, color = {0, 0, 127}));
+  connect(SetPointTable.y[2], strictController.setpoint2) annotation(
+    Line(points = {{-1196, 282}, {-996, 282}, {-996, 172}, {-506, 172}}, color = {0, 0, 127}));
+  connect(SetPointTable.y[3], strictController.setpoint3) annotation(
+    Line(points = {{-1196, 282}, {-996, 282}, {-996, 70}, {-506, 70}}, color = {0, 0, 127}));
+  connect(SetPointTable.y[3], loose_Controller.Tdes3) annotation(
+    Line(points = {{-1196, 282}, {-996, 282}, {-996, -220}, {-434, -220}}, color = {0, 0, 127}));
+  connect(strictController.Te, Te.y) annotation(
+    Line(points = {{-394, 364}, {-392, 364}, {-392, 394}, {-538, 394}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-1340, 520}, {1360, -300}})));
 end Controlled_Building_2;

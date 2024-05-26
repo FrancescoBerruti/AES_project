@@ -1,11 +1,11 @@
 within AES_project_2023_2024.ProjectGroupWork;
 
 model StrictController
-  AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer(K = 80784) annotation(
+  AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer(K = 80784, TauHC = TauHC) annotation(
     Placement(transformation(origin = {273, 55}, extent = {{-22, -22}, {22, 22}})));
-  AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer1(K = 53856) annotation(
+  AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer1(K = 53856, TauHC = TauHC) annotation(
     Placement(transformation(origin = {279, -47}, extent = {{-18, -18}, {18, 18}})));
-  AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer2(K = 134640) annotation(
+  AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer2(K = 134640, TauHC = TauHC) annotation(
     Placement(transformation(origin = {232, -250}, extent = {{-17, -17}, {17, 17}})));
   Modelica.Blocks.Interfaces.RealInput y_meas1 annotation(
     Placement(transformation(origin = {-428, 110}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-100, 102}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
@@ -24,24 +24,24 @@ model StrictController
   Modelica.Blocks.Interfaces.RealOutput u2 annotation(
     Placement(transformation(origin = {342, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {84, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput u3 annotation(
-    Placement(transformation(origin = {304, -240}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {84, -42}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {290, -244}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {84, -42}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Gain gain3(k = 134640/Tau) annotation(
     Placement(transformation(origin = {-276, -216}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3 annotation(
     Placement(transformation(origin = {-190, -222}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.TransferFunction Ti3(a = {30, 1}, b = {1}) annotation(
+  Modelica.Blocks.Continuous.TransferFunction Ti3(a = {TauHC, 1}, b = {1}) annotation(
     Placement(transformation(origin = {-116, -254}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
   Modelica.Blocks.Math.Gain gain2(k = 53856/Tau) annotation(
     Placement(transformation(origin = {-274, -22}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add2 annotation(
     Placement(transformation(origin = {-236, -28}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.TransferFunction Ti2(a = {30, 1}, b = {1}) annotation(
+  Modelica.Blocks.Continuous.TransferFunction Ti2(a = {TauHC, 1}, b = {1}) annotation(
     Placement(transformation(origin = {-162, -66}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
   Modelica.Blocks.Math.Gain gain1(k = 80784/Tau) annotation(
     Placement(transformation(origin = {-294, 94}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add1 annotation(
     Placement(transformation(origin = {-258, 88}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.TransferFunction Ti1(a = {30, 1}, b = {1}) annotation(
+  Modelica.Blocks.Continuous.TransferFunction Ti1(a = {TauHC, 1}, b = {1}) annotation(
     Placement(transformation(origin = {-184, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
   Modelica.Blocks.Math.Add loop_error_sum(k1 = -1) annotation(
     Placement(transformation(origin = {-346, -214}, extent = {{-10, -10}, {10, 10}})));
@@ -50,7 +50,7 @@ model StrictController
   Modelica.Blocks.Math.Add loop_error_sum2(k1 = -1) annotation(
     Placement(transformation(origin = {-358, 94}, extent = {{-10, -10}, {10, 10}})));
   parameter Real Tau = 10;
-
+  parameter Real TauHC=120;
   Modelica.Blocks.Interfaces.RealInput Te annotation(
     Placement(transformation(origin = {-596, 14}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-8, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
   Modelica.Blocks.Math.Add add31(k2 = -1)  annotation(
@@ -62,7 +62,7 @@ model StrictController
   Modelica.Blocks.Math.Add CompensatorTe2(k2 = -55.385) annotation(
     Placement(transformation(origin = {-58, -28}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add CompensatorTe3(k2 = 138.462) annotation(
-    Placement(transformation(origin = {-46, -228}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-46, -226}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3121(k2 = -1) annotation(
     Placement(transformation(origin = {-136, -290}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add(k2 = -1)  annotation(
@@ -99,7 +99,7 @@ equation
   connect(u1, split_equalizer.actuation_signal) annotation(
     Line(points = {{328, 60}, {299, 60}}, color = {0, 0, 127}));
   connect(split_equalizer2.actuation_signal, u3) annotation(
-    Line(points = {{251.72, -245.92}, {278.44, -245.92}, {278.44, -239.84}, {303.44, -239.84}}, color = {0, 0, 127}));
+    Line(points = {{251.72, -245.92}, {278.44, -245.92}, {278.44, -244}, {290, -244}}, color = {0, 0, 127}));
   connect(gain3.y, add3.u1) annotation(
     Line(points = {{-265, -216}, {-202, -216}}, color = {0, 0, 127}));
   connect(Ti3.y, add3.u2) annotation(
@@ -136,8 +136,6 @@ equation
     Line(points = {{-130, -112}, {-378, -112}, {-378, -18}, {-428, -18}}, color = {0, 0, 127}));
   connect(CompensatorTe2.u2, add312.y) annotation(
     Line(points = {{-70, -34}, {-98, -34}, {-98, -118}, {-107, -118}}, color = {0, 0, 127}));
-  connect(add3121.y, CompensatorTe3.u2) annotation(
-    Line(points = {{-125, -290}, {-59, -290}, {-59, -234}}, color = {0, 0, 127}));
   connect(add3121.u1, y_meas3) annotation(
     Line(points = {{-148, -284}, {-426, -284}, {-426, -192}}, color = {0, 0, 127}));
   connect(Te, add312.u2) annotation(
@@ -155,7 +153,7 @@ equation
   connect(y_meas3, add.u2) annotation(
     Line(points = {{-426, -192}, {136, -192}, {136, 64}, {152, 64}}, color = {0, 0, 127}));
   connect(CompensatorTe3.y, add32.u3) annotation(
-    Line(points = {{-34, -228}, {-24, -228}, {-24, -242}, {162, -242}}, color = {0, 0, 127}));
+    Line(points = {{-35, -226}, {63.5, -226}, {63.5, -242}, {162, -242}}, color = {0, 0, 127}));
   connect(add32.y, split_equalizer2.Prequested) annotation(
     Line(points = {{186, -234}, {208, -234}, {208, -236}}, color = {0, 0, 127}));
   connect(add.y, add51.u2) annotation(
@@ -203,9 +201,11 @@ equation
   connect(add3.y, variableLimiter11.u) annotation(
     Line(points = {{-178, -222}, {-116, -222}, {-116, -220}, {-112, -220}}, color = {0, 0, 127}));
   connect(CompensatorTe3.u1, variableLimiter11.y) annotation(
-    Line(points = {{-58, -222}, {-88, -222}, {-88, -220}}, color = {0, 0, 127}));
+    Line(points = {{-58, -220}, {-88, -220}}, color = {0, 0, 127}));
   connect(Ti3.u, variableLimiter11.y) annotation(
     Line(points = {{-104, -254}, {-72, -254}, {-72, -220}, {-88, -220}}, color = {0, 0, 127}));
+  connect(add3121.y, CompensatorTe3.u2) annotation(
+    Line(points = {{-124, -290}, {-68, -290}, {-68, -232}, {-58, -232}}, color = {0, 0, 127}));
   annotation(
     Diagram(graphics = {Text(origin = {-425, -34}, extent = {{-1, 2}, {1, -2}}, textString = "text")}, coordinateSystem(extent = {{-620, 140}, {320, -300}})),
     Icon(coordinateSystem(extent = {{-50, 50}, {50, -50}}), graphics = {Rectangle(origin = {-3, -1}, rotation = -90, fillColor = {0, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-121, 77}, {121, -77}}), Text(origin = {-1, 6}, extent = {{-52, 19}, {52, -19}}, textString = "StrictController")}));

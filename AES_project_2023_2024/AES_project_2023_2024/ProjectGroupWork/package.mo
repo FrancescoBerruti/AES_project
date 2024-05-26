@@ -174,7 +174,7 @@ model WallWithDoorAndRadiation
   Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent annotation(
     Placement(transformation(origin = {-28, -34}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
   Modelica.Blocks.Interfaces.RealInput Prad annotation(
-    Placement(transformation(origin = {-62, -38}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-62, -38}, extent = {{-20, -20}, {20, 20}})));
+    Placement(transformation(origin = {-62, -38}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {14, -224}, extent = {{-20, -20}, {20, 20}}, rotation = -90)));
   Modelica.Electrical.Analog.Basic.Conductor conductor42(G = Gd) annotation(
     Placement(transformation(origin = {-2, 38}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch switch1 annotation(
