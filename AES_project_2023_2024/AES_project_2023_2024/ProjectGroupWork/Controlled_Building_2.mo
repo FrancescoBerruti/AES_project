@@ -53,7 +53,7 @@ model Controlled_Building_2
   Modelica.Blocks.Continuous.FirstOrder system3(T = 3000, initType = Modelica.Blocks.Types.Init.InitialOutput, k = 1, y_start = 273.15) annotation(
     Placement(transformation(origin = {-1093, 17}, extent = {{-51, -51}, {51, 51}})));
 equation
-  der(Etot) = abs(P1.y) + abs(P2.y) + abs(P3.y);
+  der(Etot) = (abs(P1.y) + abs(P2.y) + abs(P3.y))/(3.6*10^6);
   der(Eheat) = abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
   der(Ecool) = abs(HC1.Pc) + abs(HC2.Pc) + abs(HC3.Pc);
   connect(doorOpenings.door3eopen, building_ee.door3) annotation(
