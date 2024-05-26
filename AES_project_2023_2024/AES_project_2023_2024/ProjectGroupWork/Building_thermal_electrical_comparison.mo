@@ -27,7 +27,7 @@ model Building_thermal_electrical_comparison
     Placement(transformation(origin = {-38, 126}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator hRoom31 annotation(
     Placement(transformation(origin = {-34, 96}, extent = {{-10, -10}, {10, 10}})));
-  ProcessComponents.DoorOpenings doorOpenings(hod_start = 8, hod_end = 8) annotation(
+  ProcessComponents.DoorOpenings doorOpenings annotation(
     Placement(transformation(origin = {-40, 64}, extent = {{-14, -14}, {14, 14}})));
   Modelica.Blocks.Sources.Sine uh(amplitude = 1.2, f = 1/1800) annotation(
     Placement(transformation(origin = {-334, -8}, extent = {{-10, -10}, {10, 10}})));
