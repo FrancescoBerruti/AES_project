@@ -89,9 +89,9 @@ model StrictController
     Placement(transformation(origin = {-188, -36}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter11 annotation(
     Placement(transformation(origin = {-100, -220}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression21(y = 4000 - add3121.y*138.462- add32.u1*add32.u1 - add32.k2*add32.u2) annotation(
-    Placement(transformation(origin = {-140, -206}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression111(y = -1000 - add3121.y*138.462- add32.u1*add32.u1 - add32.k2*add32.u2) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression21(y = 4000 - add3121.y*138.462- add32.u1*add32.k1 - add32.k2*add32.u2) annotation(
+    Placement(transformation(origin = {-140, -204}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.RealExpression realExpression111(y = -1000 - add3121.y*138.462- add32.u1*add32.k1 - add32.k2*add32.u2) annotation(
     Placement(transformation(origin = {-142, -232}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(split_equalizer1.actuation_signal, u2) annotation(
@@ -195,7 +195,7 @@ equation
   connect(Ti2.u, variableLimiter1.y) annotation(
     Line(points = {{-150, -66}, {-112, -66}, {-112, -24}, {-134, -24}}, color = {0, 0, 127}));
   connect(variableLimiter11.limit1, realExpression21.y) annotation(
-    Line(points = {{-112, -212}, {-118, -212}, {-118, -206}, {-128, -206}}, color = {0, 0, 127}));
+    Line(points = {{-112, -212}, {-118, -212}, {-118, -204}, {-129, -204}}, color = {0, 0, 127}));
   connect(realExpression111.y, variableLimiter11.limit2) annotation(
     Line(points = {{-131, -232}, {-121, -232}, {-121, -228}, {-113, -228}}, color = {0, 0, 127}));
   connect(add3.y, variableLimiter11.u) annotation(
