@@ -14,22 +14,22 @@ model Controlled_Building_1
     Placement(transformation(origin = {-14, 58}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P1(k2 = -1) annotation(
     Placement(transformation(origin = {26, 58}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = 80784/120/1500)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = 0.1)  annotation(
     Placement(transformation(origin = {-54, 58}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC2 annotation(
     Placement(transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P2(k2 = -1) annotation(
     Placement(transformation(origin = {26, -2}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = 53856/120/1500)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = 0.1)  annotation(
     Placement(transformation(origin = {-54, -2}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC3 annotation(
     Placement(transformation(origin = {-12, -62}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
     Placement(transformation(origin = {30, -62}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = 134640/120/1500)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = 0.1)  annotation(
     Placement(transformation(origin = {-54, -62}, extent = {{-10, -10}, {10, 10}})));
-  StrictController strictController(Tau = 120, TauHC = 30) annotation(
-    Placement(transformation(origin = {-210, -2}, extent = {{-33, -33}, {33, 33}})));
+  StrictController strictController(Tau = 5, TauHC = 3) annotation(
+    Placement(transformation(origin = {-212, -2}, extent = {{-33, -33}, {33, 33}})));
   Modelica.Blocks.Sources.RealExpression T1(y = building_ee.T1) annotation(
     Placement(transformation(origin = {-364, 68}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression T11(y = building_ee.T2) annotation(
@@ -97,25 +97,25 @@ equation
   connect(P3.y, building_ee.P3) annotation(
     Line(points = {{41, -62}, {41, -23}, {64, -23}}, color = {0, 0, 127}));
   connect(strictController.u2, splitRange011.CSi01) annotation(
-    Line(points = {{-155, -3}, {-155, -5}, {-66, -5}, {-66, -2}}, color = {0, 0, 127}));
+    Line(points = {{-157, -3}, {-157, -5}, {-66, -5}, {-66, -2}}, color = {0, 0, 127}));
   connect(strictController.y_meas2, T11.y) annotation(
-    Line(points = {{-276, 15}, {-353, 15}, {-353, 30}}, color = {0, 0, 127}));
+    Line(points = {{-278, 15}, {-355, 15}, {-355, 30}, {-353, 30}}, color = {0, 0, 127}));
   connect(strictController.y_meas3, T111.y) annotation(
-    Line(points = {{-276, -44}, {-321, -44}}, color = {0, 0, 127}));
+    Line(points = {{-278, -44}, {-321, -44}}, color = {0, 0, 127}));
   connect(T1.y, strictController.y_meas1) annotation(
-    Line(points = {{-353, 68}, {-353, 65}, {-276, 65}}, color = {0, 0, 127}));
+    Line(points = {{-353, 68}, {-353, 65}, {-278, 65}}, color = {0, 0, 127}));
   connect(strictController.u1, splitRange01.CSi01) annotation(
-    Line(points = {{-154, 22}, {-150, 22}, {-150, 58}, {-66, 58}}, color = {0, 0, 127}));
+    Line(points = {{-157, 22}, {-150, 22}, {-150, 58}, {-66, 58}}, color = {0, 0, 127}));
   connect(strictController.u3, splitRange012.CSi01) annotation(
-    Line(points = {{-154, -30}, {-152, -30}, {-152, -62}, {-66, -62}}, color = {0, 0, 127}));
+    Line(points = {{-157, -30}, {-152, -30}, {-152, -62}, {-66, -62}}, color = {0, 0, 127}));
   connect(SetPointTable.y[1], strictController.setpoint1) annotation(
-    Line(points = {{-466, 40}, {-276, 40}, {-276, 42}}, color = {0, 0, 127}));
+    Line(points = {{-466, 40}, {-276, 40}, {-276, 42}, {-278, 42}}, color = {0, 0, 127}));
   connect(strictController.setpoint2, SetPointTable.y[2]) annotation(
-    Line(points = {{-276, -14}, {-420, -14}, {-420, 40}, {-466, 40}}, color = {0, 0, 127}));
+    Line(points = {{-278, -14}, {-420, -14}, {-420, 40}, {-466, 40}}, color = {0, 0, 127}));
   connect(strictController.setpoint3, SetPointTable.y[3]) annotation(
-    Line(points = {{-276, -70}, {-420, -70}, {-420, 40}, {-466, 40}}, color = {0, 0, 127}));
+    Line(points = {{-278, -69}, {-420, -69}, {-420, 40}, {-466, 40}}, color = {0, 0, 127}));
   connect(Te.y, strictController.Te) annotation(
-    Line(points = {{-278, 108}, {-216, 108}, {-216, 90}}, color = {0, 0, 127}));
+    Line(points = {{-278, 108}, {-216, 108}, {-216, 90}, {-217, 90}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-420, 180}, {260, -160}})));
 
