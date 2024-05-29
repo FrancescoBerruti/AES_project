@@ -6,7 +6,7 @@ model StrictController
   AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer1(K = 53856, TauHC = TauHC) annotation(
     Placement(transformation(origin = {279, -47}, extent = {{-18, -18}, {18, 18}})));
   AES_project_2023_2024.ProjectGroupWork.split_equalizer split_equalizer2(K = 134640, TauHC = TauHC) annotation(
-    Placement(transformation(origin = {232, -250}, extent = {{-17, -17}, {17, 17}})));
+    Placement(transformation(origin = {236, -246}, extent = {{-17, -17}, {17, 17}})));
   Modelica.Blocks.Interfaces.RealInput y_meas1 annotation(
     Placement(transformation(origin = {-428, 110}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-100, 102}, extent = {{-20, -20}, {20, 20}}, rotation = 180)));
   Modelica.Blocks.Interfaces.RealInput setpoint1 annotation(
@@ -30,7 +30,7 @@ model StrictController
   Modelica.Blocks.Math.Gain gain2(k = 53856/Tau) annotation(
     Placement(transformation(origin = {-274, -22}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Gain gain1(k = 80784/Tau) annotation(
-    Placement(transformation(origin = {-294, 94}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-260, 94}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add loop_error_sum(k1 = -1) annotation(
     Placement(transformation(origin = {-346, -214}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add loop_error_sum1(k1 = -1) annotation(
@@ -64,7 +64,7 @@ model StrictController
   Modelica.Blocks.Math.Add add51(k1 = +1, k2 = (154.286/2)*1)  annotation(
     Placement(transformation(origin = {214, 72}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter annotation(
-    Placement(transformation(origin = {-182, 88}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-180, 94}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y = 4000 - add31.y*83.071- add51.u2*add51.k2)  annotation(
     Placement(transformation(origin = {-222, 102}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression realExpression1(y = -1000 - add31.y*83.071- add51.u2*add51.k2) annotation(
@@ -87,7 +87,7 @@ equation
   connect(u1, split_equalizer.actuation_signal) annotation(
     Line(points = {{328, 60}, {299, 60}}, color = {0, 0, 127}));
   connect(split_equalizer2.actuation_signal, u3) annotation(
-    Line(points = {{251.72, -245.92}, {278.44, -245.92}, {278.44, -244}, {290, -244}}, color = {0, 0, 127}));
+    Line(points = {{256, -242}, {271, -242}, {271, -244}, {290, -244}}, color = {0, 0, 127}));
   connect(setpoint1, loop_error_sum2.u2) annotation(
     Line(points = {{-428, 80}, {-370, 80}, {-370, 88}}, color = {0, 0, 127}));
   connect(loop_error_sum2.u1, y_meas1) annotation(
@@ -100,8 +100,6 @@ equation
     Line(points = {{-426, -192}, {-358, -192}, {-358, -208}}, color = {0, 0, 127}));
   connect(setpoint3, loop_error_sum.u2) annotation(
     Line(points = {{-426, -220}, {-358, -220}}, color = {0, 0, 127}));
-  connect(gain1.u, loop_error_sum2.y) annotation(
-    Line(points = {{-306, 94}, {-346, 94}}, color = {0, 0, 127}));
   connect(gain2.u, loop_error_sum1.y) annotation(
     Line(points = {{-286, -22}, {-334, -22}, {-334, -30}}, color = {0, 0, 127}));
   connect(gain3.u, loop_error_sum.y) annotation(
@@ -131,7 +129,7 @@ equation
   connect(CompensatorTe3.y, add32.u3) annotation(
     Line(points = {{-35, -226}, {63.5, -226}, {63.5, -242}, {162, -242}}, color = {0, 0, 127}));
   connect(add32.y, split_equalizer2.Prequested) annotation(
-    Line(points = {{186, -234}, {208, -234}, {208, -236}}, color = {0, 0, 127}));
+    Line(points = {{186, -234}, {186, -232}, {212, -232}}, color = {0, 0, 127}));
   connect(add.y, add51.u2) annotation(
     Line(points = {{173, 66}, {202, 66}}, color = {0, 0, 127}));
   connect(CompensatorTe1.y, add51.u1) annotation(
@@ -151,9 +149,9 @@ equation
   connect(setpoint1, add31.u1) annotation(
     Line(points = {{-428, 80}, {-426, 80}, {-426, 26}, {-152, 26}}, color = {0, 0, 127}));
   connect(variableLimiter.limit1, realExpression.y) annotation(
-    Line(points = {{-194, 96}, {-200, 96}, {-200, 102}, {-210, 102}}, color = {0, 0, 127}));
+    Line(points = {{-192, 102}, {-210, 102}}, color = {0, 0, 127}));
   connect(realExpression1.y, variableLimiter.limit2) annotation(
-    Line(points = {{-212, 76}, {-202, 76}, {-202, 80}, {-194, 80}}, color = {0, 0, 127}));
+    Line(points = {{-212, 76}, {-202, 76}, {-202, 86}, {-192, 86}}, color = {0, 0, 127}));
   connect(variableLimiter1.limit1, realExpression2.y) annotation(
     Line(points = {{-158, -16}, {-164, -16}, {-164, -10}, {-174, -10}}, color = {0, 0, 127}));
   connect(realExpression11.y, variableLimiter1.limit2) annotation(
@@ -169,14 +167,16 @@ equation
   connect(add3121.y, CompensatorTe3.u2) annotation(
     Line(points = {{-124, -290}, {-68, -290}, {-68, -232}, {-58, -232}}, color = {0, 0, 127}));
   connect(gain1.y, variableLimiter.u) annotation(
-    Line(points = {{-282, 94}, {-194, 94}, {-194, 88}}, color = {0, 0, 127}));
+    Line(points = {{-249, 94}, {-192, 94}}, color = {0, 0, 127}));
   connect(gain2.y, variableLimiter1.u) annotation(
     Line(points = {{-262, -22}, {-158, -22}, {-158, -24}}, color = {0, 0, 127}));
   connect(gain3.y, variableLimiter11.u) annotation(
     Line(points = {{-264, -216}, {-110, -216}, {-110, -220}, {-112, -220}}, color = {0, 0, 127}));
   connect(variableLimiter.y, CompensatorTe1.u1) annotation(
-    Line(points = {{-170, 88}, {-88, 88}, {-88, 86}}, color = {0, 0, 127}));
+    Line(points = {{-168, 94}, {-88, 94}, {-88, 86}}, color = {0, 0, 127}));
+  connect(loop_error_sum2.y, gain1.u) annotation(
+    Line(points = {{-346, 94}, {-272, 94}}, color = {0, 0, 127}));
   annotation(
-    Diagram(graphics = {Text(origin = {-425, -34}, extent = {{-1, 2}, {1, -2}}, textString = "text")}, coordinateSystem(extent = {{-620, 140}, {320, -300}})),
+    Diagram(graphics = {Text(origin = {-425, -34}, extent = {{-1, 2}, {1, -2}}, textString = "text")}, coordinateSystem(extent = {{-620, 140}, {360, -300}})),
     Icon(coordinateSystem(extent = {{-50, 50}, {50, -50}}), graphics = {Rectangle(origin = {-3, -1}, rotation = -90, fillColor = {0, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-121, 77}, {121, -77}}), Text(origin = {-1, 6}, extent = {{-52, 19}, {52, -19}}, textString = "StrictController")}));
 end StrictController;
