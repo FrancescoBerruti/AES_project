@@ -36,11 +36,11 @@ model Controlled_Building_2
     Placement(transformation(origin = {308, 103}, extent = {{-44, -35}, {44, 35}})));
   AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange12 annotation(
     Placement(transformation(origin = {313, -13}, extent = {{-41, -45}, {41, 45}})));
-  StrictController strictController(Tau = 1, TauHC = 100) annotation(
+  StrictController strictController(Tau = 8, TauHC = 2) annotation(
     Placement(transformation(origin = {-384, 194}, extent = {{-61, -61}, {61, 61}})));
-  Modelica.Blocks.Sources.RealExpression realExpression121(y = if Functions.hod(time) >= scheduler.hod_start_strict and Functions.hod(time) < scheduler.hod_end_strict then building_ee.T1 else SetPointTable.y[1]) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression121(y = building_ee.T1) annotation(
     Placement(transformation(origin = {-784, 328}, extent = {{-92, -42}, {92, 42}})));
-  Modelica.Blocks.Sources.RealExpression realExpression122(y = if Functions.hod(time) >= scheduler.hod_start_strict and Functions.hod(time) < scheduler.hod_end_strict then building_ee.T2 else SetPointTable.y[2]) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression122(y = building_ee.T2) annotation(
     Placement(transformation(origin = {-780, 220}, extent = {{-92, -42}, {92, 42}})));
   Modelica.Blocks.Sources.RealExpression realExpression1211(y = if Functions.hod(time) >= scheduler.hod_start_strict and Functions.hod(time) < scheduler.hod_end_strict then building_ee.T3 else SetPointTable.y[3]) annotation(
     Placement(transformation(origin = {-780, 104}, extent = {{-92, -42}, {92, 42}})));
