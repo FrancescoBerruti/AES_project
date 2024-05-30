@@ -81,11 +81,11 @@ model Building_ee
   Modelica.Blocks.Interfaces.RealInput D3 annotation(
     Placement(transformation(origin = {-222, -122}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-138, 216}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
   Modelica.Blocks.Interfaces.RealOutput T1 annotation(
-    Placement(transformation(origin = {-228, -52}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {168, 162}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-228, -56}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {168, 162}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput T3 annotation(
     Placement(transformation(origin = {100, -106}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {170, 78}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Interfaces.RealOutput T2 annotation(
-    Placement(transformation(origin = {360, -36}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {170, 118}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {360, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 180), iconTransformation(origin = {170, 118}, extent = {{-10, -10}, {10, 10}})));
   WallWithDoorAndRadiation wall_3e(Gw1 = Gr3w3e, Gw2 = Gw3e, Cw = Cw3e, Tstart = Tstart) annotation(
     Placement(transformation(origin = {-31, 94.75}, extent = {{-12.25, -49}, {12.25, 49}}, rotation = 90)));
 equation
@@ -102,7 +102,7 @@ equation
   connect(add.y, Room1.PowerIn) annotation(
     Line(points = {{-352, -58}, {-340, -58}, {-340, -56}}, color = {0, 0, 127}));
   connect(Room1.t, T1) annotation(
-    Line(points = {{-254, -56}, {-228, -56}, {-228, -52}}, color = {0, 0, 127}));
+    Line(points = {{-254, -56}, {-228, -56}}, color = {0, 0, 127}));
   connect(D3, add1.u2) annotation(
     Line(points = {{-222, -122}, {-182, -122}, {-182, -116}}, color = {0, 0, 127}));
   connect(add1.u1, P3) annotation(
