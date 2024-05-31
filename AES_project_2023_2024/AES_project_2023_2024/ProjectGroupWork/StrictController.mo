@@ -75,20 +75,23 @@ model StrictController
     Placement(transformation(origin = {8, -210}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression realExpression111(y = -1000 - CompensatorsR3.y) annotation(
     Placement(transformation(origin = {6, -238}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add PushZero1(k1 = 1000) annotation(
+  Modelica.Blocks.Math.Add PushZero1(k1 = TauZero) annotation(
     Placement(transformation(origin = {36, 80}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add PushZero2(k1 = 1, k2 = 1000) annotation(
+  Modelica.Blocks.Math.Add PushZero2(k2 = TauZero) annotation(
     Placement(transformation(origin = {72, -44}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add PushZero3(k2 = 1000) annotation(
+  Modelica.Blocks.Math.Add PushZero3(k2 = TauZero) annotation(
     Placement(transformation(origin = {134, -232}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression CompensatorsR1(y = (y_meas1 - Te)*83.071 + (y_meas1 - y_meas3)*154.286/2) annotation(
+  Modelica.Blocks.Sources.RealExpression CompensatorsR1(y = (y_meas1 - Te)*83.071 + (y_meas1 - y_meas3)*154.286/2) 
+annotation(
     Placement(transformation(origin = {140, 66}, extent = {{-30, -22}, {30, 22}})));
+  
   Modelica.Blocks.Sources.RealExpression CompensatorsR2(y = (y_meas2 - Te)*55.385 + (y_meas2 - y_meas3)*102.857/2) annotation(
     Placement(transformation(origin = {140, -66}, extent = {{-30, -22}, {30, 22}})));
   Modelica.Blocks.Sources.RealExpression CompensatorsR3(y = (y_meas3 - Te)*138.462 + (y_meas3 - y_meas2)*102.857/2 + (y_meas3 - y_meas1)*154.286/2) annotation(
     Placement(transformation(origin = {86, -306}, extent = {{-30, -22}, {30, 22}})));
   Modelica.Blocks.Math.Add AddCompensationR3 annotation(
     Placement(transformation(origin = {178, -242}, extent = {{-10, -10}, {10, 10}})));
+  parameter Real TauZero=1000;
 equation
   connect(split_equalizer1.actuation_signal, u2) annotation(
     Line(points = {{300, -43}, {313.76, -43}, {313.76, -40}, {342, -40}}, color = {0, 0, 127}));
