@@ -23,10 +23,10 @@ model Scheduler
 equation
        h1out = h1_strict;
        h2out = h2_strict;
-       if Functions.hod(time)>=hod_start_strict and Functions.hod(time)<hod_end_strict then
+       if Functions.hod(time)>hod_start_strict - 1 and Functions.hod(time)<hod_end_strict then
           h3out = h3_strict;
 
-       else if Functions.hod(time)>=hod_start_loose and Functions.hod(time)<hod_end_loose then
+       else if Functions.hod(time)>hod_start_loose - 1 and Functions.hod(time)<hod_end_loose then
           h3out = h3_loose;
        else
           h3out=0.0;

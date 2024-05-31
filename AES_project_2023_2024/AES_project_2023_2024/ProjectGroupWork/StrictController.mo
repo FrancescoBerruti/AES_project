@@ -87,7 +87,7 @@ model StrictController
     Placement(transformation(origin = {140, -66}, extent = {{-30, -22}, {30, 22}})));
   Modelica.Blocks.Sources.RealExpression CompensatorsR3(y = (y_meas3 - Te)*138.462 + (y_meas3 - y_meas2)*102.857/2 + (y_meas3 - y_meas1)*154.286/2) annotation(
     Placement(transformation(origin = {86, -306}, extent = {{-30, -22}, {30, 22}})));
-  Modelica.Blocks.Math.Add AddCompensationR3(k2 = 1000) annotation(
+  Modelica.Blocks.Math.Add AddCompensationR3 annotation(
     Placement(transformation(origin = {178, -242}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(split_equalizer1.actuation_signal, u2) annotation(
