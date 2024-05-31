@@ -1,7 +1,6 @@
 TauHC=1;
-Tau=120;
+Tau=100;
 TauZero=100;
 
-L=(1+TauZero*TauHC*s)/(Tau*TauHC*s*(1+s)*s);
-figure
+L=(1+(TauZero+1)*TauHC*s)/(Tau*TauHC*s*(1+TauHC*s)*s);
 bode(L)
