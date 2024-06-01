@@ -14,19 +14,19 @@ model Controlled_Building_1
     Placement(transformation(origin = {-14, 58}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P1(k2 = -1) annotation(
     Placement(transformation(origin = {26, 58}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = 80784/120/1500)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = 0.1)  annotation(
     Placement(transformation(origin = {-54, 58}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC2 annotation(
     Placement(transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P2(k2 = -1) annotation(
     Placement(transformation(origin = {26, -2}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = 53856/120/1500)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = 0.1)  annotation(
     Placement(transformation(origin = {-54, -2}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC3 annotation(
     Placement(transformation(origin = {-12, -62}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
     Placement(transformation(origin = {30, -62}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = 134640/120/1500)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = 0.1)  annotation(
     Placement(transformation(origin = {-54, -62}, extent = {{-10, -10}, {10, 10}})));
   StrictController strictController( TauHC = 1, Tau = 1) annotation(
     Placement(transformation(origin = {-210, -2}, extent = {{-33, -33}, {33, 33}})));
