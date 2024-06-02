@@ -14,42 +14,42 @@ model Controlled_Building_1
     Placement(transformation(origin = {-14, 58}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P1(k2 = -1) annotation(
     Placement(transformation(origin = {26, 58}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = 0.1)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange01(DeadZone = 0.1) annotation(
     Placement(transformation(origin = {-54, 58}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC2 annotation(
     Placement(transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P2(k2 = -1) annotation(
     Placement(transformation(origin = {26, -2}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = 0.1)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange011(DeadZone = 0.1) annotation(
     Placement(transformation(origin = {-54, -2}, extent = {{-10, -10}, {10, 10}})));
   AES_project_2023_2024.ProcessComponents.HCactuator HC3 annotation(
     Placement(transformation(origin = {-12, -62}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add P3(k2 = -1) annotation(
     Placement(transformation(origin = {30, -62}, extent = {{-10, -10}, {10, 10}})));
-  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = 0.1)  annotation(
+  AES.ControlBlocks.ActuationSchemes.SplitRange01 splitRange012(DeadZone = 0.1) annotation(
     Placement(transformation(origin = {-54, -62}, extent = {{-10, -10}, {10, 10}})));
-  StrictController strictController( TauHC = 1, Tau = 1) annotation(
+  StrictController strictController(TauHC = 1/10, Tau = 1, TauZero = 10) annotation(
     Placement(transformation(origin = {-210, -2}, extent = {{-33, -33}, {33, 33}})));
   Modelica.Blocks.Sources.RealExpression T1(y = building_ee.T1) annotation(
-    Placement(transformation(origin = {-384, 66}, extent = {{-10, -10}, {10, 10}})));
+    Placement(transformation(origin = {-352, 66}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression T11(y = building_ee.T2) annotation(
     Placement(transformation(origin = {-388, 14}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.RealExpression T111(y = building_ee.T3) annotation(
     Placement(transformation(origin = {-388, -44}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-478, 42}, extent = {{-10, -10}, {10, 10}})));
-  Real Etot(quantity="Energy",unit="kWh") "total energy consumed";
-  Real Eheat(quantity="Energy",unit="kWh") "Energy used for heating";
-  Real Ecool(quantity="Energy",unit="kWh") "Enegy used for cooling";
-  Modelica.Blocks.Sources.RealExpression Te(y = tePrad1.Te)  annotation(
+  Real Etot(quantity = "Energy", unit = "kWh") "total energy consumed";
+  Real Eheat(quantity = "Energy", unit = "kWh") "Energy used for heating";
+  Real Ecool(quantity = "Energy", unit = "kWh") "Enegy used for cooling";
+  Modelica.Blocks.Sources.RealExpression Te(y = tePrad1.Te) annotation(
     Placement(transformation(origin = {-290, 108}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Gain T1_comp(k = 1000)  annotation(
+  Modelica.Blocks.Math.Gain T1_comp(k = 1000) annotation(
     Placement(transformation(origin = {324, 30}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Gain T111_comp(k = 1000) annotation(
     Placement(transformation(origin = {326, -34}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add(k2 = -283.15)  annotation(
+  Modelica.Blocks.Math.Add add(k2 = -283.15) annotation(
     Placement(transformation(origin = {290, 30}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression(y = 1)  annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression(y = 1) annotation(
     Placement(transformation(origin = {252, 24}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Gain T11_comp(k = 1000) annotation(
     Placement(transformation(origin = {326, -6}, extent = {{-10, -10}, {10, 10}})));
@@ -121,7 +121,7 @@ equation
   connect(strictController.y_meas3, T111.y) annotation(
     Line(points = {{-276, -44}, {-377, -44}}, color = {0, 0, 127}));
   connect(T1.y, strictController.y_meas1) annotation(
-    Line(points = {{-373, 66}, {-373, 65}, {-276, 65}}, color = {0, 0, 127}));
+    Line(points = {{-341, 66}, {-341, 65}, {-276, 65}}, color = {0, 0, 127}));
   connect(strictController.u1, splitRange01.CSi01) annotation(
     Line(points = {{-154, 22}, {-150, 22}, {-150, 58}, {-66, 58}}, color = {0, 0, 127}));
   connect(strictController.u3, splitRange012.CSi01) annotation(
@@ -154,5 +154,4 @@ equation
     Line(points = {{304, -34}, {314, -34}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-420, 180}, {260, -160}})));
-
 end Controlled_Building_1;

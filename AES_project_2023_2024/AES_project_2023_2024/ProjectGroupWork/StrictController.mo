@@ -29,13 +29,13 @@ model StrictController
     Placement(transformation(origin = {-152, -152}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add3 annotation(
     Placement(transformation(origin = {-110, -156}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.TransferFunction Ti3(a = {101, 1}, b = {1}) annotation(
+  Modelica.Blocks.Continuous.TransferFunction Ti3(a = {TauZero, 1}, b = {1}) annotation(
     Placement(transformation(origin = {-36, -188}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
   Modelica.Blocks.Math.Gain gain2(k = 53856/Tau) annotation(
     Placement(transformation(origin = {-154, -36}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add2 annotation(
     Placement(transformation(origin = {-122, -42}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Continuous.TransferFunction Ti2(a = {101, 1}, b = {1}) annotation(
+  Modelica.Blocks.Continuous.TransferFunction Ti2(a = {TauZero, 1}, b = {1}) annotation(
     Placement(transformation(origin = {-48, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 180)));
   Modelica.Blocks.Math.Gain gain1(k = 80784/Tau) annotation(
     Placement(transformation(origin = {-180, 80}, extent = {{-10, -10}, {10, 10}})));
@@ -51,6 +51,7 @@ model StrictController
     Placement(transformation(origin = {-244, 80}, extent = {{-10, -10}, {10, 10}})));
   parameter Real Tau = 10;
   parameter Real TauHC = 120;
+  parameter Real TauZero=100;
   Modelica.Blocks.Interfaces.RealInput Te annotation(
     Placement(transformation(origin = {-326, 6}, extent = {{-20, -20}, {20, 20}}, rotation = 180), iconTransformation(origin = {-8, 140}, extent = {{-20, -20}, {20, 20}}, rotation = 90)));
   Modelica.Blocks.Math.Add AddCompensationR2 annotation(
