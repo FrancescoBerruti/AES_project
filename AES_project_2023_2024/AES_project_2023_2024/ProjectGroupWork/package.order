@@ -7,7 +7,7 @@ WallWithDoor
 WallWithoutDoors
 Outside
 WallWithDoorAndRadiation
-Scheduler
-Loose_Controller
-split_equalizer
 StrictController
+split_equalizer
+Loose_Controller
+Scheduler
