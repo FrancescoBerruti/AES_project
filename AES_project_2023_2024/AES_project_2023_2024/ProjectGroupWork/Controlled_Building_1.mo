@@ -32,9 +32,9 @@ model Controlled_Building_1
     Placement(transformation(origin = {-210, -2}, extent = {{-33, -33}, {33, 33}})));
   Modelica.Blocks.Sources.RealExpression T1(y = building_ee.T1) annotation(
     Placement(transformation(origin = {-352, 66}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression T11(y = building_ee.T2) annotation(
+  Modelica.Blocks.Sources.RealExpression T2(y = building_ee.T2) annotation(
     Placement(transformation(origin = {-388, 14}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression T111(y = building_ee.T3) annotation(
+  Modelica.Blocks.Sources.RealExpression T3(y = building_ee.T3) annotation(
     Placement(transformation(origin = {-388, -44}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Sources.CombiTimeTable SetPointTable(columns = {2, 3, 4}, extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, offset = {273.15}, table = {{0, 10, 10, 15}, {5, 10, 10, 15}, {6, 10, 18, 15}, {7, 20, 18, 15}, {8, 20, 18, 16.5}, {9, 20, 18, 18}, {17, 20, 18, 18}, {18, 15, 18, 18}, {20, 15, 10, 18}, {21, 15, 10, 18}, {22, 10, 10, 15}, {24, 10, 10, 15}}, timeEvents = Modelica.Blocks.Types.TimeEvents.Always, timeScale = 3600) annotation(
     Placement(transformation(origin = {-478, 42}, extent = {{-10, -10}, {10, 10}})));
@@ -43,24 +43,6 @@ model Controlled_Building_1
   Real Ecool(quantity = "Energy", unit = "kWh") "Enegy used for cooling";
   Modelica.Blocks.Sources.RealExpression Te(y = tePrad1.Te) annotation(
     Placement(transformation(origin = {-290, 108}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Gain T1_comp(k = 1000) annotation(
-    Placement(transformation(origin = {324, 30}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Gain T111_comp(k = 1000) annotation(
-    Placement(transformation(origin = {326, -34}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add(k2 = -283.15) annotation(
-    Placement(transformation(origin = {290, 30}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression(y = 1) annotation(
-    Placement(transformation(origin = {252, 24}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Gain T11_comp(k = 1000) annotation(
-    Placement(transformation(origin = {326, -6}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add1(k2 = -283.15) annotation(
-    Placement(transformation(origin = {292, -6}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression1(y = 1) annotation(
-    Placement(transformation(origin = {254, -12}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Math.Add add11(k2 = -283.15) annotation(
-    Placement(transformation(origin = {292, -34}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.RealExpression realExpression11(y = 1) annotation(
-    Placement(transformation(origin = {254, -40}, extent = {{-10, -10}, {10, 10}})));
 equation
 //  der(Etot) = (abs(P1.y) + abs(P2.y) + abs(P3.y))/(3.6*10^6);
 //  der(Eheat) = abs(HC1.Ph) + abs(HC2.Ph) + abs(HC3.Ph);
@@ -116,9 +98,9 @@ equation
     Line(points = {{41, -62}, {41, -23}, {64, -23}}, color = {0, 0, 127}));
   connect(strictController.u2, splitRange011.CSi01) annotation(
     Line(points = {{-155, -3}, {-155, -5}, {-66, -5}, {-66, -2}}, color = {0, 0, 127}));
-  connect(strictController.y_meas2, T11.y) annotation(
+  connect(strictController.y_meas2, T2.y) annotation(
     Line(points = {{-276, 15}, {-353, 15}, {-353, 14}, {-377, 14}}, color = {0, 0, 127}));
-  connect(strictController.y_meas3, T111.y) annotation(
+  connect(strictController.y_meas3, T3.y) annotation(
     Line(points = {{-276, -44}, {-377, -44}}, color = {0, 0, 127}));
   connect(T1.y, strictController.y_meas1) annotation(
     Line(points = {{-341, 66}, {-341, 65}, {-276, 65}}, color = {0, 0, 127}));
@@ -134,24 +116,6 @@ equation
     Line(points = {{-276, -70}, {-420, -70}, {-420, 42}, {-467, 42}}, color = {0, 0, 127}));
   connect(Te.y, strictController.Te) annotation(
     Line(points = {{-278, 108}, {-216, 108}, {-216, 90}}, color = {0, 0, 127}));
-  connect(realExpression.y, add.u2) annotation(
-    Line(points = {{263, 24}, {277, 24}}, color = {0, 0, 127}));
-  connect(add.y, T1_comp.u) annotation(
-    Line(points = {{301, 30}, {311, 30}}, color = {0, 0, 127}));
-  connect(building_ee.T1, add.u1) annotation(
-    Line(points = {{222, 14}, {278, 14}, {278, 36}}, color = {0, 0, 127}));
-  connect(realExpression1.y, add1.u2) annotation(
-    Line(points = {{265, -12}, {279, -12}}, color = {0, 0, 127}));
-  connect(add1.y, T11_comp.u) annotation(
-    Line(points = {{303, -6}, {313, -6}}, color = {0, 0, 127}));
-  connect(building_ee.T2, add1.u1) annotation(
-    Line(points = {{222, -6}, {234, -6}, {234, 0}, {280, 0}}, color = {0, 0, 127}));
-  connect(realExpression11.y, add11.u2) annotation(
-    Line(points = {{265, -40}, {279, -40}}, color = {0, 0, 127}));
-  connect(building_ee.T3, add11.u1) annotation(
-    Line(points = {{222, -24}, {240, -24}, {240, -28}, {280, -28}}, color = {0, 0, 127}));
-  connect(add11.y, T111_comp.u) annotation(
-    Line(points = {{304, -34}, {314, -34}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-420, 180}, {260, -160}})));
 end Controlled_Building_1;

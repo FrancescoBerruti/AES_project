@@ -11,10 +11,6 @@ model Loose_Controller
     Placement(transformation(origin = {-386, -72}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Blocks.Math.Add add2112(k2 = -1) annotation(
     Placement(transformation(origin = {-422, -72}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Constant const(k = -4) annotation(
-    Placement(transformation(origin = {-736, 28}, extent = {{-38, -38}, {38, 38}})));
-  Modelica.Blocks.Sources.Constant const1(k = 4) annotation(
-    Placement(transformation(origin = {-731, -89}, extent = {{-41, -41}, {41, 41}})));
   Modelica.Blocks.Math.Add add2221 annotation(
     Placement(transformation(origin = {-537, -9}, extent = {{-23, -23}, {23, 23}})));
   Modelica.Blocks.Math.Add add22111 annotation(
@@ -29,6 +25,10 @@ model Loose_Controller
     Placement(transformation(origin = {-293, -73}, extent = {{-19, -19}, {19, 19}})));
   Modelica.Blocks.Nonlinear.Limiter limiter22(uMax = 1, uMin = 0) annotation(
     Placement(transformation(origin = {-293, -17}, extent = {{-19, -19}, {19, 19}})));
+  Modelica.Blocks.Sources.RealExpression realExpression(y = 2)  annotation(
+    Placement(transformation(origin = {-672, 8}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Blocks.Sources.RealExpression realExpression1(y = -2) annotation(
+    Placement(transformation(origin = {-674, -94}, extent = {{-10, -10}, {10, 10}})));
 equation
   connect(add213.y, gain3.u) annotation(
     Line(points = {{-407, -22}, {-397.5, -22}, {-397.5, -20}, {-390, -20}}, color = {0, 0, 127}));
@@ -46,8 +46,6 @@ equation
     Line(points = {{-602, -28}, {-564, -28}, {-564, -22}}, color = {0, 0, 127}));
   connect(add22111.u1, Tdes3) annotation(
     Line(points = {{-558.6, -65.2}, {-602.6, -65.2}, {-602.6, -27.2}}, color = {0, 0, 127}));
-  connect(const1.y, add22111.u2) annotation(
-    Line(points = {{-685.9, -89}, {-637.9, -89}, {-637.9, -92}, {-557.9, -92}}, color = {0, 0, 127}));
   connect(add.y, h3_loose) annotation(
     Line(points = {{-147, -43}, {-101.1, -43}, {-101.1, -36}, {-54.1, -36}}, color = {0, 0, 127}));
   connect(limiter22.y, add.u1) annotation(
@@ -58,8 +56,10 @@ equation
     Line(points = {{-315.8, -73}, {-373.8, -73}}, color = {0, 0, 127}));
   connect(limiter22.u, gain3.y) annotation(
     Line(points = {{-316, -17}, {-369.8, -17}, {-369.8, -20}, {-365.8, -20}}, color = {0, 0, 127}));
-  connect(const.y, add2221.u1) annotation(
-    Line(points = {{-694.2, 28}, {-564.2, 28}, {-564.2, 4}}, color = {0, 0, 127}));
+  connect(realExpression1.y, add22111.u2) annotation(
+    Line(points = {{-662, -94}, {-558, -94}, {-558, -92}}, color = {0, 0, 127}));
+  connect(realExpression.y, add2221.u1) annotation(
+    Line(points = {{-660, 8}, {-564, 8}, {-564, 4}}, color = {0, 0, 127}));
   annotation(
     Icon(coordinateSystem(extent = {{-200, -300}, {200, 300}}), graphics = {Rectangle(origin = {-1, -1}, fillColor = {0, 0, 255}, fillPattern = FillPattern.Solid, extent = {{-200, 300}, {200, -300}}), Text(origin = {-4, 1}, extent = {{-116, 163}, {116, -163}}, textString = "Loose_controller")}),
     Diagram(coordinateSystem(extent = {{-820, 160}, {0, -280}})));
